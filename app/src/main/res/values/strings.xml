@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Kalkulator PKS</string>
+    <string name="title_activity_main_menu">MainActivity</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_calculate">Hitung</string>
+    <string name="title_about">Tentang</string>
+    <string name="app_launch_btn">Mulai</string>
+    <string name="app_launch_title" translatable="false">Perhitungan Singkat PKS</string>
+    <string name="text_home">Simple Text</string>
+    <string name="text_about_title">Tentang Kami</string>
+    <string name="text_about_inner">Kami adalah Mahasiswa Sekolah Tinggi Ilmu Pertanian Agrobisnis Perkebunan ( STIPAP )</string>
+    <string name="text_about_member">Nama</string>
 </resources>
