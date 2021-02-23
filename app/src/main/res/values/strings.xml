@@ -13,7 +13,13 @@
     <string name="text_cal_logo">Pilihan Kalkulasi Cepat</string>
     <string name="cal_01">Material balance</string>
     <string name="cal_02">Perhitungan mutu</string>
-    <string name="cal_03">Losse pabrik</string>
+    <string name="cal_03">Losses pabrik</string>
     <string name="cal_04">Perhitungan rendemen</string>
     <string name="cal_05">Overall Equimpment Effectiveness</string>
+    <string name="cal01_beratTBS_std">Berat TBS (KG)</string>
+    <string name="kg">KG</string>
+    <string name="cal_01_simpan_prsn">Simpan Persen</string>
+    <string name="hitung">Hitung</string>
+    <string name="cal_01_manual_btn">Manual</string>
+    <string name="cal_01_std_btn">Standar</string>
 </resources>
