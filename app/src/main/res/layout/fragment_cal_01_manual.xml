@@ -62,9 +62,9 @@
 
                 <TextView
                     android:id="@+id/tangkos_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Tangkos"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tangkos_p_manual"
@@ -73,7 +73,7 @@
 
                 <EditText
                     android:id="@+id/tangkos_p_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="%"
                     android:inputType="number"
@@ -84,9 +84,12 @@
 
                 <TextView
                     android:id="@+id/tangkos_hsl_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tangkos_p_manual"
@@ -105,9 +108,9 @@
 
                 <TextView
                     android:id="@+id/serat_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Serat"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/serat_p_manual"
@@ -115,11 +118,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/serat_p_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/serat_hsl_manual"
                     app:layout_constraintStart_toEndOf="@+id/serat_manual"
@@ -127,9 +130,12 @@
 
                 <TextView
                     android:id="@+id/serat_hsl_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/serat_p_manual"
@@ -148,9 +154,9 @@
 
                 <TextView
                     android:id="@+id/cangkang_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Cangkang"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/cangkang_p_manual"
@@ -158,11 +164,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/cangkang_p_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/cangkang_hsl_manual"
                     app:layout_constraintStart_toEndOf="@+id/cangkang_manual"
@@ -170,9 +176,12 @@
 
                 <TextView
                     android:id="@+id/cangkang_hsl_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cangkang_p_manual"
@@ -191,9 +200,9 @@
 
                 <TextView
                     android:id="@+id/inti_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Inti"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/inti_p_manual"
@@ -201,11 +210,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/inti_p_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/inti_hsl_manual"
                     app:layout_constraintStart_toEndOf="@+id/inti_manual"
@@ -213,9 +222,12 @@
 
                 <TextView
                     android:id="@+id/inti_hsl_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/inti_p_manual"
@@ -233,9 +245,9 @@
 
                 <TextView
                     android:id="@+id/cpo_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="CPO"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/cpo_p_manual"
@@ -243,11 +255,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/cpo_p_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/cpo_hsl_manual"
                     app:layout_constraintStart_toEndOf="@+id/cpo_manual"
@@ -255,9 +267,12 @@
 
                 <TextView
                     android:id="@+id/cpo_hsl_manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cpo_p_manual"
@@ -269,6 +284,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_save_24"
                 android:text="@string/cal_01_simpan_prsn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cal_01_hitung_manual"
@@ -281,6 +298,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/hitung"
+                android:drawableTop="@drawable/ic_baseline_done_24"
+                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cal_01_save_manual"

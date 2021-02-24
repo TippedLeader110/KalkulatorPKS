@@ -22,4 +22,13 @@
     <string name="hitung">Hitung</string>
     <string name="cal_01_manual_btn">Manual</string>
     <string name="cal_01_std_btn">Standar</string>
+    <string name="cal_01_title_top">Persentase</string>
+    <string name="hasil">Hasil</string>
+    <string name="ALB">ALB</string>
+    <string name="Dobi">Dobi</string>
+    <string name="kadar_air">Kadar AIr</string>
+    <string name="kadar_kotoran">Kadar kotoran</string>
+    <string name="mutu_cpo">Mutu pada CPO</string>
+    <string name="mutu_inti">Mutu pada inti</string>
+    <string name="alb_cpo">ALB pada CPO</string>
 </resources>

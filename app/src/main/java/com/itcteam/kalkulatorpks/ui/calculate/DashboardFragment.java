@@ -6,16 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.calculate.task.Calculate01;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
 
 public class DashboardFragment extends Fragment {
 
@@ -34,12 +31,21 @@ public class DashboardFragment extends Fragment {
         cal01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Calculate01.class);
+                Intent intent = new Intent(getActivity(), Hitung01.class);
                 startActivity(intent);
             }
         });
 
         cal02 = root.findViewById(R.id.cal_02);
+
+        cal02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Hitung02.class);
+                startActivity(intent);
+            }
+        });
+
         cal03 = root.findViewById(R.id.cal_03);
         cal04 = root.findViewById(R.id.cal_04);
         cal05 = root.findViewById(R.id.cal_05);

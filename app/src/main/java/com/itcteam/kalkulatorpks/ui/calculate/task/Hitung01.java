@@ -13,12 +13,12 @@ import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Cal_01_manual;
 import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Cal_01_standart;
 
-public class Calculate01 extends AppCompatActivity {
+public class Hitung01 extends AppCompatActivity {
     Button standart, manual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_cal_01);
+        setContentView(R.layout.activity_hitung01);
 
         standart = findViewById(R.id.cal_01_std_btn);
         manual = findViewById(R.id.cal_01_manual_btn);
@@ -44,6 +44,7 @@ public class Calculate01 extends AppCompatActivity {
         actbar.setDisplayHomeAsUpEnabled(true);
 
         if(savedInstanceState == null){
+            iconDisabled(2);
             getSupportFragmentManager().beginTransaction().
                     setReorderingAllowed(true).
                     add(R.id.fragment_cal01, Cal_01_standart.class, null).
@@ -54,15 +55,27 @@ public class Calculate01 extends AppCompatActivity {
 
     void fragment_m(int ch){
         if (ch==1){
+            iconDisabled(2);
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_cal01, Cal_01_standart.class, null).
                     setReorderingAllowed(true).
                     commit();
         }else{
+            iconDisabled(1);
             getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_cal01, Cal_01_manual.class, null).
                     setReorderingAllowed(true).
                     commit();
+        }
+    }
+
+    public void iconDisabled(int i){
+        standart.setEnabled(true);
+        manual.setEnabled(true);
+        if (i==1){
+            manual.setEnabled(false);
+        }else{
+            standart.setEnabled(false);
         }
     }
 

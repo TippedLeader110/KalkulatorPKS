@@ -62,9 +62,9 @@
 
                 <TextView
                     android:id="@+id/tangkos_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Tangkos"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tangkos_p_std"
@@ -73,7 +73,7 @@
 
                 <EditText
                     android:id="@+id/tangkos_p_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="%"
                     android:inputType="number"
@@ -84,9 +84,12 @@
 
                 <TextView
                     android:id="@+id/tangkos_hsl_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tangkos_p_std"
@@ -105,9 +108,9 @@
 
                 <TextView
                     android:id="@+id/serat_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Serat"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/serat_p_std"
@@ -115,11 +118,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/serat_p_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/serat_hsl_std"
                     app:layout_constraintStart_toEndOf="@+id/serat_std"
@@ -127,9 +130,12 @@
 
                 <TextView
                     android:id="@+id/serat_hsl_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/serat_p_std"
@@ -148,9 +154,9 @@
 
                 <TextView
                     android:id="@+id/cangkang_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Cangkang"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/cangkang_p_std"
@@ -158,11 +164,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/cangkang_p_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/cangkang_hsl_std"
                     app:layout_constraintStart_toEndOf="@+id/cangkang_std"
@@ -170,9 +176,12 @@
 
                 <TextView
                     android:id="@+id/cangkang_hsl_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cangkang_p_std"
@@ -191,9 +200,9 @@
 
                 <TextView
                     android:id="@+id/inti_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="Inti"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/inti_p_std"
@@ -201,11 +210,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/inti_p_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/inti_hsl_std"
                     app:layout_constraintStart_toEndOf="@+id/inti_std"
@@ -213,9 +222,12 @@
 
                 <TextView
                     android:id="@+id/inti_hsl_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/inti_p_std"
@@ -233,9 +245,9 @@
 
                 <TextView
                     android:id="@+id/cpo_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="30dp"
                     android:text="CPO"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/cpo_p_std"
@@ -243,11 +255,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:inputType="number"
-                    android:hint="%"
                     android:id="@+id/cpo_p_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/cpo_hsl_std"
                     app:layout_constraintStart_toEndOf="@+id/cpo_std"
@@ -255,9 +267,12 @@
 
                 <TextView
                     android:id="@+id/cpo_hsl_std"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cpo_p_std"
@@ -266,11 +281,11 @@
 
             <Button
                 android:id="@+id/cal_01_hitung_std"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_done_24"
                 android:text="@string/hitung"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
