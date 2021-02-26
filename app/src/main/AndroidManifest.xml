@@ -11,6 +11,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:theme="@style/Theme.AppCompat.Light"
+            android:name=".ui.calculate.task.task.Hitung03_minyak"/>
+        <activity
+            android:theme="@style/Theme.AppCompat.Light"
             android:name=".ui.calculate.task.task.Hitung03_usf"/>
         <activity
             android:theme="@style/Theme.AppCompat.Light"

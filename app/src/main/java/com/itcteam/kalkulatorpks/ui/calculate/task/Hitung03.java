@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_minyak;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_usb;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_usf;
 
 public class Hitung03 extends AppCompatActivity {
 
-    Button usb;
+    Button usb, usf, minyak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,24 @@ public class Hitung03 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Hitung03.this, Hitung03_usb.class);
+                startActivity(intent);
+            }
+        });
+
+        usf = findViewById(R.id.hitung03_usf);
+        usf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hitung03.this, Hitung03_usf.class);
+                startActivity(intent);
+            }
+        });
+
+        minyak = findViewById(R.id.hitung03_minyak);
+        minyak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hitung03.this, Hitung03_minyak.class);
                 startActivity(intent);
             }
         });
