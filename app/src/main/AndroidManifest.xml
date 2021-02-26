@@ -9,24 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.calculate.task.task.Hitung02_dobi"
+        <activity
             android:theme="@style/Theme.AppCompat.Light"
-            />
-        <activity android:name=".ui.calculate.task.task.Hitung02_inti_kotoran"
-            android:theme="@style/Theme.AppCompat.Light"
-            />
-        <activity android:name=".ui.calculate.task.task.Hitung02_inti_air"
-            android:theme="@style/Theme.AppCompat.Light"
-            />
-        <activity android:name=".ui.calculate.task.task.Hitung02_cpo_kotoran"
-            android:theme="@style/Theme.AppCompat.Light"
-            />
-        <activity android:name=".ui.calculate.task.task.Hitung02_cpo_air"
-            android:theme="@style/Theme.AppCompat.Light"
-            />
-        <activity android:name=".ui.calculate.task.task.Hitung02_alb"
-            android:theme="@style/Theme.AppCompat.Light"
-            />
+            android:name=".ui.calculate.task.task.Hitung03_usb"/>
+        <activity
+            android:name=".ui.calculate.task.Hitung03"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_dobi"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_inti_kotoran"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_inti_air"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_cpo_kotoran"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_cpo_air"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung02_alb"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".ui.calculate.task.Hitung02"
             android:theme="@style/Theme.AppCompat.Light" />
