@@ -35,8 +35,8 @@ public class Hitung03_kernel extends AppCompatActivity {
         tooltip = findViewById(R.id.hitung03_input);
         tooltip_text = "- LTDS I 2% \n" +
                 "- LTDS II 2% \n" +
-                "Fiber Cyclone 2% \n" +
-                "Hydrocyclone 4%";
+                "- Fiber Cyclone 2% \n" +
+                "- Hydrocyclone 4%";
         tooltip.setText("Norma Max");
 //        tooltip.setTooltipText(tooltip_text);
         tooltip.setOnClickListener(new View.OnClickListener() {
