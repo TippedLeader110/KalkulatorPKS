@@ -1,9 +1,5 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.itcteam.kalkulatorpks.R;
 
-public class Hitung03_usb extends AppCompatActivity {
+public class Hitung03_usf extends AppCompatActivity {
     
     TextView tooltip, input01, input02, hasil;
     EditText einput01, einput02;
@@ -26,22 +26,22 @@ public class Hitung03_usb extends AppCompatActivity {
         setContentView(R.layout.activity_hitung03_sub);
         
         tooltip = findViewById(R.id.hitung03_input);
-        tooltip_text = "Masukan jumlah";
+        tooltip_text = "Norma Max 0,70%";
         tooltip.setText(tooltip_text);
 
         input01 = findViewById(R.id.hitung03_input01);
-        input01.setText("Jumlah janjangan ada buah");
+        input01.setText("Berat buah yang dilepaskan");
 
         input02 = findViewById(R.id.hitung03_input02);
-        input02.setText("Jumlah sampel");
+        input02.setText("Berat sampel janjangan");
 
         hasil = findViewById(R.id.hitung03_hasil_r);
 
         einput01 = findViewById(R.id.hitung03_p_input01);
-        einput01.setHint("Masukan jumlah");
+        einput01.setHint("gr");
 
         einput02 = findViewById(R.id.hitung03_p_input02);
-        einput02.setHint("Masukan jumlah");
+        einput02.setHint("gr");
 
         hitung = findViewById(R.id.hitung03_btn_hitung);
 
@@ -61,7 +61,7 @@ public class Hitung03_usb extends AppCompatActivity {
         ActionBar actbar;
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
-        actbar.setTitle("USB");
+        actbar.setTitle("USF");
         actbar.setDisplayHomeAsUpEnabled(true);
     }
 

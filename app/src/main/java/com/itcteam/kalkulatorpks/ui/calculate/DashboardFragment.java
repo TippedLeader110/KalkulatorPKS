@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung03;
 
 public class DashboardFragment extends Fragment {
 
@@ -47,6 +48,15 @@ public class DashboardFragment extends Fragment {
         });
 
         cal03 = root.findViewById(R.id.cal_03);
+
+        cal03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Hitung03.class);
+                startActivity(intent);
+            }
+        });
+
         cal04 = root.findViewById(R.id.cal_04);
         cal05 = root.findViewById(R.id.cal_05);
 

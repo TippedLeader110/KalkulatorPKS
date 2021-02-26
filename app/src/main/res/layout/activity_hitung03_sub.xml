@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/hitung03_input01"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/hitung03_input02"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
@@ -52,6 +52,7 @@
             android:id="@+id/hitung03_p_input01"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="gram"
             android:inputType="number"
@@ -64,6 +65,7 @@
             android:id="@+id/hitung03_p_input02"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:ems="10"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
