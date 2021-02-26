@@ -59,7 +59,7 @@ public class Hitung03 extends AppCompatActivity {
         });
 
         kernel = findViewById(R.id.hitung03_kernel);
-        minyak.setOnClickListener(new View.OnClickListener() {
+        kernel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Hitung03.this, Hitung03_kernel.class);
