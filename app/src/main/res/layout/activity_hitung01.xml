@@ -40,16 +40,18 @@
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:drawableTop="@drawable/ic_baseline_save_24"
-                    android:text="@string/cal_01_std_btn" />
+                    android:text="@string/cal_01_std_btn"
+                    android:textColor="@android:color/black" />
 
                 <Button
-                    android:drawableTop="@drawable/ic_baseline_edit_24"
-                    android:background="@android:color/transparent"
                     android:id="@+id/cal_01_manual_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/cal_01_manual_btn" />
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/ic_baseline_edit_24"
+                    android:text="@string/cal_01_manual_btn"
+                    android:textColor="@android:color/black" />
             </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView

@@ -13,73 +13,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.itcteam.kalkulatorpks.R;
 
-public class Hitung02_inti_air extends AppCompatActivity {
+public class Hitung02_inti_air extends Hitung02_alb {
 
-    Button hitung;
-    EditText berat, nkoh, mlkoh;
-    TextView hasil, tberat, tnkoh, tmlkoh, ket;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hitung02_alb_air_kotoran);
-
-        String keterangan = "Keterangan :\n" +
+    public Hitung02_inti_air() {
+        String title = "Kadar air pada inti";
+        String ket = "Keterangan :\n" +
                 "A: Berat contoh sebelum dikeringkan\n" +
                 "B: Berat contoh sesudah dikeringkan\n" +
                 "C: Berat contoh";
-
-        ActionBar actbar;
-        actbar = getSupportActionBar();
-        actbar.setHomeButtonEnabled(true);
-        actbar.setTitle("Kadar Air pada inti");
-        actbar.setDisplayHomeAsUpEnabled(true);
-
-        berat = findViewById(R.id.hitung02_p_berat_contoh);
-        tberat = findViewById(R.id.hitung02_berat_contoh);
-        nkoh = findViewById(R.id.hitung02_p_nkoh);
-        tnkoh = findViewById(R.id.hitung02_nkoh);
-        mlkoh = findViewById(R.id.hitung02_p_mlkoh);
-        tmlkoh = findViewById(R.id.hitung02_mlkoh);
-        ket = findViewById(R.id.hitung02_keterangan);
-
-        ket.setText(keterangan);
-        tberat.setText("A");
-        tnkoh.setText("B");
-        tmlkoh.setText("C");
-
-        nkoh.setHint("gram");
-        mlkoh.setHint("gram");
-
-        hitung = findViewById(R.id.hitung02_btn_hitung);
-
-        hasil = findViewById(R.id.hitung02_hasil_r);
-
-        hitung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float a = Float.valueOf(berat.getText().toString());
-                float b = Float.valueOf(nkoh.getText().toString());
-                float c = Float.valueOf(mlkoh.getText().toString());
-                float fhasil;
-
-                fhasil = a-b;
-                fhasil = fhasil/c;
-
-                hasil.setText(Float.toString(fhasil) + "%");
-
-            }
-        });
+        super.setAll(title, ket, "A (gr)", "B (gr)", "C (gr)", true);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void setRumusDrawable() {
+        super.formula.setBackgroundResource(R.drawable.cpo_air);
     }
+
+    @Override
+    public void kalkulasi() {
+        float finput01 = Float.valueOf(super.input01.getEditText().getText().toString());
+        float finput02 = Float.valueOf(super.input02.getEditText().getText().toString());
+        float finput03 = Float.valueOf(super.input03.getEditText().getText().toString());
+        float fhasil;
+
+        fhasil = finput01 - finput02;
+        fhasil = fhasil / Float.valueOf(finput03);
+        fhasil *= 100;
+
+        super.hasil.setText(Float.toString(fhasil) + "%");
+    }
+
 }

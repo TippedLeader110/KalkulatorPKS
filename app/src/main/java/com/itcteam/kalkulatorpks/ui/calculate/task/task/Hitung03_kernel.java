@@ -15,17 +15,28 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
 
 public class Hitung03_kernel extends AppCompatActivity {
     
-    TextView tooltip, input01, input02, hasil;
-    EditText einput01, einput02;
+    TextView tooltip, hasil;
     Button hitung;
-    String tooltip_text;
+    String tooltip_text, title, inp1, inp2, tooltip_title;
     Context contex;
+    TextInputLayout input01, input02;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Hitung03_kernel(){
+        this.tooltip_text = "- LTDS I 2% \n" +
+                "- LTDS II 2% \n" +
+                "- Fiber Cyclone 2% \n" +
+                "- Hydrocyclone 4%";
+        this.title = "Kernel";
+        this.inp1 = "Hasil Losses Kernel (gr)";
+        this.inp2 = "Berat sampel (gr)";
+        this.tooltip_title = "Norma Max";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         contex = this;
@@ -33,12 +44,8 @@ public class Hitung03_kernel extends AppCompatActivity {
         setContentView(R.layout.activity_hitung03_sub);
         
         tooltip = findViewById(R.id.hitung03_input);
-        tooltip_text = "- LTDS I 2% \n" +
-                "- LTDS II 2% \n" +
-                "- Fiber Cyclone 2% \n" +
-                "- Hydrocyclone 4%";
-        tooltip.setText("Norma Max");
-//        tooltip.setTooltipText(tooltip_text);
+
+        tooltip.setText(tooltip_title);
         tooltip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,39 +54,40 @@ public class Hitung03_kernel extends AppCompatActivity {
         });
 
         input01 = findViewById(R.id.hitung03_input01);
-        input01.setText("Hasil Losses Kernel");
+        input01.setHint(inp1);
 
         input02 = findViewById(R.id.hitung03_input02);
-        input02.setText("Berat sampel");
+        input02.setHint(inp2);
 
         hasil = findViewById(R.id.hitung03_hasil_r);
-
-        einput01 = findViewById(R.id.hitung03_p_input01);
-        einput01.setHint("gr");
-
-        einput02 = findViewById(R.id.hitung03_p_input02);
-        einput02.setHint("gr");
 
         hitung = findViewById(R.id.hitung03_btn_hitung);
 
         hitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float a = Float.valueOf(einput01.getText().toString());
-                float b = Float.valueOf(einput02.getText().toString());
-                float hasil_p;
-
-                hasil_p = a/b;
-
-                hasil.setText(Float.toString(hasil_p) + "%");
+                Hitung();
             }
         });
 
         ActionBar actbar;
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
-        actbar.setTitle("Kernel");
+        actbar.setTitle(title);
         actbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void Hitung() {
+
+        float a = Float.valueOf(input01.getEditText().getText().toString());
+        float b = Float.valueOf(input02.getEditText().getText().toString());
+        float hasil_p;
+
+        hasil_p = a/b;
+        hasil_p = hasil_p*100;
+
+        hasil.setText(Float.toString(hasil_p) + "%");
+
     }
 
     @Override
