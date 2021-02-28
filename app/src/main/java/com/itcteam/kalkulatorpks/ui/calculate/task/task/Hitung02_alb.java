@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.itcteam.kalkulatorpks.R;
 public class Hitung02_alb extends AppCompatActivity {
 
     Button hitung;
+    InputMethodManager inputManager;
     TextInputLayout input03, input01, input02;
     TextView hasil, keteranganTV;
     String keterangan, acttitle, input01s, input02s, input03s;
@@ -32,7 +34,6 @@ public class Hitung02_alb extends AppCompatActivity {
         input01s = "Berat Contoh (gr)";
         input02s = "N KOH";
         input03s = "ml KOH (ml)";
-
         setAll(acttitle, keterangan, input01s, input02s, input03s, true);
     }
 
@@ -48,6 +49,8 @@ public class Hitung02_alb extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
         setContentView(R.layout.activity_hitung02_sub);
 
         context = this;
@@ -104,6 +107,8 @@ public class Hitung02_alb extends AppCompatActivity {
         fhasil *= 100;
 
         hasil.setText(Float.toString(fhasil) + "%");
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

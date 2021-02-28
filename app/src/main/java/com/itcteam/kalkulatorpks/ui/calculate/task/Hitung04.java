@@ -1,27 +1,24 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_kernel;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_minyak;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_usb;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung03_usf;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-public class Hitung03 extends AppCompatActivity {
+import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_inti;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_storage;
+
+public class Hitung04 extends AppCompatActivity {
 
     SettingsFragment settingsFragment;
     ActionBar actbar;
-    Preference usb, usf, minyak, kernel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,50 +38,44 @@ public class Hitung03 extends AppCompatActivity {
 
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
-        actbar.setTitle(R.string.cal_02);
+        setJudul();
         actbar.setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    public void setJudul(){
+        actbar.setTitle(R.string.cal_04);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        usb = settingsFragment.findPreference("h03_usb");
-        usb.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference h04 = settingsFragment.findPreference("h04_01");
+        h04.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(Hitung03.this, Hitung03_usb.class));
+                startActivity(new Intent(Hitung04.this, Hitung04_storage.class));
                 return true;
             }
         });
 
-        usf = settingsFragment.findPreference("h03_usf");
-        usf.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference h04_2 = settingsFragment.findPreference("h04_02");
+        h04_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(Hitung03.this, Hitung03_usf.class));
+                startActivity(new Intent(Hitung04.this, Hitung04_cpo.class));
                 return true;
             }
         });
 
-        minyak = settingsFragment.findPreference("h03_minyak");
-        minyak.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference h04_3 = settingsFragment.findPreference("h04_03");
+        h04_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(Hitung03.this, Hitung03_minyak.class));
+                startActivity(new Intent(Hitung04.this, Hitung04_inti.class));
                 return true;
             }
         });
-
-        kernel = settingsFragment.findPreference("h03_kernel");
-        kernel.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(Hitung03.this, Hitung03_kernel.class));
-                return true;
-            }
-        });
-
     }
 
     @Override
@@ -101,7 +92,7 @@ public class Hitung03 extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.hitung03_daftar, rootKey);
+            setPreferencesFromResource(R.xml.hitung04_daftar, rootKey);
         }
     }
 }

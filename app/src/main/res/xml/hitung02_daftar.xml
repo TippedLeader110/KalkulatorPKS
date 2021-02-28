@@ -1,0 +1,47 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Mutu pada CPO">
+
+        <Preference
+            app:title="ALB"
+            app:summary="Menghitung ALB pada CPO"
+            app:key="h02_alb"
+            />
+
+        <Preference
+            app:title="DOBI"
+            app:summary="Menghitung DOBI pada CPO"
+            app:key="h02_dobi"
+            />
+
+        <Preference
+            app:title="Kadar Air"
+            app:summary="Menghitung kadar air pada CPO"
+            app:key="h02_air_cpo"
+            />
+
+        <Preference
+            app:title="Kadar Kotoran"
+            app:summary="Menghitung kadar kotoran pada CPO"
+            app:key="h02_kotoran_cpo"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Mutu pada Inti">
+
+        <Preference
+            app:title="Kadar Air"
+            app:summary="Menghitung kadar air pada Inti"
+            app:key="h02_air_inti"
+            />
+
+        <Preference
+            app:title="Kadar Kotoran"
+            app:summary="Menghitung kadar kotoran pada Inti"
+            app:key="h02_kotoran_inti"
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

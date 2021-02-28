@@ -9,18 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.calculate.task.task.Hitung04_storage"
+            android:theme="@style/AppThemeWActBar"/>
+        <activity android:name=".ui.calculate.task.task.Hitung04_cpo"
+            android:theme="@style/AppThemeWActBar"/>
+        <activity android:name=".ui.calculate.task.task.Hitung04_inti"
+            android:theme="@style/AppThemeWActBar"/>
         <activity
             android:theme="@style/AppThemeWActBar"
-            android:name=".ui.calculate.task.task.Hitung03_kernel"/>
+            android:name=".ui.calculate.task.Hitung04"
+            android:label="@string/title_activity_hitung04"></activity>
         <activity
-            android:theme="@style/AppThemeWActBar"
-            android:name=".ui.calculate.task.task.Hitung03_minyak"/>
+            android:name=".ui.calculate.task.task.Hitung03_kernel"
+            android:theme="@style/AppThemeWActBar" />
         <activity
-            android:theme="@style/AppThemeWActBar"
-            android:name=".ui.calculate.task.task.Hitung03_usf"/>
+            android:name=".ui.calculate.task.task.Hitung03_minyak"
+            android:theme="@style/AppThemeWActBar" />
         <activity
-            android:theme="@style/AppThemeWActBar"
-            android:name=".ui.calculate.task.task.Hitung03_usb"/>
+            android:name=".ui.calculate.task.task.Hitung03_usf"
+            android:theme="@style/AppThemeWActBar" />
+        <activity
+            android:name=".ui.calculate.task.task.Hitung03_usb"
+            android:theme="@style/AppThemeWActBar" />
         <activity
             android:name=".ui.calculate.task.Hitung03"
             android:theme="@style/AppThemeWActBar" />

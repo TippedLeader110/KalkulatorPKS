@@ -1,14 +1,14 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung02_alb;
@@ -20,73 +20,89 @@ import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung02_inti_kotoran;
 
 public class Hitung02 extends AppCompatActivity {
 
-    Button alb, dobi, cpo_air, cpo_kotoran, inti_air, inti_kotoran;
+    SettingsFragment settingsFragment;
+    ActionBar actbar;
+    Preference alb, dobi, air_cpo, kotoran_cpo, air_inti, kotoran_inti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hitung02);
 
-        ActionBar actbar;
+        setContentView(R.layout.activity_preference);
+        settingsFragment = new SettingsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.pref_menu, settingsFragment)
+                .commit();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
         actbar.setTitle(R.string.cal_02);
         actbar.setDisplayHomeAsUpEnabled(true);
 
-        alb = findViewById(R.id.cal02_alb);
-        alb.setOnClickListener(new View.OnClickListener() {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        alb = settingsFragment.findPreference("h02_alb");
+        alb.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_alb.class);
-                startActivity(intent);;
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_alb.class));
+                return true;
             }
         });
 
-        dobi = findViewById(R.id.cal02_dobi);
-        dobi.setOnClickListener(new View.OnClickListener() {
+        dobi = settingsFragment.findPreference("h02_dobi");
+        dobi.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_dobi.class);
-                startActivity(intent);;
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_dobi.class));
+                return true;
             }
         });
 
-        cpo_air = findViewById(R.id.cal02_kadar_air);
-        cpo_air.setOnClickListener(new View.OnClickListener() {
+        air_cpo = settingsFragment.findPreference("h02_air_cpo");
+        air_cpo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_cpo_air.class);
-                startActivity(intent);;
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_cpo_air.class));
+                return true;
             }
         });
 
-        cpo_kotoran = findViewById(R.id.cal02_kadar_kotoran);
-        cpo_kotoran.setOnClickListener(new View.OnClickListener() {
+        kotoran_cpo = settingsFragment.findPreference("h02_kotoran_cpo");
+        kotoran_cpo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_cpo_kotoran.class);
-                startActivity(intent);;
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_cpo_kotoran.class));
+                return true;
             }
         });
 
-        inti_air = findViewById(R.id.hitung02_inti_air);
-        inti_air.setOnClickListener(new View.OnClickListener() {
+        air_inti = settingsFragment.findPreference("h02_air_inti");
+        air_inti.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_inti_air.class);
-                startActivity(intent);
-            }
-        });
-        
-        inti_kotoran = findViewById(R.id.hitung02_inti_kotoran);
-        inti_kotoran.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Hitung02.this, Hitung02_inti_kotoran.class);
-                startActivity(intent);
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_inti_air.class));
+                return true;
             }
         });
 
+        kotoran_inti = settingsFragment.findPreference("h02_kotoran_inti");
+        kotoran_inti.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(Hitung02.this, Hitung02_inti_kotoran.class));
+                return true;
+            }
+        });
     }
 
     @Override
@@ -97,6 +113,13 @@ public class Hitung02 extends AppCompatActivity {
                 finish();
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class SettingsFragment extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.hitung02_daftar, rootKey);
         }
     }
 }

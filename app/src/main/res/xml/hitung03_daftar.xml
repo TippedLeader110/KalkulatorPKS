@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Kalkulasi Cepat">
+
+        <Preference
+            app:title="Minyak"
+            app:summary="Menghitung Losses Pabrik Minyak"
+            app:key="h03_minyak"
+            />
+
+        <Preference
+            app:title="Kernel"
+            app:summary="Menghitung Losses Pabrik Kernel"
+            app:key="h03_kernel"
+            />
+
+        <Preference
+            app:title="USB"
+            app:summary="Menghitung Losses Pabrik USB"
+            app:key="h03_usb"
+            />
+
+        <Preference
+            app:title="USF"
+            app:summary="Menghitung Losses Pabrik USF"
+            app:key="h03_usf"
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

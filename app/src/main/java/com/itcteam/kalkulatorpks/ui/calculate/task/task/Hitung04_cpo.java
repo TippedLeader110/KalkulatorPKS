@@ -1,71 +1,52 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
 
-public class Hitung03_kernel extends AppCompatActivity {
-    
-    TextView tooltip, hasil;
+public class Hitung04_cpo extends AppCompatActivity {
+
+    TextView hasil;
     Button hitung;
-    String tooltip_text, title, inp1, inp2, tooltip_title;
+    String title, inp1, inp2;
     Context contex;
     TextInputLayout input01, input02;
     InputMethodManager inputManager;
 
-    public Hitung03_kernel(){
-        this.tooltip_text = "- LTDS I 2% \n" +
-                "- LTDS II 2% \n" +
-                "- Fiber Cyclone 2% \n" +
-                "- Hydrocyclone 4%";
-        this.title = "Kernel";
-        this.inp1 = "Hasil Losses Kernel (gr)";
-        this.inp2 = "Berat sampel (gr)";
-        this.tooltip_title = "Norma Max";
+    public Hitung04_cpo(){
+        this.title = "Rendemen CPO";
+        this.inp1 = "Berat TBS yang di olah (kg)";
+        this.inp2 = "Berat CPO yang dihasilkan (kg)";
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        contex = this;
         inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        contex = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hitung03_sub);
-        
-        tooltip = findViewById(R.id.hitung03_input);
+        setContentView(R.layout.activity_hitung04_inti_cpo);
 
-        tooltip.setText(tooltip_title);
-        tooltip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(contex, tooltip_text, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        input01 = findViewById(R.id.hitung03_input01);
+        input01 = findViewById(R.id.hitung04_input01);
         input01.setHint(inp1);
 
-        input02 = findViewById(R.id.hitung03_input02);
+        input02 = findViewById(R.id.hitung04_input02);
         input02.setHint(inp2);
 
-        hasil = findViewById(R.id.hitung03_hasil_r);
+        hasil = findViewById(R.id.hitung04_hasil_r);
 
-        hitung = findViewById(R.id.hitung03_btn_hitung);
+        hitung = findViewById(R.id.hitung04_btn_hitung);
 
         hitung.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +68,7 @@ public class Hitung03_kernel extends AppCompatActivity {
         float b = Float.valueOf(input02.getEditText().getText().toString());
         float hasil_p;
 
-        hasil_p = a/b;
+        hasil_p = b/a;
         hasil_p = hasil_p*100;
 
         hasil.setText(Float.toString(hasil_p) + "%");

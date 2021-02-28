@@ -18,6 +18,7 @@ import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung03;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung04;
 
 public class DashboardFragment extends Fragment {
 
@@ -40,8 +41,6 @@ public class DashboardFragment extends Fragment {
 
         collapsingToolbarLayout.setCollapsedTitleTextColor(
                 ContextCompat.getColor(getContext(), R.color.white));
-        collapsingToolbarLayout.setExpandedTitleColor(
-                ContextCompat.getColor(getContext(), R.color.colorPrimary));
 
         cal01 = root.findViewById(R.id.cal_01);
 
@@ -74,6 +73,14 @@ public class DashboardFragment extends Fragment {
         });
 
         cal04 = root.findViewById(R.id.cal_04);
+
+        cal04.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Hitung04.class));
+            }
+        });
+
         cal05 = root.findViewById(R.id.cal_05);
 
 
