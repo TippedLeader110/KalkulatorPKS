@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
@@ -25,7 +29,19 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 //        dashboardViewModel =
 //                ViewModelProviders.of(this).get(DashboardViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_calculate, container, false);
+
+//        Toolbar toolbar = root.findViewById(R.id.toolbar);
+//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        CollapsingToolbarLayout collapsingToolbarLayout = root.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("Kalkulasi Singkat");
+
+        collapsingToolbarLayout.setCollapsedTitleTextColor(
+                ContextCompat.getColor(getContext(), R.color.white));
+        collapsingToolbarLayout.setExpandedTitleColor(
+                ContextCompat.getColor(getContext(), R.color.colorPrimary));
 
         cal01 = root.findViewById(R.id.cal_01);
 
