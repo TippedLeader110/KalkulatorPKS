@@ -27,6 +27,7 @@ public class Hitung02_alb extends AppCompatActivity {
     Context context;
     ImageView formula;
     Boolean thirdInput = true;
+    float finput01, finput02, finput03;
 
     public Hitung02_alb(){
         acttitle = "ALB pada CPO";
@@ -95,10 +96,34 @@ public class Hitung02_alb extends AppCompatActivity {
         formula.setBackgroundResource(R.drawable.alb);
     }
 
+    public void ambilnilai(){
+        if (!input01.getEditText().getText().toString().equals("")){
+            finput01 = Float.valueOf(input01.getEditText().getText().toString());
+        }else{
+            finput01 = 0;
+            input01.getEditText().setText("0");
+        }
+
+        if (!input02.getEditText().getText().toString().equals("")){
+            finput02 = Float.valueOf(input02.getEditText().getText().toString());
+        }else{
+            finput02 = 0;
+            input02.getEditText().setText("0");
+        }
+
+        if(thirdInput){
+            if (!input03.getEditText().getText().toString().equals("")){
+                finput03 = Float.valueOf(input03.getEditText().getText().toString());
+            }else{
+                input03.getEditText().setText("0");
+                finput03 = 0;
+            }
+        }
+    }
+
     public void kalkulasi(){
-        float finput01 = Float.valueOf(input01.getEditText().getText().toString());
-        float finput02 = Float.valueOf(input02.getEditText().getText().toString());
-        float finput03 = Float.valueOf(input03.getEditText().getText().toString());
+        ambilnilai();
+
         float fhasil;
 
         fhasil = finput03 * finput02;

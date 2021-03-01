@@ -9,7 +9,13 @@
     <string name="text_home">Simple Text</string>
     <string name="text_about_title">Tentang Kami</string>
     <string name="text_about_inner">Kami adalah Mahasiswa Sekolah Tinggi Ilmu Pertanian Agrobisnis Perkebunan ( STIPAP )</string>
-    <string name="text_about_member">Nama</string>
+    <string name="text_about_member">
+            Disusun oleh :\n
+            Mhd Dwi Indrawan - 1702017 \n
+            M Rizal Fikri - 1702020 \n
+            M Monang ritonga - 1702019 \n
+            Ridha pertiwi - 1702030 \n
+            Anisa Anggria Ginting - 1702082</string>
     <string name="text_cal_logo">Pilihan Kalkulasi Cepat</string>
     <string name="cal_01">Material balance</string>
     <string name="cal_02">Perhitungan mutu</string>

@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Cal_01_manual;
-import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Cal_01_standart;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung01_manual;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung01_standart;
 
 public class Hitung01 extends AppCompatActivity {
     Button standart, manual;
@@ -47,7 +47,7 @@ public class Hitung01 extends AppCompatActivity {
             iconDisabled(2);
             getSupportFragmentManager().beginTransaction().
                     setReorderingAllowed(true).
-                    add(R.id.fragment_cal01, Cal_01_standart.class, null).
+                    add(R.id.fragment_cal01, Hitung01_standart.class, null).
                     commit();
         }
 
@@ -57,13 +57,13 @@ public class Hitung01 extends AppCompatActivity {
         if (ch==1){
             iconDisabled(2);
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragment_cal01, Cal_01_standart.class, null).
+                    replace(R.id.fragment_cal01, Hitung01_standart.class, null).
                     setReorderingAllowed(true).
                     commit();
         }else{
             iconDisabled(1);
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragment_cal01, Cal_01_manual.class, null).
+                    replace(R.id.fragment_cal01, Hitung01_manual.class, null).
                     setReorderingAllowed(true).
                     commit();
         }

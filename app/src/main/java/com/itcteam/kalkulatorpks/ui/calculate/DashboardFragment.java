@@ -19,6 +19,7 @@ import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung03;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung04;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung05;
 
 public class DashboardFragment extends Fragment {
 
@@ -82,6 +83,13 @@ public class DashboardFragment extends Fragment {
         });
 
         cal05 = root.findViewById(R.id.cal_05);
+
+        cal05.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Hitung05.class));
+            }
+        });
 
 
 //        final TextView textView = root.findViewById(R.id.text_dashboard);

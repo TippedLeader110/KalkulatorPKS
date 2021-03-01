@@ -19,6 +19,7 @@ public class Hitung04_cpo extends AppCompatActivity {
 
     TextView hasil;
     Button hitung;
+    float a, b;
     String title, inp1, inp2;
     Context contex;
     TextInputLayout input01, input02;
@@ -62,10 +63,25 @@ public class Hitung04_cpo extends AppCompatActivity {
         actbar.setDisplayHomeAsUpEnabled(true);
     }
 
+    public void ambilnilai(){
+        if (input01.getEditText().getText().toString() != ""){
+            a = Float.valueOf(input01.getEditText().getText().toString());
+        }else{
+            a = 0;
+            input01.getEditText().setText("0");
+        }
+
+        if (input02.getEditText().getText().toString() != ""){
+            b = Float.valueOf(input02.getEditText().getText().toString());
+        }else{
+            b = 0;
+            input02.getEditText().setText("0");
+        }
+    }
+
     public void Hitung() {
 
-        float a = Float.valueOf(input01.getEditText().getText().toString());
-        float b = Float.valueOf(input02.getEditText().getText().toString());
+        ambilnilai();
         float hasil_p;
 
         hasil_p = b/a;

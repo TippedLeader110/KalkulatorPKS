@@ -26,6 +26,7 @@ public class Hitung03_kernel extends AppCompatActivity {
     String tooltip_text, title, inp1, inp2, tooltip_title;
     Context contex;
     TextInputLayout input01, input02;
+    float  a, b;
     InputMethodManager inputManager;
 
     public Hitung03_kernel(){
@@ -81,10 +82,24 @@ public class Hitung03_kernel extends AppCompatActivity {
         actbar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void Hitung() {
+    public void ambilnilai(){
+        if (input01.getEditText().getText().toString() != ""){
+            a = Float.valueOf(input01.getEditText().getText().toString());
+        }else{
+            a = 0;
+            input01.getEditText().setText("0");
+        }
 
-        float a = Float.valueOf(input01.getEditText().getText().toString());
-        float b = Float.valueOf(input02.getEditText().getText().toString());
+        if (input02.getEditText().getText().toString() != ""){
+            b = Float.valueOf(input02.getEditText().getText().toString());
+        }else{
+            b = 0;
+            input02.getEditText().setText("0");
+        }
+    }
+
+    public void Hitung() {
+        ambilnilai();
         float hasil_p;
 
         hasil_p = a/b;

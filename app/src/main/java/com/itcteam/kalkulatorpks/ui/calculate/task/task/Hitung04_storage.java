@@ -98,8 +98,20 @@ public class Hitung04_storage extends AppCompatActivity {
         hitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float a = Float.valueOf(inp1.getEditText().getText().toString());
-                float b = Float.valueOf(inp2.getEditText().getText().toString());
+                float a, b;
+                if(inp1.getEditText().getText().toString() != ""){
+                    a = Float.valueOf(inp1.getEditText().getText().toString());
+                }else{
+                    a = 0;
+                    inp1.getEditText().setText("0");
+                }
+
+                if(inp2.getEditText().getText().toString() != ""){
+                    b = Float.valueOf(inp2.getEditText().getText().toString());
+                }else{
+                    b = 0;
+                    inp2.getEditText().setText("0");
+                }
                 float hasil_p;
 
                 hasil_p = a*b;
@@ -117,6 +129,8 @@ public class Hitung04_storage extends AppCompatActivity {
         actbar.setTitle("Volume CPO/inti di storage");
         actbar.setDisplayHomeAsUpEnabled(true);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

@@ -33,9 +33,7 @@ public class Hitung02_cpo_air extends Hitung02_alb {
 
     @Override
     public void kalkulasi() {
-        float finput01 = Float.valueOf(super.input01.getEditText().getText().toString());
-        float finput02 = Float.valueOf(super.input02.getEditText().getText().toString());
-        float finput03 = Float.valueOf(super.input03.getEditText().getText().toString());
+        ambilnilai();
         float fhasil;
 
         fhasil = finput01 - finput02;
