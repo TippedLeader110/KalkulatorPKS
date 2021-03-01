@@ -40,9 +40,15 @@ public class Hitung05 extends AppCompatActivity implements  Hitung05_availabilit
     }
 
     @Override
-    public void dataKirimBalik(Float value, Integer type) {
-        Log.w("Value", Float.toString(value));
+    public void dataKirimBalik(Float val, Integer type) {
+        float value;
+        Log.w("Value", Float.toString(val));
         Log.w("Type", Integer.toString(type));
+        if (Float.isNaN(val)){
+            value = 0;
+        }else{
+            value = val;
+        }
 
         if (type==1){
             availability = value;
@@ -84,8 +90,13 @@ public class Hitung05 extends AppCompatActivity implements  Hitung05_availabilit
             }
 
             Log.e("Hasil", shasil);
+            bundle.putString("HASIL", shasil);
+            bundle.putString("AV", Float.toString(availability*100));
+            bundle.putString("PR", Float.toString(perfomance*100));
+            bundle.putString("QU", Float.toString(quality*100));
 
-            bundle.putString("hasil",shasil);
+            Log.w("Bundder PRE", bundle.get("HASIL").toString());
+
             Hitung05_final fragment = new Hitung05_final();
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().

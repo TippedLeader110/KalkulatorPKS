@@ -9,6 +9,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +29,16 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/hitung05_final_rumus2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OEE = Availability x Perfomance rate x Quality Time"
+            android:textAlignment="center"
+            android:textAppearance="@style/Widget.AppCompat.Spinner.Underlined"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
             android:id="@+id/hitung05_final_hasil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,12 +47,22 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/hitung05_final_retry"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Hitung ulang" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/hitung05_final_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Hitung ulang"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

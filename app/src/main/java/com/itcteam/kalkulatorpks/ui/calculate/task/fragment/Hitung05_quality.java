@@ -1,5 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.fragment;
 
+import android.util.Log;
+
 public class Hitung05_quality extends Hitung05_availability {
 
     @Override

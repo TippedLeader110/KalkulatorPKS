@@ -17,8 +17,8 @@ public class Hitung05_perfomance extends Hitung05_availability {
     @Override
     public void setAll() {
         third = true;
-        inp1 = "Loading time";
-        inp2 = "Downtime losses";
+        inp1 = "Teoritical Cycle time";
+        inp2 = "Process amount";
         inp3 = "Operating time";
         titles = "Perfomance rate";
         btn = "Next";
