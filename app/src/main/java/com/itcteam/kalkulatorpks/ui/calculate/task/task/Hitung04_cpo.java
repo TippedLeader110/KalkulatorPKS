@@ -64,14 +64,14 @@ public class Hitung04_cpo extends AppCompatActivity {
     }
 
     public void ambilnilai(){
-        if (input01.getEditText().getText().toString() != ""){
+        if (!input01.getEditText().getText().toString().equals("")){
             a = Float.valueOf(input01.getEditText().getText().toString());
         }else{
             a = 0;
             input01.getEditText().setText("0");
         }
 
-        if (input02.getEditText().getText().toString() != ""){
+        if (!input02.getEditText().getText().toString().equals("")){
             b = Float.valueOf(input02.getEditText().getText().toString());
         }else{
             b = 0;

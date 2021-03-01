@@ -87,17 +87,53 @@ public class Hitung01_manual extends Fragment {
 
     public HashMap<String, String> getValue(){
         HashMap<String, String> nilai = new HashMap<String, String>();
-        tbs = tbsET.getText().toString();
+        if(!tbsET.getText().toString().equals("")){
+            tbs = tbsET.getText().toString();
+        }else{
+            tbs = "0";
+            tbsET.setText("0");
+        }
         nilai.put("tbs", tbs);
-        tangkos = tangkosET.getText().toString();
+
+        if(!tangkosET.getText().toString().equals("")){
+            tangkos = tangkosET.getText().toString();
+        }else{
+            tangkos = "0";
+            tangkosET.setText("0");
+        }
         nilai.put("tangkos", tangkos);
-        serat = seratET.getText().toString();
+
+        if(!seratET.getText().toString().equals("")){
+            serat = seratET.getText().toString();
+        }else{
+            serat = "0";
+            seratET.setText("0");
+        }
         nilai.put("serat", serat);
-        cangkang = cangkangET.getText().toString();
+
+
+        if(!cangkangET.getText().toString().equals("")){
+            cangkang = cangkangET.getText().toString();
+        }else{
+            cangkang = "0";
+            cangkangET.setText("0");
+        }
         nilai.put("cangkang", cangkang);
-        inti = intiET.getText().toString();
+
+        if(!intiET.getText().toString().equals("")){
+            inti = intiET.getText().toString();
+        }else{
+            inti = "0";
+            intiET.setText("0");
+        }
         nilai.put("inti", inti);
-        cpo = cpoET.getText().toString();
+
+        if(!cpoET.getText().toString().equals("")){
+            cpo = cpoET.getText().toString();
+        }else{
+            cpo = "0";
+            cpoET.setText("0");
+        }
         nilai.put("cpo", cpo);
 
         return nilai;

@@ -26,9 +26,7 @@ public class Hitung05_perfomance extends Hitung05_availability {
 
     @Override
     public void kalkulasi(){
-        Float k1 = Float.valueOf(input01.getEditText().getText().toString());
-        Float k2 = Float.valueOf(input02.getEditText().getText().toString());
-        Float k3 = Float.valueOf(input03.getEditText().getText().toString());
+        ambilnilai();
         value = k1*k2;
         value = value/k3;
 

@@ -74,7 +74,13 @@ public class Hitung01_standart extends Fragment {
 
     public HashMap<String, String> getValue(){
         HashMap<String, String> nilai = new HashMap<String, String>();
-        tbs = tbsET.getText().toString();
+        if(!tbsET.getText().toString().equals("")){
+            tbs = tbsET.getText().toString();
+        }else{
+            tbs = "0";
+            tbsET.setText("0");
+        }
+
         nilai.put("tbs", tbs);
         tangkos = tangkosET.getText().toString();
         nilai.put("tangkos", tangkos);
