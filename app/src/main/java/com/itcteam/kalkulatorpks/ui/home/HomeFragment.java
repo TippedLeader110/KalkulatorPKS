@@ -34,8 +34,7 @@ public class HomeFragment extends Fragment {
 
         TextView home = root.findViewById(R.id.text_home);
 
-        String homeText = "Selamat datang \n" +
-                "Aplikasi Kalkulator PKS adalah aplikasi berbasis mobile yang memiliki fitur untuk memudahkan menghitung beberapa jenis kalkulasi yang sering di gunakan di PKS ";
+        String homeText = "Aplikasi Kalkulator PKS adalah aplikasi berbasis mobile yang memiliki fitur untuk memudahkan menghitung beberapa jenis kalkulasi yang sering di gunakan di PKS ";
 
         home.setText(homeText);
 
