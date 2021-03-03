@@ -129,9 +129,8 @@ public class Hitung02_alb extends AppCompatActivity {
         fhasil = finput03 * finput02;
         fhasil = fhasil * Float.valueOf("25.6");
         fhasil = fhasil/finput01;
-        fhasil *= 100;
 
-        hasil.setText(Float.toString(fhasil) + "%");
+        hasil.setText(Float.toString(fhasil));
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }

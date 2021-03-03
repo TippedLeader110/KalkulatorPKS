@@ -18,7 +18,7 @@ public class Hitung02_inti_kotoran extends Hitung02_alb {
     public Hitung02_inti_kotoran() {
         String title = "Kadar kotoran pada inti";
         String ket = "";
-        super.setAll(title, ket, "Berat Kotoran (%)", "Berat Contoh (%)", "C (gr)", false);
+        super.setAll(title, ket, "Berat Kotoran (gr)", "Berat Contoh (gr)", "C (gr)", false);
     }
 
     @Override

@@ -36,9 +36,8 @@ public class Hitung02_dobi extends Hitung02_alb {
         float fhasil;
 
         fhasil = finput01 / finput02;
-        fhasil *= 100;
 
-        super.hasil.setText(Float.toString(fhasil) + "%");
+        super.hasil.setText(Float.toString(fhasil));
     }
 
 }
