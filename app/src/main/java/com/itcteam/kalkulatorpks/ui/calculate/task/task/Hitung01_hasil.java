@@ -32,37 +32,37 @@ public class Hitung01_hasil extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         tbs = findViewById(R.id.beratTBS_manual);
-        tbs.setText(extras.getString("tbshasil"));
+        tbs.setText(extras.getString("tbsHasil"));
 
         tangkos = findViewById(R.id.tangkos_hsl_manual);
         ptangkos = findViewById(R.id.tangkos_p_manual);
-        tangkos.setText(extras.getString("tangkoshasil"));
-        ptangkos.setText(extras.getString("tangkosp"));
+        tangkos.setText(extras.getString("tangkosHasil"));
+        ptangkos.setText(extras.getString("tangkosHasilp"));
 
         serat = findViewById(R.id.serat_hsl_manual);
         pserat = findViewById(R.id.serat_p_manual);
-        serat.setText(extras.getString("serathasil"));
-        pserat.setText(extras.getString("seratp"));
+        serat.setText(extras.getString("seratHasil"));
+        pserat.setText(extras.getString("seratHasilp"));
 
         cangkang = findViewById(R.id.cangkang_hsl_manual);
         pcangkang = findViewById(R.id.cangkang_p_manual);
-        cangkang.setText(extras.getString("cangkanghasil"));
-        pcangkang.setText(extras.getString("cangkangp"));
+        cangkang.setText(extras.getString("cangkangHasil"));
+        pcangkang.setText(extras.getString("cangkangHasilp"));
 
         inti = findViewById(R.id.inti_hsl_manual);
         pinti = findViewById(R.id.inti_p_manual);
-        inti.setText(extras.getString("intihasil"));
-        pinti.setText(extras.getString("intip"));
+        inti.setText(extras.getString("intiHasil"));
+        pinti.setText(extras.getString("intiHasilp"));
 
         cpo = findViewById(R.id.cpo_hsl_manual);
         pcpo = findViewById(R.id.cpo_p_manual);
-        cpo.setText(extras.getString("cpohasil"));
-        pcpo.setText(extras.getString("cpop"));
+        cpo.setText(extras.getString("cpoHasil"));
+        pcpo.setText(extras.getString("cpoHasilp"));
 
         dirt = findViewById(R.id.dirt_hasil);
         pdirt = findViewById(R.id.dirt_p);
-        dirt.setText(extras.getString("dirthasil"));
-        pdirt.setText(extras.getString("dirtp"));
+        dirt.setText(extras.getString("dirtHasil"));
+        pdirt.setText(extras.getString("dirtHasilp"));
 
     }
 
