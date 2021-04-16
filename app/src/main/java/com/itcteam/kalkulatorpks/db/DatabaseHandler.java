@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -16,7 +15,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "saveapp";
     private static final String TABLE_01 = "calculate01";
     private static final String TABLE_SAVE = "save_record";
-    private static final String TABLE_RECORD_NAME = "record_name";
+    private static final String TABLE_RECORD = "record_name";
     private static final String TABLE_ITEM_NAME = "item_name";
 
     SQLiteDatabase db;
@@ -33,8 +32,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.w("Bentuk Query", CREATE_01);
         db.execSQL(CREATE_01);
 
-        String CREATE_RECORD = " CREATE TABLE " + TABLE_RECORD_NAME + "( " +
-                " id_record int, record_name text)";
+        String CREATE_RECORD = " CREATE TABLE " + TABLE_RECORD + "( " +
+                " id_record INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , date text)";
         Log.w("Bentuk Query", CREATE_RECORD);
         db.execSQL(CREATE_RECORD);
 
@@ -44,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_ITEM);
 
         String CREATE_SAVE = " CREATE TABLE " + TABLE_SAVE + "( " +
-                " id_record int, id_item int, item_value text, date text)";
+                "id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, id_item int, item_value text)";
         Log.w("Bentuk Query", CREATE_SAVE);
         db.execSQL(CREATE_SAVE);
     }
@@ -97,6 +96,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public long SaveRecord(String date){
+
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("date", date);
+        Long record = Long.valueOf(-1);
+
+        db = this.getWritableDatabase();
+        Long ret = db.insert(TABLE_RECORD, null, contentValues);
+        db.close();
+        if (ret!=-1){
+            record = ret;
+        }
+
+        return record;
+    }
+
+    public boolean SaveItem(String data, int IDRecord, int IDItem){
+
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("item_value", data);
+        contentValues.put("id_item", IDItem);
+        contentValues.put("id_record", IDRecord);
+
+        db = this.getWritableDatabase();
+        Long ret = db.insert(TABLE_SAVE, null, contentValues);
+        db.close();
+        if (ret!=-1){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public boolean savePersen01(HashMap<String, String> data){
         boolean done = false;
         ContentValues contentValues = new ContentValues();
@@ -127,9 +159,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 done =  false;
             }
         }
-
         return done;
-
     }
 
 }

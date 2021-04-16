@@ -1,0 +1,6 @@
+
+Item
+0 nama  - nama pt perusahaan
+1 date  - tanggal dibuat
+2 tanam - tahun tanam
+3 matang - faksi matang
