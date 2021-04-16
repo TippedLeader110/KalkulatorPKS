@@ -15,6 +15,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "saveapp";
     private static final String TABLE_01 = "calculate01";
+    private static final String TABLE_SAVE = "save_record";
+    private static final String TABLE_RECORD_NAME = "record_name";
+    private static final String TABLE_ITEM_NAME = "item_name";
 
     SQLiteDatabase db;
 
@@ -26,9 +29,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_01 = " CREATE TABLE " + TABLE_01 + "( " +
-                " tangkos text, serat text, cangkang text, inti text, cpo text )";
+                " tangkos text, serat text, cangkang text, inti text, cpo text, dirt text )";
         Log.w("Bentuk Query", CREATE_01);
         db.execSQL(CREATE_01);
+
+        String CREATE_RECORD = " CREATE TABLE " + TABLE_RECORD_NAME + "( " +
+                " id_record int, record_name text)";
+        Log.w("Bentuk Query", CREATE_RECORD);
+        db.execSQL(CREATE_RECORD);
+
+        String CREATE_ITEM = " CREATE TABLE " + TABLE_ITEM_NAME + "( " +
+                " id_item int, item_name text)";
+        Log.w("Bentuk Query", CREATE_ITEM);
+        db.execSQL(CREATE_ITEM);
+
+        String CREATE_SAVE = " CREATE TABLE " + TABLE_SAVE + "( " +
+                " id_record int, id_item int, item_value text, date text)";
+        Log.w("Bentuk Query", CREATE_SAVE);
+        db.execSQL(CREATE_SAVE);
     }
 
     @Override
@@ -68,6 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             data.put("cangkang", res.getString(res.getColumnIndex("cangkang")));
             data.put("inti", res.getString(res.getColumnIndex("inti")));
             data.put("cpo", res.getString(res.getColumnIndex("cpo")));
+            data.put("dirt", res.getString(res.getColumnIndex("dirt")));
             res.close();
             db.close();
             return data;
@@ -86,6 +105,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put("cangkang", data.get("cangkang"));
         contentValues.put("inti", data.get("inti"));
         contentValues.put("cpo", data.get("cpo"));
+        contentValues.put("dirt", data.get("dirt"));
 
 
         if (!checkRow()){

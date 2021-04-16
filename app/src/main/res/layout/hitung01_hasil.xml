@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/TextberatTBS_manual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cal01_beratTBS_std"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/beratTBS_manual"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/beratTBS_manual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:hint="@string/kg"
+            android:inputType="numberDecimal"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/TextberatTBS_manual"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_manual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beratTBS_manual">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_tangkos_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/cl_serat_manual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tangkos_manual"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Tangkos"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tangkos_p_manual"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tangkos_p_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tangkos_hsl_manual"
+                    app:layout_constraintStart_toEndOf="@+id/tangkos_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tangkos_hsl_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tangkos_p_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_serat_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/cl_cangkang_manual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_tangkos_manual">
+
+                <TextView
+                    android:id="@+id/serat_manual"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Serat"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/serat_p_manual"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/serat_p_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/serat_hsl_manual"
+                    app:layout_constraintStart_toEndOf="@+id/serat_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/serat_hsl_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/serat_p_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_cangkang_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/cl_inti_manual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_serat_manual">
+
+                <TextView
+                    android:id="@+id/cangkang_manual"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Cangkang"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cangkang_p_manual"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cangkang_p_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cangkang_hsl_manual"
+                    app:layout_constraintStart_toEndOf="@+id/cangkang_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cangkang_hsl_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cangkang_p_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_inti_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/cl_cpo_manual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_cangkang_manual">
+
+                <TextView
+                    android:id="@+id/inti_manual"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Inti"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/inti_p_manual"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/inti_p_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/inti_hsl_manual"
+                    app:layout_constraintStart_toEndOf="@+id/inti_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/inti_hsl_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/inti_p_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_cpo_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/constraint_dirt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_inti_manual">
+
+                <TextView
+                    android:id="@+id/cpo_manual"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="CPO"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cpo_p_manual"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cpo_p_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cpo_hsl_manual"
+                    app:layout_constraintStart_toEndOf="@+id/cpo_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cpo_hsl_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cpo_p_manual"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_dirt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/save_hasil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_cpo_manual">
+
+                <TextView
+                    android:id="@+id/dirt"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="Inti"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/dirt_p"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dirt_p"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="%"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/dirt_hasil"
+                    app:layout_constraintStart_toEndOf="@+id/dirt"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dirt_hasil"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/hasil"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dirt_p"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/save_hasil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_baseline_save_24"
+                android:text="Simpan Hasil"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_dirt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>
