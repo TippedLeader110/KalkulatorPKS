@@ -4,3 +4,13 @@ Item
 1 date  - tanggal dibuat
 2 tanam - tahun tanam
 3 matang - faksi matang
+
+
+Record Value
+0 tbs
+1 tangkos
+2 serat
+3 cangkang 
+4 inti
+5 cpo
+6 dirt

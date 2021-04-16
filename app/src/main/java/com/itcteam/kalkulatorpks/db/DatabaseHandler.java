@@ -17,6 +17,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SAVE = "save_record";
     private static final String TABLE_RECORD = "record_name";
     private static final String TABLE_ITEM_NAME = "item_name";
+    private static final String TABLE_VALUE = "record_value";
 
     SQLiteDatabase db;
 
@@ -41,6 +42,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 " id_item int, item_name text)";
         Log.w("Bentuk Query", CREATE_ITEM);
         db.execSQL(CREATE_ITEM);
+
+        String CREATE_VALUE = " CREATE TABLE " + TABLE_VALUE + "( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, id_value int, record_value text)";
+        Log.w("Bentuk Query", CREATE_VALUE);
+        db.execSQL(CREATE_VALUE);
 
         String CREATE_SAVE = " CREATE TABLE " + TABLE_SAVE + "( " +
                 "id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, id_item int, item_value text)";
@@ -110,6 +116,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         return record;
+    }
+
+    public boolean SaveRecordValue(String data, int IDRecord, int IDValue){
+
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("record_value", data);
+        contentValues.put("id_value", IDValue);
+        contentValues.put("id_record", IDRecord);
+
+        db = this.getWritableDatabase();
+        Long ret = db.insert(TABLE_SAVE, null, contentValues);
+        db.close();
+        if (ret!=-1){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public boolean SaveItem(String data, int IDRecord, int IDItem){

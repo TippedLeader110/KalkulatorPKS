@@ -14,11 +14,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.db.DatabaseHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Hitung01_simpan extends AppCompatActivity {
 
     Button simpan;
     TextInputLayout nama, tanam, matang, date;
     DatabaseHandler databaseHandler;
+    JSONObject jsonVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,14 @@ public class Hitung01_simpan extends AppCompatActivity {
         setContentView(R.layout.activity_hitung01_simpan);
 
         databaseHandler = new DatabaseHandler(this);
+        Bundle extras = getIntent().getExtras();
+
+        Log.d("RETJsonVal", extras.getString("jsonVal"));
+        try {
+            jsonVal = new JSONObject(extras.getString("jsonVal"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         simpan = findViewById(R.id.hitung01_saverecord);
         nama = findViewById(R.id.hitung01_namakebun);
