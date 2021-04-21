@@ -7,6 +7,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.about.task.ListBerkas;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_inti;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_storage;
@@ -16,16 +17,16 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
     @Override
     public void onResume() {
         super.onResume();
-        Preference berkas = this.findPreference("berkas_01");
+        Preference berkas = this.findPreference("berkas_mb_01");
         berkas.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), Hitung04_storage.class));
+                startActivity(new Intent(getActivity(), ListBerkas.class));
                 return true;
             }
         });
 
-        Preference berkas_2 = this.findPreference("berkas_02");
+        Preference berkas_2 = this.findPreference("berkas_mb_02");
         berkas_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -34,7 +35,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             }
         });
 
-        Preference berkas_3 = this.findPreference("berkas_03");
+        Preference berkas_3 = this.findPreference("berkas_mb_03");
         berkas_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

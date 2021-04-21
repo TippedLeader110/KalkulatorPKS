@@ -7,17 +7,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "saveapp";
     private static final String TABLE_01 = "calculate01";
-    private static final String TABLE_SAVE = "save_record";
+    private static final String TABLE_RECORD_VALUE = "save_record";
     private static final String TABLE_RECORD = "record_name";
     private static final String TABLE_ITEM_NAME = "item_name";
-    private static final String TABLE_VALUE = "record_value";
+    private static final String TABLE_ITEM_VALUE = "record_value";
 
     SQLiteDatabase db;
 
@@ -34,22 +39,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_01);
 
         String CREATE_RECORD = " CREATE TABLE " + TABLE_RECORD + "( " +
-                " id_record INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , date text)";
+                " id_record INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , record_type INTEGER, date text)";
         Log.w("Bentuk Query", CREATE_RECORD);
         db.execSQL(CREATE_RECORD);
 
-        String CREATE_ITEM = " CREATE TABLE " + TABLE_ITEM_NAME + "( " +
-                " id_item int, item_name text)";
-        Log.w("Bentuk Query", CREATE_ITEM);
-        db.execSQL(CREATE_ITEM);
-
-        String CREATE_VALUE = " CREATE TABLE " + TABLE_VALUE + "( " +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, id_value int, record_value text)";
+        String CREATE_VALUE = " CREATE TABLE " + TABLE_ITEM_VALUE + "( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, item_value text)";
         Log.w("Bentuk Query", CREATE_VALUE);
         db.execSQL(CREATE_VALUE);
 
-        String CREATE_SAVE = " CREATE TABLE " + TABLE_SAVE + "( " +
-                "id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, id_item int, item_value text)";
+        String CREATE_SAVE = " CREATE TABLE " + TABLE_RECORD_VALUE + "( " +
+                "id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , id_record int, record_value text)";
         Log.w("Bentuk Query", CREATE_SAVE);
         db.execSQL(CREATE_SAVE);
     }
@@ -102,10 +102,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public long SaveRecord(String date){
+    public long SaveRecord(String date, Integer record_type){
 
         ContentValues contentValues= new ContentValues();
         contentValues.put("date", date);
+        contentValues.put("record_type", record_type);
         Long record = Long.valueOf(-1);
 
         db = this.getWritableDatabase();
@@ -118,15 +119,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return record;
     }
 
-    public boolean SaveRecordValue(String data, int IDRecord, int IDValue){
+    public boolean SaveRecordValue(String data, int IDRecord){
 
         ContentValues contentValues= new ContentValues();
         contentValues.put("record_value", data);
-        contentValues.put("id_value", IDValue);
         contentValues.put("id_record", IDRecord);
 
         db = this.getWritableDatabase();
-        Long ret = db.insert(TABLE_SAVE, null, contentValues);
+        Long ret = db.insert(TABLE_RECORD_VALUE, null, contentValues);
         db.close();
         if (ret!=-1){
             return true;
@@ -135,15 +135,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public boolean SaveItem(String data, int IDRecord, int IDItem){
+    public boolean SaveItem(String data, int IDRecord){
 
         ContentValues contentValues= new ContentValues();
         contentValues.put("item_value", data);
-        contentValues.put("id_item", IDItem);
         contentValues.put("id_record", IDRecord);
 
         db = this.getWritableDatabase();
-        Long ret = db.insert(TABLE_SAVE, null, contentValues);
+        Long ret = db.insert(TABLE_ITEM_VALUE, null, contentValues);
         db.close();
         if (ret!=-1){
             return true;
@@ -185,4 +184,64 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return done;
     }
 
+    public List getRecord(int i) {
+        List list = new ArrayList();
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i, null );
+
+        // Material balance
+        if (i==1){
+            while (cursor.moveToNext()){
+                HashMap<String,String> berkasObj = new HashMap<>();
+                berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
+                berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
+                list.add(berkasObj);
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public HashMap<String, Object> getRecordValue(String id_record, int i) {
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery( "select * from "+ TABLE_RECORD_VALUE + " where id_record = " + id_record, null );
+        HashMap<String, Object> list = new HashMap<>();
+        // Material balance
+        if (i==1){
+            if(cursor.moveToFirst()){
+                String rec = cursor.getString(cursor.getColumnIndex("record_value"));
+                try {
+                    JSONObject js = new JSONObject(rec);
+
+                    list.put("nama", js.getString(""));
+                    list.put("matang", js.getString(""));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public String getItemValue(String id_record) {
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery( "select * from "+ TABLE_ITEM_VALUE + " where id_record = " + id_record, null );
+        String list = "";
+        // Material balance
+        if(cursor.moveToFirst()){
+            String rec = cursor.getString(cursor.getColumnIndex("item_value"));
+            list = rec;
+        }
+        cursor.close();
+        db.close();
+        Log.w("LIST", list);
+        return list;
+    }
 }

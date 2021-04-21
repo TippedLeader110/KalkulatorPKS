@@ -1,5 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,6 +32,7 @@ public class Hitung01_simpan extends AppCompatActivity {
     DatabaseHandler databaseHandler;
     JSONObject jsonVal;
     DatePickerDialog.OnDateSetListener dateListener;
+    String tbs, tangkosHasil, tangkosHasilp, seratHasil, seratHasilp, cangkangHasil, cangkangHasilp, intiHasil, intiHasilp, cpoHasil, cpoHasilp, dirtHasil, dirtHasilp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class Hitung01_simpan extends AppCompatActivity {
             }
         });
 
-        date.setOnClickListener(new View.OnClickListener() {
+        date.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -87,30 +91,53 @@ public class Hitung01_simpan extends AppCompatActivity {
                         .append( month ).append( "-" ).append( year ) );
             }
         };
+
+        ActionBar actbar;
+        actbar = getSupportActionBar();
+        actbar.setHomeButtonEnabled(true);
+        actbar.setTitle("Simpan Berkas");
+        actbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void SimpanRecord(){
+        JSONObject jsonObject = new JSONObject();
         String nama = this.nama.getEditText().getText().toString();
-        Log.d("nama_kebun", nama);
         String tanam = this.tanam.getEditText().getText().toString();
-        Log.d("tahun_tanam", tanam);
         String date = this.date.getEditText().getText().toString();
-        Log.d("date_save", date);
         String matang = this.matang.getEditText().getText().toString();
+        try {
+            jsonObject.put("nama", nama);
+            jsonObject.put("tanam", tanam);
+            jsonObject.put("matang", matang);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("tahun_tanam", tanam);
+        Log.d("date_save", date);
+        Log.d("nama_kebun", nama);
         Log.d("faksi_matang", matang);
 
-
-        Long id_record = databaseHandler.SaveRecord(date);
+        Long id_record = databaseHandler.SaveRecord(date, 1);
         if (id_record!=-1){
             Integer rec = Math.toIntExact(id_record);
-            if (databaseHandler.SaveItem(nama, rec, 0)){
-                if (databaseHandler.SaveItem(tanam, rec, 2)){
-                    if (databaseHandler.SaveItem(matang, rec, 3)){
-                        Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
-                    }else errMSG("Faksi Matang");
-                }else errMSG("Tahun Tanam");
-            }else errMSG("Nama Kebun");
-        }else errMSG("Record");
+            if (databaseHandler.SaveItem(jsonObject.toString(), rec)){
+                if (databaseHandler.SaveRecordValue(jsonVal.toString(), rec))
+                    Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
+                else
+                    errMSG("Record Gagal");
+            }else errMSG("Item Gagal");
+        }else errMSG("ID Record");
     }
 
     void errMSG(String msg){

@@ -86,10 +86,12 @@
             app:layout_constraintTop_toBottomOf="@id/hitung01_matang">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hitung01_simpantanggal_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tanggal"
-                android:inputType="date" />
+                android:focusableInTouchMode="false"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
