@@ -39,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_01);
 
         String CREATE_RECORD = " CREATE TABLE " + TABLE_RECORD + "( " +
-                " id_record INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , record_type INTEGER, date text)";
+                " id_record INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , record_type INTEGER, date DATE)";
         Log.w("Bentuk Query", CREATE_RECORD);
         db.execSQL(CREATE_RECORD);
 
@@ -204,30 +204,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public HashMap<String, Object> getRecordValue(String id_record, int i) {
+    public String getRecordValue(String id_record) {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery( "select * from "+ TABLE_RECORD_VALUE + " where id_record = " + id_record, null );
         HashMap<String, Object> list = new HashMap<>();
         // Material balance
-        if (i==1){
-            if(cursor.moveToFirst()){
-                String rec = cursor.getString(cursor.getColumnIndex("record_value"));
-                try {
-                    JSONObject js = new JSONObject(rec);
-
-                    list.put("nama", js.getString(""));
-                    list.put("matang", js.getString(""));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
+        if(cursor.moveToFirst()){
+            String rec = cursor.getString(cursor.getColumnIndex("record_value"));
+            try {
+                JSONObject js = new JSONObject(rec);
+                list.put("tbs", js.getString("tbs"));
+                list.put("tangkosHasil", js.getString("tangkosHasil"));
+                list.put("tangkosHasilp", js.getString("tangkosHasilp"));
+                list.put("seratHasil", js.getString("seratHasil"));
+                list.put("seratHasilp", js.getString("seratHasilp"));
+                list.put("cangkangHasil", js.getString("cangkangHasil"));
+                list.put("cangkangHasilp", js.getString("cangkangHasilp"));
+                list.put("intiHasil", js.getString("intiHasil"));
+                list.put("intiHasilp", js.getString("intiHasilp"));
+                list.put("cpoHasil", js.getString("cpoHasil"));
+                list.put("cpoHasilp", js.getString("cpoHasilp"));
+                list.put("dirtHasil", js.getString("dirtHasil"));
+                list.put("dirtHasilp", js.getString("dirtHasilp"));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
         }
 
         cursor.close();
         db.close();
-        return list;
+        return list.toString();
     }
 
     public String getItemValue(String id_record) {
@@ -242,6 +249,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         Log.w("LIST", list);
+        return list;
+    }
+
+    public List getRecordFilter(int i, String firstDate, String endDate) {
+        List list = new ArrayList();
+        db = this.getReadableDatabase();
+//        Log.w("DATE", "First Date = " + firstDate + "("+ firstDate.equals("25-4-2021") +") dan End Date = "+ endDate);
+//        Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
+//                "AND date BETWEEN " + firstDate + " AND " + endDate, null );
+        Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
+                "AND date BETWEEN '"+ firstDate +"' AND '"+ endDate + "'", null );
+        Log.w("DB QUERY FILTER", "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
+                "AND date BETWEEN '" + firstDate + "' AND '" + endDate + "'");
+
+        // Material balance
+        if (i==1){
+            while (cursor.moveToNext()){
+                HashMap<String,String> berkasObj = new HashMap<>();
+                berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
+                berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
+                list.add(berkasObj);
+            }
+        }
+
+        cursor.close();
+        db.close();
         return list;
     }
 }

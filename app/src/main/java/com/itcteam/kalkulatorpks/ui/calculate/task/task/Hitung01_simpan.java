@@ -85,10 +85,17 @@ public class Hitung01_simpan extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker , int year , int month , int day) {
                 month = month + 1;
-
+                String dayD = String.valueOf(day);
+                if (day<10) {
+                    dayD = "0"+dayD;
+                }
+                String monthD = String.valueOf(month);
+                if (month<10) {
+                    monthD= "0"+monthD;
+                }
                 Log.d( "onDateSet" , month + "/" + day + "/" + year );
-                date.getEditText().setText( new StringBuilder().append( day ).append( "-" )
-                        .append( month ).append( "-" ).append( year ) );
+                date.getEditText().setText( new StringBuilder().append( year ).append( "-" )
+                        .append( monthD ).append( "-" ).append( dayD ) );
             }
         };
 

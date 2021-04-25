@@ -54,7 +54,9 @@ public class Hitung01_hasil extends AppCompatActivity {
         tbs = findViewById(R.id.beratTBS_manual);
         tbs.setText(extras.getString("tbs")+" KG");
 
-
+        if (extras.getString("hide").equals("yes")){
+            simpan.setVisibility(View.GONE);
+        }
 
         tangkos = findViewById(R.id.tangkos_hsl_manual);
         ptangkos = findViewById(R.id.tangkos_p_manual);

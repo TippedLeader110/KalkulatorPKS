@@ -25,18 +25,17 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba">
-        <schema name="main" object-types="column, constraint, table, view, index, dataset trigger" />
+        <schema name="main" object-types="table, index, dataset trigger, view, constraint, column" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="b8312803-490e-4f01-b8a2-210a8128b7ba">
-      <console name="Connection" type="STANDARD" schema="main" session="Main" />
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * FROM record_name WHERE date BETWEEN  "2021-04-01" AND "2021-04-25"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" object-ref="schemas/main/tables/save_record" />
       <object connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" object-ref="schemas/main/tables/record_name" />
     </open-files>
   </component>
@@ -44,7 +43,11 @@
     <connection id="b8312803-490e-4f01-b8a2-210a8128b7ba" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.record_name" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.record_name" active-filter-id="751fc945-1e8c-4549-957b-f07fedb0e160">
+      <filter id="751fc945-1e8c-4549-957b-f07fedb0e160" name="Filter" temporary="false" custom-name="false" type="custom">
+        <condition><![CDATA[record_type = 1 AND date BETWEEN '16-4-2021' AND '25-4-2021'<sp>]]></condition>
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.save_record" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.record_value" active-filter-id="EMPTY_FILTER" />
   </component>

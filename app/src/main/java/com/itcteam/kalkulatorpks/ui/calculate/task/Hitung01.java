@@ -116,6 +116,7 @@ public class Hitung01 extends AppCompatActivity {
         dirtHasil = dirtHasil*Float.valueOf(tbs.getEditText().getText().toString());
         intent.putExtra("dirtHasil", Float.toString(dirtHasil));
         intent.putExtra("dirtHasilp", dirt.getEditText().getText().toString());
+        intent.putExtra("hide", "no");
         startActivity(intent);
     }
 
@@ -132,8 +133,6 @@ public class Hitung01 extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Gagal mengambil nilai tersimpan !!", Toast.LENGTH_SHORT).show();
         }
-
-        getValue();
     }
 
     public HashMap<String, String> getValue(){

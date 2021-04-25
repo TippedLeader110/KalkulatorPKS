@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.itcteam.kalkulatorpks.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class BerkasPreferenceFragment extends Fragment {
 
     PreferenceFragmentCompat preferenceFragmentCompat;
@@ -42,12 +47,32 @@ public class BerkasPreferenceFragment extends Fragment {
         }
         mToolbar.setTitle("Berkas Tersmipan");
 
+        try {
+            Log.w("DATE CEK", "DATE CC : " + isWithinRange(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-15")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         FragmentManager childFragMan = getChildFragmentManager();
         FragmentTransaction childFragTrans = childFragMan.beginTransaction();
         childFragTrans.add(R.id.frame_berkas, BerkasPreferenceSettings.class, null);
         childFragTrans.commit();
 
         return root;
+    }
+
+    boolean isWithinRange(Date testDate) {
+        Date start = null, end = null;
+        try {
+            String sDate1="2021-04-01";
+            String sDate2="2021-04-26";
+            start = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+            end = new SimpleDateFormat("yyyy-MM-dd").parse(sDate2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return !(testDate.before(start) || testDate.after(end));
     }
 
 }

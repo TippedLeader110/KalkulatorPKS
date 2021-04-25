@@ -7,10 +7,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.about.task.ListBerkas;
+import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_inti;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_storage;
 
 public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
 
@@ -21,7 +20,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
         berkas.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), ListBerkas.class));
+                startActivity(new Intent(getActivity(), ListBerkas_mb.class));
                 return true;
             }
         });
@@ -48,5 +47,9 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.berkas, rootKey);
+    }
+
+    public interface callBackPref{
+
     }
 }
