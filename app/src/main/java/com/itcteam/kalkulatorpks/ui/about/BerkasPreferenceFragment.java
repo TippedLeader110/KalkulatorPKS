@@ -50,7 +50,7 @@ public class BerkasPreferenceFragment extends Fragment implements BerkasPreferen
         if (mToolbar != null) {
             ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         }
-        mToolbar.setTitle("Berkas Tersmipan");
+        mToolbar.setTitle("Berkas Tersimpan");
 
         try {
             Log.w("DATE CEK", "DATE CC : " + isWithinRange(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-15")));
