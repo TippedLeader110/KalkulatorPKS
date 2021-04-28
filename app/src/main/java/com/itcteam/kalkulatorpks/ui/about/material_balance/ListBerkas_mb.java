@@ -1,5 +1,6 @@
 package com.itcteam.kalkulatorpks.ui.about.material_balance;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -8,7 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.itcteam.kalkulatorpks.R;
@@ -23,6 +29,7 @@ public class ListBerkas_mb extends AppCompatActivity implements  RecyclerFilterM
     String firstDate, endDate;
     List daftarBerkas;
     FloatingActionButton fab;
+    Boolean export;
     DatabaseHandler databaseHandler;
     RecyclerListBerkas_mb recyclerListBerkas;
 
@@ -38,25 +45,67 @@ public class ListBerkas_mb extends AppCompatActivity implements  RecyclerFilterM
         actbar.setHomeButtonEnabled(true);
         actbar.setTitle("Daftar Berkas");
         actbar.setDisplayHomeAsUpEnabled(true);
+        Bundle extras = getIntent().getExtras();
+
+        if (extras.getString("export").equals("true")){
+            export = true;
+        }else{
+            export = false;
+        }
 
         fab = this.findViewById(R.id.fab_filter_tanggal);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerFilterModal_mb recyclerFilterModal = new RecyclerFilterModal_mb();
+                RecyclerFilterModal_mb recyclerFilterModal = new RecyclerFilterModal_mb(false);
                 recyclerFilterModal.show(getSupportFragmentManager(), "");
             }
         });
 
         daftarBerkas = getBerkas(1, false);
 
-        recyclerListBerkas = new RecyclerListBerkas_mb(this, daftarBerkas, 1);
+        recyclerListBerkas = new RecyclerListBerkas_mb(this, daftarBerkas, 1, export);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(recyclerListBerkas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_charsec, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.menu_search);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recyclerListBerkas.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     public ArrayList getBerkas(int i, Boolean filter){
         List data = new ArrayList();

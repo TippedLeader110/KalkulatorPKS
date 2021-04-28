@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -204,30 +206,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public String getRecordValue(String id_record) {
+    public String getRecordValue(String id_record, int tipe) {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery( "select * from "+ TABLE_RECORD_VALUE + " where id_record = " + id_record, null );
         HashMap<String, Object> list = new HashMap<>();
         // Material balance
         if(cursor.moveToFirst()){
             String rec = cursor.getString(cursor.getColumnIndex("record_value"));
-            try {
-                JSONObject js = new JSONObject(rec);
-                list.put("tbs", js.getString("tbs"));
-                list.put("tangkosHasil", js.getString("tangkosHasil"));
-                list.put("tangkosHasilp", js.getString("tangkosHasilp"));
-                list.put("seratHasil", js.getString("seratHasil"));
-                list.put("seratHasilp", js.getString("seratHasilp"));
-                list.put("cangkangHasil", js.getString("cangkangHasil"));
-                list.put("cangkangHasilp", js.getString("cangkangHasilp"));
-                list.put("intiHasil", js.getString("intiHasil"));
-                list.put("intiHasilp", js.getString("intiHasilp"));
-                list.put("cpoHasil", js.getString("cpoHasil"));
-                list.put("cpoHasilp", js.getString("cpoHasilp"));
-                list.put("dirtHasil", js.getString("dirtHasil"));
-                list.put("dirtHasilp", js.getString("dirtHasilp"));
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (tipe==1){
+                try {
+                    JSONObject js = new JSONObject(rec);
+                    list.put("tbs", js.getString("tbs"));
+                    list.put("tangkosHasil", js.getString("tangkosHasil"));
+                    list.put("tangkosHasilp", js.getString("tangkosHasilp"));
+                    list.put("seratHasil", js.getString("seratHasil"));
+                    list.put("seratHasilp", js.getString("seratHasilp"));
+                    list.put("cangkangHasil", js.getString("cangkangHasil"));
+                    list.put("cangkangHasilp", js.getString("cangkangHasilp"));
+                    list.put("intiHasil", js.getString("intiHasil"));
+                    list.put("intiHasilp", js.getString("intiHasilp"));
+                    list.put("cpoHasil", js.getString("cpoHasil"));
+                    list.put("cpoHasilp", js.getString("cpoHasilp"));
+                    list.put("dirtHasil", js.getString("dirtHasil"));
+                    list.put("dirtHasilp", js.getString("dirtHasilp"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -262,6 +266,73 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "AND date BETWEEN '"+ firstDate +"' AND '"+ endDate + "'", null );
         Log.w("DB QUERY FILTER", "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
                 "AND date BETWEEN '" + firstDate + "' AND '" + endDate + "'");
+
+        // Material balance
+        if (i==1){
+            while (cursor.moveToNext()){
+                HashMap<String,String> berkasObj = new HashMap<>();
+                berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
+                berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
+                list.add(berkasObj);
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public List getAllFilter(String first, String end, int i) {
+
+        List<HashMap<String, String>> list = new ArrayList<>(getRecordFilter(i, first, end));
+        String linesC = "";
+        if (i==1){
+            linesC =  "Tanggal,Nama Kebun,Faksi Matang,Tahun Tanam,TBS,Tangkos Hasil,tangkos Hasil Persen,Serat Hasil,Serat Hasil Persen,Cangkang Hasil,Cangkang Hasil Persen,Inti Hasil,Inti Hasil Peresn,Cpo Hasil,Cpo Hasil Persen,Dirt Hasil,Dirt Hasil Persen\n";
+        }
+
+        List dataLines = new ArrayList<String>();
+
+        for (HashMap<String,String> hash:list){
+            String fetchData = getRecordValue(hash.get("id_record"), i);
+            String fetchDataItem = getItemValue(hash.get("id_record"));
+            if (i==1){
+                try {
+                    JSONObject jsonBerkas = new JSONObject(fetchData);
+                    JSONObject value = new JSONObject(fetchDataItem);
+                    String lines = hash.get("date")+ "," +
+                            value.getString("nama")+ "," +
+                            value.getString("matang")+ "," +
+                            value.getString("tanam")+ "," +
+                            jsonBerkas.getString("tbs")+ "," +
+                            jsonBerkas.getString("tangkosHasil")+ "," +
+                            jsonBerkas.getString("tangkosHasilp")+ "," +
+                            jsonBerkas.getString("seratHasil")+ "," +
+                            jsonBerkas.getString("seratHasilp")+ "," +
+                            jsonBerkas.getString("cangkangHasil")+ "," +
+                            jsonBerkas.getString("cangkangHasilp")+ "," +
+                            jsonBerkas.getString("intiHasil")+ "," +
+                            jsonBerkas.getString("intiHasilp")+ "," +
+                            jsonBerkas.getString("cpoHasil")+ "," +
+                            jsonBerkas.getString("cpoHasilp")+ "," +
+                            jsonBerkas.getString("dirtHasil")+ "," +
+                            jsonBerkas.getString("dirtHasilp");
+
+                    Log.w("Lines", lines);
+                    Log.w("LinesC", linesC);
+                    dataLines.add(linesC);
+                    dataLines.add(lines);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return dataLines;
+    }
+
+    private List getRecordAll(int i) {
+        List list = new ArrayList();
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD, null );
 
         // Material balance
         if (i==1){

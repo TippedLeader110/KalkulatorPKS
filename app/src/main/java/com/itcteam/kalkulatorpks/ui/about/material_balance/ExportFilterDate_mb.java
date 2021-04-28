@@ -1,22 +1,25 @@
 package com.itcteam.kalkulatorpks.ui.about.material_balance;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,62 +28,61 @@ import com.itcteam.kalkulatorpks.db.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 
 import java.util.Calendar;
-import java.util.List;
 
-public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
+public class ExportFilterDate_mb extends AppCompatActivity {
 
     Button cari;
-    ListBerkas_mb listener;
     String first, end;
+    TextView title;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
     TextInputLayout firstDate, endDate;
-    Boolean export;
 
-    public RecyclerFilterModal_mb(boolean export) {
-        this.export = export;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.modal_filter_tanggal_berkas, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.modal_filter_tanggal_berkas);
 
-        cari = v.findViewById(R.id.modal_filter_cari);
-        firstDate = v.findViewById(R.id.modal_filter_berkas_simpantanggal_awal);
-        endDate = v.findViewById(R.id.modal_filter_berkas_simpantanggal_akhir);
+        title = this.findViewById(R.id.filter_title);
+        title.setText("Export CSV dengan rentang waktu berikut");
+        cari = this.findViewById(R.id.modal_filter_cari);
+        cari.setText("Export CSV");
+        firstDate = this.findViewById(R.id.modal_filter_berkas_simpantanggal_awal);
+        endDate = this.findViewById(R.id.modal_filter_berkas_simpantanggal_akhir);
 
+        ActionBar actbar;
+        actbar = getSupportActionBar();
+        actbar.setHomeButtonEnabled(true);
+        actbar.setTitle("Export Berkas");
+        actbar.setDisplayHomeAsUpEnabled(true);
 
+        cari.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                first = firstDate.getEditText().getText().toString();
+                end = endDate.getEditText().getText().toString();
+                DatabaseHandler databaseHandler = new DatabaseHandler(ExportFilterDate_mb.this);
+                ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, 1), ExportFilterDate_mb.this);
 
-        cari.setEnabled(false);
-
-        if (export){
-            cari.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.O)
-                @Override
-                public void onClick(View v) {
-                    first = firstDate.getEditText().getText().toString();
-                    end = endDate.getEditText().getText().toString();
-                    DatabaseHandler databaseHandler = new DatabaseHandler(getContext());
-                    ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, 1), getContext());
-
-                    if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-MaterialBalanceDate")){
-                        Toast.makeText(getContext(), "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getContext(), "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
-                    }
+                if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-MaterialBalanceDate")){
+                    Toast.makeText(ExportFilterDate_mb.this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ExportFilterDate_mb.this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }else{
-            cari.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    first = firstDate.getEditText().getText().toString();
-                    end = endDate.getEditText().getText().toString();
-                    listener.TanggalFilter(first, end);
-                }
-            });
-        }
+            }
+        });
 
         firstDate.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +93,7 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog =  new DatePickerDialog(
-                        listener,
+                        ExportFilterDate_mb.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateListenerFirst,
                         year,month,day
@@ -110,7 +112,7 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog =  new DatePickerDialog(
-                        listener,
+                        ExportFilterDate_mb.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateListenerEnd,
                         year,month,day
@@ -157,8 +159,6 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
                 cari.setEnabled(checkValue());
             }
         };
-
-        return v;
     }
 
     public Boolean checkValue(){
@@ -173,7 +173,4 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
         return c;
     }
 
-    public interface FilterModalListener{
-        void TanggalFilter(String first, String end);
-    }
 }

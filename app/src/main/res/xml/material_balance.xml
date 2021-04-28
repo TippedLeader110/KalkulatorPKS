@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <Preference
+            app:title="Export semua"
+            app:summary="Membackup semua berkas yang ada "
+            app:key="berkas_mb_01"
+            />
+
+        <Preference
+            app:title="1 Dokumen"
+            app:summary="Mengexport 1 berkas menjadi file csv"
+            app:key="berkas_mb_02"
+            />
+
+        <Preference
+            app:title="Dengan rentang waktu"
+            app:summary="Mengeksport ke csv dengan filter waktu"
+            app:key="berkas_mb_03"
+            />
+
+</PreferenceScreen>

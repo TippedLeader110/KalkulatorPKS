@@ -3,6 +3,7 @@ package com.itcteam.kalkulatorpks;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.itcteam.kalkulatorpks.ui.about.BerkasPreferenceFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -11,6 +12,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainMenu extends AppCompatActivity {
+
+    BerkasPreferenceFragment berkasPreferenceFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,10 @@ public class MainMenu extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    public void onListenerBerkas(BerkasPreferenceFragment listener){
+        this.berkasPreferenceFragment = listener;
     }
 
 }

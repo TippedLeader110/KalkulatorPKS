@@ -23,15 +23,20 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.itcteam.kalkulatorpks.MainMenu;
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_perfomance;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BerkasPreferenceFragment extends Fragment {
+public class BerkasPreferenceFragment extends Fragment implements BerkasPreferenceSettings.callBackPref{
 
     PreferenceFragmentCompat preferenceFragmentCompat;
+    FragmentManager childFragMan;
+    FragmentTransaction childFragTrans;
 
     @Nullable
     @Override
@@ -52,11 +57,15 @@ public class BerkasPreferenceFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+//
+//        childFragMan = getChildFragmentManager();
+//        childFragTrans = childFragMan.beginTransaction();
+//        childFragTrans.add(R.id.frame_berkas, BerkasPreferenceSettings.class, null).commit();
 
-        FragmentManager childFragMan = getChildFragmentManager();
-        FragmentTransaction childFragTrans = childFragMan.beginTransaction();
-        childFragTrans.add(R.id.frame_berkas, BerkasPreferenceSettings.class, null);
-        childFragTrans.commit();
+        getChildFragmentManager().beginTransaction().
+                replace(R.id.frame_berkas, BerkasPreferenceSettings.class, null).
+                setReorderingAllowed(true).
+                commit();
 
         return root;
     }
@@ -75,4 +84,28 @@ public class BerkasPreferenceFragment extends Fragment {
         return !(testDate.before(start) || testDate.after(end));
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        try {
+            ((MainMenu) getActivity()).onListenerBerkas(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void FagmentSwitch(int idFragment) {
+        switch (idFragment){
+            case 1:
+                getChildFragmentManager().beginTransaction().
+                        replace(R.id.frame_berkas, MaterialBalancePreferenceSettings.class, null).
+                        setReorderingAllowed(true).
+                        commit();
+//                childFragTrans.replace(R.id.frame_berkas, MaterialBalancePreferenceSettings.class, null).commit();
+            default:
+
+        }
+    }
 }
