@@ -6,6 +6,8 @@ public class Hitung04_inti extends Hitung04_cpo {
         super.title = "Rendemen Inti";
         super.inp1 = "Berat TBS yang diolah (kg)";
         super.inp2 = "Berat inti yang dihasilkan (kg)";
+        super.tipe = "inti";
+        super.resultCode = 2;
     }
 
 }

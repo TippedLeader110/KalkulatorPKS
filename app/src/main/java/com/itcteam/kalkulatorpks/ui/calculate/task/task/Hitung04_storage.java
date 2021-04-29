@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,19 +20,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung04;
 
 import java.util.ArrayList;
 
 public class Hitung04_storage extends AppCompatActivity {
 
     ArrayList dropdownVal, dropdownText;
-    Button hitung;
+    Button hitung, save;
     AutoCompleteTextView autoCompleteTextView;
     TextInputLayout inp1, inp2;
     Integer pos ;
     InputMethodManager inputManager;
     TextView hasil;
+    float hasil_p;
+    Hitung04 listener;
 
+    public void setListener(Hitung04 listener){
+        this.listener = listener;
+    }
 
     public void setDropdown(){
         dropdownText = new ArrayList();
@@ -63,6 +70,7 @@ public class Hitung04_storage extends AppCompatActivity {
         pos = 0;
     }
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         inputManager = (InputMethodManager)
@@ -77,6 +85,20 @@ public class Hitung04_storage extends AppCompatActivity {
         inp1.setHint("Luas alas storage (m²)");
         inp2 = findViewById(R.id.hitung04_input02);
         inp2.setHint("Tebal CPO (m)");
+
+        save = this.findViewById(R.id.hitung04_btn_save);
+
+        save.setEnabled(false);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("storage", String.valueOf(hasil_p));
+                setResult(3, intent);
+                finish();
+            }
+        });
 
         autoCompleteTextView = findViewById(R.id.hitung04_autocomplete);
         final ArrayAdapter arrayAdapter = new ArrayAdapter(Hitung04_storage.this, R.layout.hitung04_list_item, dropdownText);
@@ -99,6 +121,7 @@ public class Hitung04_storage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 float a, b;
+                save.setEnabled(true);
                 if(inp1.getEditText().getText().toString() != ""){
                     a = Float.valueOf(inp1.getEditText().getText().toString());
                 }else{
@@ -112,7 +135,7 @@ public class Hitung04_storage extends AppCompatActivity {
                     b = 0;
                     inp2.getEditText().setText("0");
                 }
-                float hasil_p;
+
 
                 hasil_p = a*b;
                 hasil_p = hasil_p*Float.valueOf(dropdownVal.get(pos).toString());
@@ -141,5 +164,9 @@ public class Hitung04_storage extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public interface InterfaceSave{
+        public void KembalikanData(String a, String b);
     }
 }

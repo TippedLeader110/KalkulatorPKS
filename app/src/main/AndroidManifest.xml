@@ -14,6 +14,9 @@
         <activity android:name=".ui.about.material_balance.ExportFilterDate_mb"
             android:theme="@style/AppThemeWActBar"
             ></activity>
+        <activity android:name=".ui.calculate.task.task.Hitung04_simpan"
+            android:theme="@style/AppThemeWActBar"
+            ></activity>
         <activity android:name=".ui.about.material_balance.ListBerkas_mb"
             android:theme="@style/AppThemeWActBar"
             ></activity>
