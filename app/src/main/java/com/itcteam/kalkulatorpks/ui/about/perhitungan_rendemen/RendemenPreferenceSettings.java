@@ -1,27 +1,20 @@
-package com.itcteam.kalkulatorpks.ui.about.material_balance;
+package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.db.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_inti;
+import com.itcteam.kalkulatorpks.ui.about.material_balance.MBPrefSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MaterialBalancePreferenceSettings extends AppCompatActivity implements MBPrefSet.callBack{
+public class RendemenPreferenceSettings extends AppCompatActivity implements PRPrefSet.callBack {
 
     DatabaseHandler databaseHandler;
     ProgressDialog dialog;

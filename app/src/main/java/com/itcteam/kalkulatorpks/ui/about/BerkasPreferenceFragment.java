@@ -32,7 +32,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BerkasPreferenceFragment extends Fragment implements BerkasPreferenceSettings.callBackPref{
+public class BerkasPreferenceFragment extends Fragment {
 
     PreferenceFragmentCompat preferenceFragmentCompat;
     FragmentManager childFragMan;
@@ -92,20 +92,6 @@ public class BerkasPreferenceFragment extends Fragment implements BerkasPreferen
             ((MainMenu) getActivity()).onListenerBerkas(this);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-    }
-
-    @Override
-    public void FagmentSwitch(int idFragment) {
-        switch (idFragment){
-            case 1:
-                getChildFragmentManager().beginTransaction().
-                        replace(R.id.frame_berkas, MaterialBalancePreferenceSettings.class, null).
-                        setReorderingAllowed(true).
-                        commit();
-//                childFragTrans.replace(R.id.frame_berkas, MaterialBalancePreferenceSettings.class, null).commit();
-            default:
-
         }
     }
 }

@@ -16,8 +16,30 @@
 
         <Preference
             app:title="Import berkas"
-            app:summary="Mengimport file csv untuk disimpan ke database"
+            app:summary="Mengimport file csv untuk disimpan ke database Material Balance"
             app:key="berkas_mb_03"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Perhitungan Rendemen">
+
+        <Preference
+            app:title="Daftar Perhitungan Rendemen tersimpan"
+            app:summary="Menampilkan berkas-berkas yang tersimpan"
+            app:key="berkas_pr_01"
+            />
+
+        <Preference
+            app:title="Export berkas Rendemen"
+            app:summary="Mengexport berkas menjadi file csv"
+            app:key="berkas_pr_02"
+            />
+
+        <Preference
+            app:title="Import berkas Rendemen"
+            app:summary="Mengimport file csv untuk disimpan ke database Perhitungan Rendemen"
+            app:key="berkas_pr_03"
             />
 
     </PreferenceCategory>

@@ -192,13 +192,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i, null );
 
         // Material balance
-        if (i==1){
-            while (cursor.moveToNext()){
-                HashMap<String,String> berkasObj = new HashMap<>();
-                berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
-                berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
-                list.add(berkasObj);
-            }
+        while (cursor.moveToNext()){
+            HashMap<String,String> berkasObj = new HashMap<>();
+            berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
+            berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
+            list.add(berkasObj);
         }
 
         cursor.close();
@@ -268,13 +266,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "AND date BETWEEN '" + firstDate + "' AND '" + endDate + "'");
 
         // Material balance
-        if (i==1){
-            while (cursor.moveToNext()){
-                HashMap<String,String> berkasObj = new HashMap<>();
-                berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
-                berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
-                list.add(berkasObj);
-            }
+
+        while (cursor.moveToNext()){
+            HashMap<String,String> berkasObj = new HashMap<>();
+            berkasObj.put("id_record",Integer.toString(cursor.getInt(cursor.getColumnIndex("id_record"))));
+            berkasObj.put("date",cursor.getString(cursor.getColumnIndex("date")));
+            list.add(berkasObj);
         }
 
         cursor.close();
@@ -288,6 +285,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String linesC = "";
         if (i==1){
             linesC =  "Tanggal,Nama Kebun,Faksi Matang,Tahun Tanam,TBS,Tangkos Hasil,tangkos Hasil Persen,Serat Hasil,Serat Hasil Persen,Cangkang Hasil,Cangkang Hasil Persen,Inti Hasil,Inti Hasil Peresn,Cpo Hasil,Cpo Hasil Persen,Dirt Hasil,Dirt Hasil Persen\n";
+        }else if(i==4){
+            linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
         }
 
         List dataLines = new ArrayList<String>();
@@ -316,6 +315,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             jsonBerkas.getString("cpoHasilp")+ "," +
                             jsonBerkas.getString("dirtHasil")+ "," +
                             jsonBerkas.getString("dirtHasilp");
+
+                    Log.w("Lines", lines);
+                    Log.w("LinesC", linesC);
+                    dataLines.add(linesC);
+                    dataLines.add(lines);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(i==4){
+                try {
+                    JSONObject jsonBerkas = new JSONObject(fetchData);
+                    JSONObject value = new JSONObject(fetchDataItem);
+                    String lines = hash.get("date")+ "," +
+                            value.getString("nama")+ "," +
+                            jsonBerkas.getString("cpo")+ "," +
+                            jsonBerkas.getString("init")+ "," +
+                            jsonBerkas.getString("storage");
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);

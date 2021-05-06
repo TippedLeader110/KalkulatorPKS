@@ -11,9 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.about.perhitungan_rendemen.ListBerkas_pr" android:theme="@style/AppThemeWActBar">
+
+        </activity>
         <activity android:name=".ui.about.material_balance.ExportFilterDate_mb"
             android:theme="@style/AppThemeWActBar"
             ></activity>
+        <activity android:name=".ui.about.material_balance.MaterialBalancePreferenceSettings"
+            android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.calculate.task.task.Hitung04_simpan"
             android:theme="@style/AppThemeWActBar"
             ></activity>

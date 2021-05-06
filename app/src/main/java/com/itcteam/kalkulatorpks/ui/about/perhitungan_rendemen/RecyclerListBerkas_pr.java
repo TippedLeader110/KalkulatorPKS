@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.ui.about.material_balance;
+package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,17 +20,17 @@ import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.db.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung01_hasil;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerkas_mb.BerkasViewHolder> implements Filterable {
+public class RecyclerListBerkas_pr extends RecyclerView.Adapter<RecyclerListBerkas_pr.BerkasViewHolder> implements Filterable {
 
     List dataBerkas;
     List<HashMap<String, String>> dataBerkasAll;
@@ -40,7 +40,7 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
     String start, end;
     Boolean export;
 
-    public RecyclerListBerkas_mb(Context context, List data, int tipe, Boolean export) {
+    public RecyclerListBerkas_pr(Context context, List data, int tipe, Boolean export) {
         this.context = context;
         databaseHandler = new DatabaseHandler(context);
         this.tipe = tipe;
@@ -62,17 +62,15 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
         for (int i = 0; i<data.size();i++ ){
             final HashMap<String,String> value = (HashMap<String, String>) data.get(i);
             String berkasObj = databaseHandler.getItemValue(value.get("id_record"));;
-            String title, matang, date;
+            String title, date;
             date = value.get("date");
             Log.e("EEE", "MASOK : " + berkasObj);
             try {
                 JSONObject jsonObject = new JSONObject(berkasObj);
                 title = jsonObject.getString("nama");
-                matang = jsonObject.getString("matang");
                 HashMap<String,String> nvalue = new HashMap<String, String>();
                 nvalue.put("nama", title);
                 nvalue.put("id_record", value.get("id_record"));
-                nvalue.put("matang", matang);
                 nvalue.put("date", date);
                 dataBerkas.add(nvalue);
 
@@ -99,13 +97,12 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
         Log.w("id_record", value.get("id_record"));
 
         holder.text1.setText(value.get("nama"));
-        holder.text2.setText("Faksi Matang : " + value.get("matang"));
-        holder.text3.setText(value.get("date"));
+        holder.text3.setText("");
+        holder.text2.setText(value.get("date"));
 
         Log.w("export", "D : " + export);
 
         if (export){
-
             holder.rec.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
@@ -113,27 +110,15 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
                     Log.w("Ma", "export");
                     List dataLines = new ArrayList<String>();
 
-                    String linesC =  "Tanggal,Nama Kebun,Faksi Matang,Tahun Tanam,TBS,Tangkos Hasil,tangkos Hasil Persen,Serat Hasil,Serat Hasil Persen,Cangkang Hasil,Cangkang Hasil Persen,Inti Hasil,Inti Hasil Peresn,Cpo Hasil,Cpo Hasil Persen,Dirt Hasil,Dirt Hasil Persen\n";
+                    String linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), 1);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
                         String lines = value.get("date")+ "," +
                                 value.get("nama")+ "," +
-                                value.get("matang")+ "," +
-                                value.get("tanam")+ "," +
-                                jsonBerkas.getString("tbs")+ "," +
-                                jsonBerkas.getString("tangkosHasil")+ "," +
-                                jsonBerkas.getString("tangkosHasilp")+ "," +
-                                jsonBerkas.getString("seratHasil")+ "," +
-                                jsonBerkas.getString("seratHasilp")+ "," +
-                                jsonBerkas.getString("cangkangHasil")+ "," +
-                                jsonBerkas.getString("cangkangHasilp")+ "," +
-                                jsonBerkas.getString("intiHasil")+ "," +
-                                jsonBerkas.getString("intiHasilp")+ "," +
-                                jsonBerkas.getString("cpoHasil")+ "," +
-                                jsonBerkas.getString("cpoHasilp")+ "," +
-                                jsonBerkas.getString("dirtHasil")+ "," +
-                                jsonBerkas.getString("dirtHasilp");
+                                jsonBerkas.getString("cpo")+ "," +
+                                jsonBerkas.getString("inti")+ "," +
+                                jsonBerkas.getString("storage");
 
                         Log.w("Lines", lines);
                         Log.w("LinesC", linesC);
@@ -141,7 +126,7 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
                         dataLines.add(lines);
 
                         ExportCSV exportCSV = new ExportCSV(dataLines, context);
-                        exportCSV.DoExportCSV("MaterialBalanceSingle");
+                        exportCSV.DoExportCSV("PerhitunganRendemenSingle");
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -150,28 +135,19 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
             });
 
         }else {
+            Log.w("HolderREC","false");
             holder.rec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.w("HolderREC","false");
                     try {
-                        String fetchData = databaseHandler.getRecordValue(value.get("id_record"), 1);
+                        String fetchData = databaseHandler.getRecordValue(value.get("id_record"), 4);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
-                        Intent intent = new Intent(context, Hitung01_hasil.class);
-                        intent.putExtra("tbs", jsonBerkas.getString("tbs"));
-                        intent.putExtra("tangkosHasil", jsonBerkas.getString("tangkosHasil"));
-                        intent.putExtra("tangkosHasilp", jsonBerkas.getString("tangkosHasilp"));
-                        intent.putExtra("seratHasil", jsonBerkas.getString("seratHasil"));
-                        intent.putExtra("seratHasilp", jsonBerkas.getString("seratHasilp"));
-                        intent.putExtra("cangkangHasil", jsonBerkas.getString("cangkangHasil"));
-                        intent.putExtra("cangkangHasilp", jsonBerkas.getString("cangkangHasilp"));
-                        intent.putExtra("intiHasil", jsonBerkas.getString("intiHasil"));
-                        intent.putExtra("intiHasilp", jsonBerkas.getString("intiHasilp"));
-                        intent.putExtra("cpoHasil", jsonBerkas.getString("cpoHasil"));
-                        intent.putExtra("cpoHasilp", jsonBerkas.getString("cpoHasilp"));
-                        intent.putExtra("dirtHasil", jsonBerkas.getString("dirtHasil"));
-                        intent.putExtra("dirtHasilp", jsonBerkas.getString("dirtHasilp"));
+                        Intent intent = new Intent(context, Hitung04_simpan.class);
+                        intent.putExtra("cpo", jsonBerkas.getString("cpo"));
+                        intent.putExtra("inti", jsonBerkas.getString("inti"));
+                        intent.putExtra("storage", jsonBerkas.getString("storage"));
                         intent.putExtra("hide", "yes");
-
                         v.getContext().startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -179,8 +155,6 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
                 }
             });
         }
-
-
     }
 
     @Override
@@ -209,10 +183,6 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
                     }else{
                         if (value.get("date").toLowerCase().contains(constraint.toString().toLowerCase())){
                             filteredList.add(value);
-                        }else{
-                            if (value.get("matang").toLowerCase().contains(constraint.toString().toLowerCase())){
-                                filteredList.add(value);
-                            }
                         }
                     }
                 }

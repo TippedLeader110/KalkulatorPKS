@@ -13,6 +13,9 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.itcteam.kalkulatorpks.MainMenu;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
+import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.ListBerkas_pr;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RendemenPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_inti;
 import com.itcteam.kalkulatorpks.ui.home.HomeFragment;
@@ -43,9 +46,9 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
         berkas_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                if (mParentFragment instanceof BerkasPreferenceFragment){
-                    ((BerkasPreferenceFragment) mParentFragment).FagmentSwitch(1);
-                }
+                Intent intent = new Intent(getActivity(), MaterialBalancePreferenceSettings.class);
+                intent.putExtra("export", "false");
+                startActivity(intent);
                 return true;
             }
         });
@@ -58,6 +61,38 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+        Preference berkas_4 = this.findPreference("berkas_pr_01");
+        berkas_4.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_pr.class);
+                intent.putExtra("export", "false");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_5 = this.findPreference("berkas_pr_02");
+        berkas_5.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), RendemenPreferenceSettings.class);
+                intent.putExtra("export", "false");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_6 = this.findPreference("berkas_pr_03");
+        berkas_6.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), Hitung04_inti.class));
+                return true;
+            }
+        });
+
     }
 
 

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,9 +28,10 @@ import java.util.Calendar;
 public class Hitung04_simpan extends AppCompatActivity {
 
     Button simpan;
-    TextInputLayout nama, tanam, matang, date;
+    TextInputLayout nama, date;
     DatabaseHandler databaseHandler;
     JSONObject jsonVal;
+    TextView cpo, inti, storage;
     DatePickerDialog.OnDateSetListener dateListener;
 
     @Override
@@ -44,16 +46,16 @@ public class Hitung04_simpan extends AppCompatActivity {
                 "Inti : " + extras.getString("inti") + "\n" +
                 "Storage : " + extras.getString("storage"), Toast.LENGTH_SHORT).show();
 
-        Log.d("RETJsonVal", extras.getString("jsonVal"));
-        try {
-            jsonVal = new JSONObject(extras.getString("jsonVal"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         simpan = findViewById(R.id.hitung04_saverecord);
         nama = findViewById(R.id.hitung04_namakebun);
         date = findViewById(R.id.hitung04_simpantanggal);
+        cpo = findViewById(R.id.tv4_cpo_v);
+        cpo.setText(extras.getString("cpo"));
+        inti = findViewById(R.id.tv4_inti_v);
+        inti.setText(extras.getString("inti"));
+        storage = findViewById(R.id.tv4_storage_v);
+        storage.setText(extras.getString("storage"));
 
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,27 +121,28 @@ public class Hitung04_simpan extends AppCompatActivity {
 
     public void SimpanRecord(){
         JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObjectval = new JSONObject();
         String nama = this.nama.getEditText().getText().toString();
-        String tanam = this.tanam.getEditText().getText().toString();
         String date = this.date.getEditText().getText().toString();
-        String matang = this.matang.getEditText().getText().toString();
         try {
             jsonObject.put("nama", nama);
-            jsonObject.put("tanam", tanam);
-            jsonObject.put("matang", matang);
+            jsonObjectval.put("cpo", cpo.getText());
+            jsonObjectval.put("inti", inti.getText());
+            jsonObjectval.put("storage", storage.getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("tahun_tanam", tanam);
         Log.d("date_save", date);
         Log.d("nama_kebun", nama);
-        Log.d("faksi_matang", matang);
+        Log.d("cpo", cpo.getText().toString());
+        Log.d("inti", inti.getText().toString());
+        Log.d("storage", storage.getText().toString());
 
-        Long id_record = databaseHandler.SaveRecord(date, 1);
+        Long id_record = databaseHandler.SaveRecord(date, 4);
         if (id_record!=-1){
             Integer rec = Math.toIntExact(id_record);
             if (databaseHandler.SaveItem(jsonObject.toString(), rec)){
-                if (databaseHandler.SaveRecordValue(jsonVal.toString(), rec))
+                if (databaseHandler.SaveRecordValue(jsonObjectval.toString(), rec))
                     Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
                 else
                     errMSG("Record Gagal");
