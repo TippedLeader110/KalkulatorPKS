@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
+package com.itcteam.kalkulatorpks.ui.about.equipment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,31 +12,29 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.about.material_balance.ExportFilterDate_mb;
-import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
-import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RendemenPreferenceSettings;
 
-public class PRPrefSet extends PreferenceFragmentCompat {
+public class EQPrefSet extends PreferenceFragmentCompat {
 
     ProgressDialog dialog;
-    RendemenPreferenceSettings rendemenPreferenceSettings;
+    EquipmentPreferenceSettings equipmentPreferenceSettings;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.material_balance, rootKey);
+        setPreferencesFromResource(R.xml.equipment, rootKey);
         dialog = new ProgressDialog(getContext());
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
-        rendemenPreferenceSettings = (RendemenPreferenceSettings) context;
+        equipmentPreferenceSettings = (EquipmentPreferenceSettings) context;
         super.onAttach(context);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Preference berkas = this.findPreference("berkas_mb_01");
+        Preference berkas = this.findPreference("berkas_eq_01");
         berkas.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -45,7 +43,7 @@ public class PRPrefSet extends PreferenceFragmentCompat {
                 if (!dialog.isShowing()){
                     dialog.show();
                 }
-                if (rendemenPreferenceSettings.backProc()){
+                if (equipmentPreferenceSettings.backProc()){
                     dialog.dismiss();
                 }
 //                exportAll();
@@ -55,22 +53,22 @@ public class PRPrefSet extends PreferenceFragmentCompat {
 
         });
 
-        Preference berkas_2 = this.findPreference("berkas_mb_02");
+        Preference berkas_2 = this.findPreference("berkas_eq_02");
         berkas_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ListBerkas_pr.class);
+                Intent intent = new Intent(getActivity(), ListBerkas_eq.class);
                 intent.putExtra("export", "true");
                 startActivity(intent);
                 return true;
             }
         });
 
-        Preference berkas_3 = this.findPreference("berkas_mb_03");
+        Preference berkas_3 = this.findPreference("berkas_eq_03");
         berkas_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ExportFilterDate_pr.class);
+                Intent intent = new Intent(getActivity(), ExportFilterDate_eq.class);
                 intent.putExtra("export", "true");
                 startActivity(intent);
                 return true;

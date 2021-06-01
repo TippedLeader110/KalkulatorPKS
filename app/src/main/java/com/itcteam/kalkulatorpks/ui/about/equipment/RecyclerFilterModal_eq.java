@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.ui.about.material_balance;
+package com.itcteam.kalkulatorpks.ui.about.equipment;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -23,23 +23,28 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.db.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.ListBerkas_pr;
 
 import java.util.Calendar;
-import java.util.List;
 
-public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
+public class RecyclerFilterModal_eq extends BottomSheetDialogFragment {
 
     Button cari;
-    ListBerkas_mb listener;
+    ListBerkas_eq listener;
     String first, end;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
     TextInputLayout firstDate, endDate;
     Boolean export;
 
-    public RecyclerFilterModal_mb(boolean export) {
+    public RecyclerFilterModal_eq(boolean export) {
         this.export = export;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        listener = (ListBerkas_eq) context;
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override
@@ -62,9 +67,9 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
                     first = firstDate.getEditText().getText().toString();
                     end = endDate.getEditText().getText().toString();
                     DatabaseHandler databaseHandler = new DatabaseHandler(getContext());
-                    ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, 1), getContext());
+                    ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, 5), getContext());
 
-                    if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-MaterialBalanceDate")){
+                    if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-OEE")){
                         Toast.makeText(getContext(), "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getContext(), "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
@@ -159,12 +164,6 @@ public class RecyclerFilterModal_mb extends BottomSheetDialogFragment {
         };
 
         return v;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        listener = (ListBerkas_mb) context;
-        super.onAttach(context);
     }
 
     public Boolean checkValue(){

@@ -28,14 +28,15 @@ public class RendemenPreferenceSettings extends AppCompatActivity implements PRP
     DatabaseHandler databaseHandler;
     ProgressDialog dialog;
     private Context myContext;
-    MBPrefSet settingsFragment;
+    PRPrefSet settingsFragment;
+    static int tipe = 4;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-        settingsFragment = new MBPrefSet();
+        settingsFragment = new PRPrefSet();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.pref_menu, settingsFragment, null)
@@ -43,6 +44,7 @@ public class RendemenPreferenceSettings extends AppCompatActivity implements PRP
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Export Rendemen");
         }
         dialog = new ProgressDialog(this);
     }
@@ -57,34 +59,22 @@ public class RendemenPreferenceSettings extends AppCompatActivity implements PRP
     public void exportAll() {
 
         databaseHandler = new DatabaseHandler(this);
-        List<HashMap<String, String >> dataRecord = new ArrayList(databaseHandler.getRecord(1));
+        List<HashMap<String, String >> dataRecord = new ArrayList(databaseHandler.getRecord(tipe));
 
-        String lineCSV =  "Tanggal,Nama Kebun,Faksi Matang,Tahun Tanam,TBS,Tangkos Hasil,tangkos Hasil Persen,Serat Hasil,Serat Hasil Persen,Cangkang Hasil,Cangkang Hasil Persen,Inti Hasil,Inti Hasil Peresn,Cpo Hasil,Cpo Hasil Persen,Dirt Hasil,Dirt Hasil Persen\n";
+        String lineCSV =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
         List<String > arrayCSV = new ArrayList<>();
         arrayCSV.add(lineCSV);
 
         for (HashMap<String, String> hash : dataRecord){
             try {
-                JSONObject jsonRecord = new JSONObject(databaseHandler.getRecordValue(hash.get("id_record"), 1));
+                JSONObject jsonRecord = new JSONObject(databaseHandler.getRecordValue(hash.get("id_record"), tipe));
                 JSONObject jsonItem = new JSONObject(databaseHandler.getItemValue(hash.get("id_record")));
 
                 String lines = hash.get("date")+ "," +
                         jsonItem.get("nama")+ "," +
-                        jsonItem.get("matang")+ "," +
-                        jsonItem.get("tanam")+ "," +
-                        jsonRecord.getString("tbs")+ "," +
-                        jsonRecord.getString("tangkosHasil")+ "," +
-                        jsonRecord.getString("tangkosHasilp")+ "," +
-                        jsonRecord.getString("seratHasil")+ "," +
-                        jsonRecord.getString("seratHasilp")+ "," +
-                        jsonRecord.getString("cangkangHasil")+ "," +
-                        jsonRecord.getString("cangkangHasilp")+ "," +
-                        jsonRecord.getString("intiHasil")+ "," +
-                        jsonRecord.getString("intiHasilp")+ "," +
-                        jsonRecord.getString("cpoHasil")+ "," +
-                        jsonRecord.getString("cpoHasilp")+ "," +
-                        jsonRecord.getString("dirtHasil")+ "," +
-                        jsonRecord.getString("dirtHasilp");
+                        jsonRecord.getString("cpo")+ "," +
+                        jsonRecord.getString("inti")+ "," +
+                        jsonRecord.getString("storage");
 
                 arrayCSV.add(lines+"\n");
 
@@ -98,7 +88,7 @@ public class RendemenPreferenceSettings extends AppCompatActivity implements PRP
         if (dialog.isShowing())
             dialog.dismiss();
 
-        if (exportCSV.DoExportCSV("MaterialBalanceALL")){
+        if (exportCSV.DoExportCSV("RendemenALL")){
             Toast.makeText(this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();

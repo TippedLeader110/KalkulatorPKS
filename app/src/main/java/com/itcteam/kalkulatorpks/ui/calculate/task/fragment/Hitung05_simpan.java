@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.ui.calculate.task.task;
+package com.itcteam.kalkulatorpks.ui.calculate.task.fragment;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -25,41 +25,38 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
-public class Hitung04_simpan extends AppCompatActivity {
+public class Hitung05_simpan extends AppCompatActivity {
 
     Button simpan;
-    TextInputLayout nama, date;
+    TextInputLayout nama, datesimpan;
     DatabaseHandler databaseHandler;
-    JSONObject jsonVal;
-    TextView cpo, inti, storage;
+    String quality, perfomance, avail, hasil;
     DatePickerDialog.OnDateSetListener dateListener;
+    Integer tipe = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hitung04_simpan);
+        setContentView(R.layout.activity_hitung05_simpan);
 
         databaseHandler = new DatabaseHandler(this);
         Bundle extras = getIntent().getExtras();
 
-        Toast.makeText(this, "CPO: " + extras.getString("cpo") + "\n " +
-                "Inti : " + extras.getString("inti") + "\n" +
-                "Storage : " + extras.getString("storage"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Perfomance: " + extras.getString("PR") + "\n " +
+                "Availability : " + extras.getString("AV") + "\n" +
+                "Quality : " + extras.getString("QU"), Toast.LENGTH_SHORT).show();
 
 
-        simpan = findViewById(R.id.hitung04_saverecord);
-        nama = findViewById(R.id.hitung04_namakebun);
-        date = findViewById(R.id.hitung04_simpantanggal);
-        cpo = findViewById(R.id.tv4_cpo_v);
-        cpo.setText(extras.getString("cpo"));
-        inti = findViewById(R.id.tv4_inti_v);
-        inti.setText(extras.getString("inti"));
-        storage = findViewById(R.id.tv4_storage_v);
-        storage.setText(extras.getString("storage"));
+        simpan = findViewById(R.id.hitung05_saverecord);
+        nama = findViewById(R.id.hitung05_namakebun);
+        datesimpan = findViewById(R.id.hitung05_simpantanggal);
 
+        quality = extras.getString("QU");
+        perfomance = extras.getString("PR");
+        avail = extras.getString("AV");
+        hasil = extras.getString("hasil");
 
-
-        date.getEditText().setOnClickListener(new View.OnClickListener() {
+        datesimpan.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -68,7 +65,7 @@ public class Hitung04_simpan extends AppCompatActivity {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog =  new DatePickerDialog(
-                        Hitung04_simpan.this,
+                        Hitung05_simpan.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateListener,
                         year,month,day
@@ -91,7 +88,7 @@ public class Hitung04_simpan extends AppCompatActivity {
                     monthD= "0"+monthD;
                 }
                 Log.d( "onDateSet" , month + "/" + day + "/" + year );
-                date.getEditText().setText( new StringBuilder().append( year ).append( "-" )
+                datesimpan.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
             }
         };
@@ -102,13 +99,13 @@ public class Hitung04_simpan extends AppCompatActivity {
 
         if (getIntent().hasExtra("hide")){
             actbar.setTitle("Informasi Berkas");
-            date.setVisibility(View.GONE);
+            datesimpan.setVisibility(View.GONE);
             nama.setVisibility(View.GONE);
             simpan.setText("Hapus");
             simpan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Hitung04_simpan.this, "Hapus ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Hitung05_simpan.this, "Hapus ", Toast.LENGTH_SHORT).show();
                 }
             });
         }else{
@@ -140,27 +137,27 @@ public class Hitung04_simpan extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         JSONObject jsonObjectval = new JSONObject();
         String nama = this.nama.getEditText().getText().toString();
-        String date = this.date.getEditText().getText().toString();
+        String date = this.datesimpan.getEditText().getText().toString();
         try {
             jsonObject.put("nama", nama);
-            jsonObjectval.put("cpo", cpo.getText());
-            jsonObjectval.put("inti", inti.getText());
-            jsonObjectval.put("storage", storage.getText());
+            jsonObjectval.put("perfomance", perfomance);
+            jsonObjectval.put("quality", quality);
+            jsonObjectval.put("availability", avail);
+            jsonObjectval.put("OEE", hasil);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.d("date_save", date);
         Log.d("nama_kebun", nama);
-        Log.d("cpo", cpo.getText().toString());
-        Log.d("inti", inti.getText().toString());
-        Log.d("storage", storage.getText().toString());
 
-        Long id_record = databaseHandler.SaveRecord(date, 4);
+        Long id_record = databaseHandler.SaveRecord(date, tipe);
         if (id_record!=-1){
             Integer rec = Math.toIntExact(id_record);
             if (databaseHandler.SaveItem(jsonObject.toString(), rec)){
-                if (databaseHandler.SaveRecordValue(jsonObjectval.toString(), rec))
+                if (databaseHandler.SaveRecordValue(jsonObjectval.toString(), rec)) {
                     Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
                 else
                     errMSG("Record Gagal");
             }else errMSG("Item Gagal");

@@ -230,6 +230,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else if(tipe==4){
+                try {
+                    JSONObject js = new JSONObject(rec);
+                    list.put("cpo", js.getString("cpo"));
+                    list.put("inti", js.getString("inti"));
+                    list.put("storage", js.getString("storage"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(tipe==5){
+                try {
+                    JSONObject js = new JSONObject(rec);
+                    list.put("availability", js.getString("availability"));
+                    list.put("perfomance", js.getString("perfomance"));
+                    list.put("quality", js.getString("quality"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -288,9 +306,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }else if(i==4){
             linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
         }
+        else if(i==5){
+            linesC =  "Tanggal,Nama Kebun,Perfomance,Availability,Quality,OEE\n";
+        }
 
         List dataLines = new ArrayList<String>();
-
+        dataLines.add(linesC);
         for (HashMap<String,String> hash:list){
             String fetchData = getRecordValue(hash.get("id_record"), i);
             String fetchDataItem = getItemValue(hash.get("id_record"));
@@ -318,7 +339,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);
-                    dataLines.add(linesC);
+
                     dataLines.add(lines);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -330,12 +351,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     String lines = hash.get("date")+ "," +
                             value.getString("nama")+ "," +
                             jsonBerkas.getString("cpo")+ "," +
-                            jsonBerkas.getString("init")+ "," +
+                            jsonBerkas.getString("inti")+ "," +
                             jsonBerkas.getString("storage");
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);
-                    dataLines.add(linesC);
+                    dataLines.add(lines);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(i==5){
+                try {
+                    JSONObject jsonBerkas = new JSONObject(fetchData);
+                    JSONObject value = new JSONObject(fetchDataItem);
+                    String lines = hash.get("date")+ "," +
+                            value.getString("nama")+ "," +
+                            jsonBerkas.getString("perfomance")+ "," +
+                            jsonBerkas.getString("availability")+ "," +
+                            jsonBerkas.getString("quality")+ "," +
+                            jsonBerkas.getString("hasil");
+
+                    Log.w("Lines", lines);
+                    Log.w("LinesC", linesC);
                     dataLines.add(lines);
                 } catch (JSONException e) {
                     e.printStackTrace();

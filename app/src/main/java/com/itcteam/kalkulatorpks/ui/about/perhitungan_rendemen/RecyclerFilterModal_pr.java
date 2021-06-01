@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -39,6 +40,11 @@ public class RecyclerFilterModal_pr extends BottomSheetDialogFragment {
         this.export = export;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        listener = (ListBerkas_pr) context;
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override

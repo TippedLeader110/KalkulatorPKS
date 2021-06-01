@@ -13,14 +13,23 @@ import android.widget.TextView;
 
 import com.itcteam.kalkulatorpks.R;
 
+import java.util.ArrayList;
+
 public class Hitung03_usf extends Hitung03_kernel {
 
     public Hitung03_usf() {
+
+        super.dropdownSample = new ArrayList<String>();
+
+        super.dropdownSample.add("Norma Max");
+
         super.tooltip_title = "Norma Max 0.70%";
         super.tooltip_text = tooltip_title;
         super.title = "USF";
         super.inp1 = "Berat buah yang dilepaskan (gr)";
         super.inp2 = "Berat sampel janjangan (gr)";
+        super.backtipe = "usf";
+        super.tipe = 2;
     }
 
 }

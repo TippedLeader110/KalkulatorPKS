@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
+package com.itcteam.kalkulatorpks.ui.about.equipment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RecyclerFilterModal_pr;
+import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RecyclerListBerkas_pr;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListBerkas_pr extends AppCompatActivity implements RecyclerFilterModal_pr.FilterModalListener {
+public class ListBerkas_eq extends AppCompatActivity implements RecyclerFilterModal_eq.FilterModalListener {
 
     RecyclerView recyclerView;
     String firstDate, endDate;
@@ -28,8 +30,8 @@ public class ListBerkas_pr extends AppCompatActivity implements RecyclerFilterMo
     FloatingActionButton fab;
     Boolean export;
     DatabaseHandler databaseHandler;
-    RecyclerListBerkas_pr recyclerListBerkas;
-    static int tipe = 4;
+    RecyclerListBerkas_eq recyclerListBerkas;
+    static int tipe = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +58,14 @@ public class ListBerkas_pr extends AppCompatActivity implements RecyclerFilterMo
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerFilterModal_pr recyclerFilterModal = new RecyclerFilterModal_pr(false);
+                RecyclerFilterModal_eq recyclerFilterModal = new RecyclerFilterModal_eq(false);
                 recyclerFilterModal.show(getSupportFragmentManager(), "");
             }
         });
 
         daftarBerkas = getBerkas(tipe, false);
 
-        recyclerListBerkas = new RecyclerListBerkas_pr(this, daftarBerkas, tipe, export);
+        recyclerListBerkas = new RecyclerListBerkas_eq(this, daftarBerkas, tipe, export);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(recyclerListBerkas);

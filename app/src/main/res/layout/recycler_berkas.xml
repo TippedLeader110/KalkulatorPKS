@@ -9,17 +9,21 @@
 
 
     <RelativeLayout
+        android:id="@+id/id_relview"
+        android:clickable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
+            android:clickable="false"
             android:id="@+id/id_berkas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
 
         <TextView
+            android:clickable="false"
             android:id="@+id/recview_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +32,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:clickable="false"
             android:id="@+id/recview_text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +43,7 @@
             android:textSize="14dp" />
 
         <TextView
+            android:clickable="false"
             android:id="@+id/recview_text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

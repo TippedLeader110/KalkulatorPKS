@@ -11,9 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.calculate.task.task.Hitung03_simpan" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.equipment.EquipmentPreferenceSettings" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.equipment.ListBerkas_eq" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.calculate.task.fragment.Hitung05_simpan" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.perhitungan_rendemen.ExportFilterDate_pr" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.perhitungan_rendemen.RendemenPreferenceSettings"
+            android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.perhitungan_rendemen.ListBerkas_pr" android:theme="@style/AppThemeWActBar">
-
         </activity>
+        <activity android:name=".ui.about.equipment.ExportFilterDate_eq" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.calculate.task.fragment.Hitung05_final_nonFrag" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.material_balance.ExportFilterDate_mb"
             android:theme="@style/AppThemeWActBar"
             ></activity>
