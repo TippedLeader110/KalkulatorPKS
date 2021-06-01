@@ -123,92 +123,102 @@ public class Hitung03_simpan extends AppCompatActivity {
             });
         }else{
             actbar.setTitle("Simpan Berkas");
-//            simpan.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    SimpanRecord();
-//                }
-//            });
+            simpan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SimpanRecord();
+                }
+            });
         }
         actbar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void creatTable() {
+        List listDataName = new ArrayList();
+        listDataName.add("USF");
+        listDataName.add("USB");
+        listDataName.add("Minyak");
+        listDataName.add("Kernel");
 
-        Iterator nameKey;
-        List listKey = new ArrayList<>();
 
-        try {
-            //USF
-            JSONObject usfJSON = (JSONObject) retJson.get("USF");
-            nameKey = usfJSON.keys();
-            while (nameKey.hasNext()){
-                listKey.add(nameKey.next().toString());
-                Log.w("Key Name", nameKey.toString());
+        for (int id = 0; id < listDataName.size(); id++){
+            Iterator nameKey;
+            List listKey = new ArrayList<>();
+
+            try {
+                //USF
+                JSONObject usfJSON = (JSONObject) retJson.get(listDataName.get(id).toString());
+                nameKey = usfJSON.keys();
+                while (nameKey.hasNext()){
+                    listKey.add(nameKey.next().toString());
+                    Log.w("Key Name", nameKey.toString());
+                }
+                TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(
+                        TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.MATCH_PARENT
+                );
+                rowLayout.setMargins(30, 20, 30, 0);
+
+                TableRow firstRow = new TableRow(Hitung03_simpan.this);
+                TextView sampel = new TextView(Hitung03_simpan.this);
+                sampel.setTextColor(this.getResources().getColor(R.color.white));
+                sampel.setText("Sampel " + listDataName.get(id).toString());
+                sampel.setPadding(5,5,40,5);
+                TextView hsl_sampel = new TextView(Hitung03_simpan.this);
+                hsl_sampel.setText("Hasil Sampel");
+                hsl_sampel.setTextColor(this.getResources().getColor(R.color.white));
+                hsl_sampel.setPadding(5,5,40,5);
+                TextView ontbs = new TextView(Hitung03_simpan.this);
+                ontbs.setText("ON TBS");
+                ontbs.setTextColor(this.getResources().getColor(R.color.white));
+                ontbs.setPadding(5,5,40,5);
+                firstRow.addView(sampel);
+                firstRow.addView(hsl_sampel);
+                firstRow.addView(ontbs);
+                firstRow.setBackgroundResource(R.color.colorAccent);
+                firstRow.setLayoutParams(rowLayout);
+
+                TableLayout GeneratedTable = new TableLayout(this);
+                LinearLayout.LayoutParams tableLayoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                GeneratedTable.setLayoutParams(tableLayoutParams);
+
+                GeneratedTable.addView(firstRow);
+                for (int i=0; i < listKey.size(); i++) {
+                    Log.w("Selected Key", String.valueOf(listKey.get(i)));
+                    JSONObject valueJSON = (JSONObject) usfJSON.get(String.valueOf(listKey.get(i)));
+                    TableRow row = new TableRow(Hitung03_simpan.this);
+
+                    TextView sampel_name = new TextView(Hitung03_simpan.this);
+                    sampel_name.setText(String.valueOf(listKey.get(i)));
+                    sampel_name.setPadding(5,5,20,5);
+                    row.addView(sampel_name);
+
+                    TextView s_val = new TextView(Hitung03_simpan.this);
+                    s_val.setText(String.valueOf(valueJSON.get("Hasil Sampel").toString()));
+                    s_val.setPadding(5,5,20,5);
+                    row.addView(s_val);
+
+                    TextView tbs_val = new TextView(Hitung03_simpan.this);
+                    tbs_val.setText(String.valueOf(valueJSON.get("Hasil ON TBS").toString()));
+                    tbs_val.setPadding(5,5,20,5);
+                    row.addView(tbs_val);
+
+                    row.setLayoutParams(rowLayout);
+
+                    GeneratedTable.addView(row);
+                }
+
+                linearLayout.addView(GeneratedTable);
+                //USF
+                //USB
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.MATCH_PARENT,
-                    TableLayout.LayoutParams.MATCH_PARENT
-            );
-            rowLayout.setMargins(30, 20, 30, 0);
-
-            TableRow firstRow = new TableRow(Hitung03_simpan.this);
-            TextView sampel = new TextView(Hitung03_simpan.this);
-            sampel.setTextColor(this.getResources().getColor(R.color.white));
-            sampel.setText("Sampel");
-            sampel.setPadding(5,5,20,5);
-            TextView hsl_sampel = new TextView(Hitung03_simpan.this);
-            hsl_sampel.setText("Hasil Sampel");
-            hsl_sampel.setTextColor(this.getResources().getColor(R.color.white));
-            hsl_sampel.setPadding(5,5,20,5);
-            TextView ontbs = new TextView(Hitung03_simpan.this);
-            ontbs.setText("ON TBS");
-            ontbs.setTextColor(this.getResources().getColor(R.color.white));
-            ontbs.setPadding(5,5,20,5);
-            firstRow.addView(sampel);
-            firstRow.addView(hsl_sampel);
-            firstRow.addView(ontbs);
-            firstRow.setBackgroundResource(R.color.colorAccent);
-            firstRow.setLayoutParams(rowLayout);
-
-            TableLayout usfTable = new TableLayout(this);
-            LinearLayout.LayoutParams tableLayoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            usfTable.setLayoutParams(tableLayoutParams);
-
-            usfTable.addView(firstRow);
-            for (int i=0; i < listKey.size(); i++) {
-                Log.w("Selected Key", String.valueOf(listKey.get(i)));
-                JSONObject valueJSON = (JSONObject) usfJSON.get(String.valueOf(listKey.get(i)));
-                TableRow row = new TableRow(Hitung03_simpan.this);
-
-                TextView sampel_name = new TextView(Hitung03_simpan.this);
-                sampel_name.setText(String.valueOf(listKey.get(i)));
-                row.addView(sampel_name);
-
-                TextView s_val = new TextView(Hitung03_simpan.this);
-                s_val.setText(String.valueOf(valueJSON.get("Hasil Sampel").toString()));
-                row.addView(s_val);
-
-                TextView tbs_val = new TextView(Hitung03_simpan.this);
-                tbs_val.setText(String.valueOf(valueJSON.get("Hasil ON TBS").toString()));
-                row.addView(tbs_val);
-                row.setLayoutParams(rowLayout);
-
-                usfTable.addView(row);
-            }
-
-            linearLayout.addView(usfTable);
-            //USF
-            //USB
-
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-
-
 
     }
 
@@ -222,37 +232,32 @@ public class Hitung03_simpan extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-//
-//    public void SimpanRecord(){
-//        JSONObject jsonObject = new JSONObject();
-//        JSONObject jsonObjectval = new JSONObject();
-//        String nama = this.nama.getEditText().getText().toString();
-//        String date = this.datesimpan.getEditText().getText().toString();
-//        try {
-//            jsonObject.put("nama", nama);
-//            jsonObjectval.put("perfomance", perfomance);
-//            jsonObjectval.put("quality", quality);
-//            jsonObjectval.put("availability", avail);
-//            jsonObjectval.put("OEE", hasil);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        Log.d("date_save", date);
-//        Log.d("nama_kebun", nama);
-//
-//        Long id_record = databaseHandler.SaveRecord(date, tipe);
-//        if (id_record!=-1){
-//            Integer rec = Math.toIntExact(id_record);
-//            if (databaseHandler.SaveItem(jsonObject.toString(), rec)){
-//                if (databaseHandler.SaveRecordValue(jsonObjectval.toString(), rec)) {
-//                    Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
-//                    finish();
-//                }
-//                else
-//                    errMSG("Record Gagal");
-//            }else errMSG("Item Gagal");
-//        }else errMSG("ID Record");
-//    }
+
+    public void SimpanRecord(){
+        JSONObject jsonObject = new JSONObject();
+        String nama = this.nama.getEditText().getText().toString();
+        String date = this.datesimpan.getEditText().getText().toString();
+        try {
+            jsonObject.put("nama", nama);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("date_save", date);
+        Log.d("nama_kebun", nama);
+
+        Long id_record = databaseHandler.SaveRecord(date, tipe);
+        if (id_record!=-1){
+            Integer rec = Math.toIntExact(id_record);
+            if (databaseHandler.SaveItem(jsonObject.toString(), rec)){
+                if (databaseHandler.SaveRecordValue(retJson.toString(), rec)) {
+                    Toast.makeText(this, "Record Berhasil Disimpan !!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                    errMSG("Record Gagal");
+            }else errMSG("Item Gagal");
+        }else errMSG("ID Record");
+    }
 
     void errMSG(String msg){
         Toast.makeText(this, "Terjadi kesalahan dalam membuat " + msg, Toast.LENGTH_SHORT).show();

@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba">
-        <schema name="main" object-types="table, view" />
+        <schema name="main" object-types="index, dataset trigger, table, view, constraint, column" />
       </connection>
     </loaded-nodes>
   </component>
@@ -36,7 +36,11 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" object-ref="schemas/main/tables/save_record" />
+      <object connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" object-ref="schemas/main/tables/record_value" />
+      <object connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" object-ref="schemas/main/tables/record_name" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b8312803-490e-4f01-b8a2-210a8128b7ba" />
@@ -48,6 +52,7 @@
       </filter>
     </filter-actions>
     <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.save_record" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.calculate01" active-filter-id="" />
     <filter-actions connection-id="b8312803-490e-4f01-b8a2-210a8128b7ba" dataset="main.record_value" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

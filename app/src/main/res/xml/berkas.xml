@@ -44,6 +44,28 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="Losses Pabrik">
+
+        <Preference
+            app:title="Daftar Perhitungan Losses Pabrik tersimpan"
+            app:summary="Menampilkan berkas-berkas yang tersimpan"
+            app:key="berkas_lb_01"
+            />
+
+        <Preference
+            app:title="Export berkas Losses Pabrik"
+            app:summary="Mengexport berkas menjadi file csv"
+            app:key="berkas_lb_02"
+            />
+
+        <Preference
+            app:title="Import berkas Losses Pabrik"
+            app:summary="Mengimport file csv untuk disimpan ke database Losses Pabrik"
+            app:key="berkas_lb_03"
+            />
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Overall Equipment Effectiveness">
 
         <Preference
