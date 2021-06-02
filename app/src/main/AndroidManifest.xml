@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.about.losses_pabrik.ListBerkas_lb" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.losses_pabrik.LossesPabrikPreferenceSettings" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.losses_pabrik.ExportFilterDate_lb" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.calculate.task.task.Hitung03_simpan" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.equipment.EquipmentPreferenceSettings" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.equipment.ListBerkas_eq" android:theme="@style/AppThemeWActBar"></activity>

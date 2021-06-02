@@ -12,9 +12,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.about.equipment.EQPrefSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,15 +27,15 @@ public class LossesPabrikPreferenceSettings extends AppCompatActivity implements
     DatabaseHandler databaseHandler;
     ProgressDialog dialog;
     private Context myContext;
-    EQPrefSet settingsFragment;
-    static int tipe = 5;
+    LBPrefSet settingsFragment;
+    static int tipe = 3;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-        settingsFragment = new EQPrefSet();
+        settingsFragment = new LBPrefSet();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.pref_menu, settingsFragment, null)

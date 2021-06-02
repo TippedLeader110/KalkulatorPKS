@@ -18,11 +18,9 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_final;
 import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_final_nonFrag;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
 
 import org.json.JSONException;
 import org.json.JSONObject;

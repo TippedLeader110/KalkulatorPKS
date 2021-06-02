@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +18,8 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung01_hasil;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
 
 import org.json.JSONException;

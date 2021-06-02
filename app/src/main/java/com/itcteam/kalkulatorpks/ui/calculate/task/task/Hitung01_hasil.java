@@ -11,16 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Hitung01_hasil extends AppCompatActivity {
 

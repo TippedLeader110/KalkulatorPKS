@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 
 import java.util.HashMap;
 

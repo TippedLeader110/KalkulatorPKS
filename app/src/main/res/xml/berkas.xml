@@ -14,11 +14,6 @@
             app:key="berkas_mb_02"
             />
 
-        <Preference
-            app:title="Import berkas"
-            app:summary="Mengimport file csv untuk disimpan ke database Material Balance"
-            app:key="berkas_mb_03"
-            />
 
     </PreferenceCategory>
 
@@ -36,11 +31,6 @@
             app:key="berkas_pr_02"
             />
 
-        <Preference
-            app:title="Import berkas Rendemen"
-            app:summary="Mengimport file csv untuk disimpan ke database Perhitungan Rendemen"
-            app:key="berkas_pr_03"
-            />
 
     </PreferenceCategory>
 
@@ -54,15 +44,10 @@
 
         <Preference
             app:title="Export berkas Losses Pabrik"
-            app:summary="Mengexport berkas menjadi file csv"
+            app:summary="Mengexport berkas menjadi file excel"
             app:key="berkas_lb_02"
             />
 
-        <Preference
-            app:title="Import berkas Losses Pabrik"
-            app:summary="Mengimport file csv untuk disimpan ke database Losses Pabrik"
-            app:key="berkas_lb_03"
-            />
 
     </PreferenceCategory>
 
@@ -78,12 +63,6 @@
             app:title="Export berkas Overall Equipment Effectiveness"
             app:summary="Mengexport berkas menjadi file csv"
             app:key="berkas_eq_02"
-            />
-
-        <Preference
-            app:title="Import berkas Overall Equipment Effectiveness"
-            app:summary="Mengimport file csv untuk disimpan ke database Overall Equipment Effectiveness"
-            app:key="berkas_eq_03"
             />
 
     </PreferenceCategory>

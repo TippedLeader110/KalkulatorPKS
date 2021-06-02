@@ -4,11 +4,9 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -23,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class Hitung03_simpan extends AppCompatActivity {
 
@@ -60,11 +57,6 @@ public class Hitung03_simpan extends AppCompatActivity {
         linearLayout = findViewById(R.id.hitung03_table);
 
         creatTable();
-
-        Toast.makeText(this, "Perfomance: " + extras.getString("PR") + "\n " +
-                "Availability : " + extras.getString("AV") + "\n" +
-                "Quality : " + extras.getString("QU"), Toast.LENGTH_SHORT).show();
-
 
         simpan = findViewById(R.id.hitung03_saverecord);
         nama = findViewById(R.id.hitung03_namakebun);
@@ -112,6 +104,7 @@ public class Hitung03_simpan extends AppCompatActivity {
         actbar.setHomeButtonEnabled(true);
 
         if (getIntent().hasExtra("hide")){
+            simpan.setVisibility(View.GONE);
             actbar.setTitle("Informasi Berkas");
             datesimpan.setVisibility(View.GONE);
             nama.setVisibility(View.GONE);
@@ -135,7 +128,7 @@ public class Hitung03_simpan extends AppCompatActivity {
 
     private void creatTable() {
         List listDataName = new ArrayList();
-        listDataName.add("USF");
+        listDataName.add("Generated");
         listDataName.add("USB");
         listDataName.add("Minyak");
         listDataName.add("Kernel");
@@ -146,9 +139,9 @@ public class Hitung03_simpan extends AppCompatActivity {
             List listKey = new ArrayList<>();
 
             try {
-                //USF
-                JSONObject usfJSON = (JSONObject) retJson.get(listDataName.get(id).toString());
-                nameKey = usfJSON.keys();
+                //Generated
+                JSONObject GeneratedJSON = (JSONObject) retJson.get(listDataName.get(id).toString());
+                nameKey = GeneratedJSON.keys();
                 while (nameKey.hasNext()){
                     listKey.add(nameKey.next().toString());
                     Log.w("Key Name", nameKey.toString());
@@ -188,7 +181,7 @@ public class Hitung03_simpan extends AppCompatActivity {
                 GeneratedTable.addView(firstRow);
                 for (int i=0; i < listKey.size(); i++) {
                     Log.w("Selected Key", String.valueOf(listKey.get(i)));
-                    JSONObject valueJSON = (JSONObject) usfJSON.get(String.valueOf(listKey.get(i)));
+                    JSONObject valueJSON = (JSONObject) GeneratedJSON.get(String.valueOf(listKey.get(i)));
                     TableRow row = new TableRow(Hitung03_simpan.this);
 
                     TextView sampel_name = new TextView(Hitung03_simpan.this);
@@ -212,7 +205,7 @@ public class Hitung03_simpan extends AppCompatActivity {
                 }
 
                 linearLayout.addView(GeneratedTable);
-                //USF
+                //Generated
                 //USB
 
             } catch (JSONException e) {

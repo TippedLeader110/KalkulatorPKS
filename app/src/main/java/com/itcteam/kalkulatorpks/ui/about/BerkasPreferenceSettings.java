@@ -14,6 +14,8 @@ import com.itcteam.kalkulatorpks.MainMenu;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.about.equipment.EquipmentPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.about.equipment.ListBerkas_eq;
+import com.itcteam.kalkulatorpks.ui.about.losses_pabrik.ListBerkas_lb;
+import com.itcteam.kalkulatorpks.ui.about.losses_pabrik.LossesPabrikPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.ListBerkas_pr;
@@ -26,6 +28,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
 
     BerkasPreferenceFragment listener;
     Fragment mParentFragment;
+
 
     @Override
     public void onResume() {
@@ -55,14 +58,6 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             }
         });
 
-        Preference berkas_3 = this.findPreference("berkas_mb_03");
-        berkas_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), Hitung04_inti.class));
-                return true;
-            }
-        });
 
         Preference berkas_4 = this.findPreference("berkas_pr_01");
         berkas_4.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -86,14 +81,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             }
         });
 
-        Preference berkas_6 = this.findPreference("berkas_pr_03");
-        berkas_6.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), Hitung04_inti.class));
-                return true;
-            }
-        });
+
 
         Preference berkas_7 = this.findPreference("berkas_eq_01");
         berkas_7.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -117,11 +105,26 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             }
         });
 
-        Preference berkas_9 = this.findPreference("berkas_eq_03");
-        berkas_9.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+
+        Preference berkas_losses_list = this.findPreference("berkas_lb_01");
+        berkas_losses_list.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), Hitung04_inti.class));
+                Intent intent = new Intent(getActivity(), ListBerkas_lb.class);
+                intent.putExtra("export", "false");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_losses_export = this.findPreference("berkas_lb_02");
+        berkas_losses_export.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_lb.class);
+                intent.putExtra("export", "true");
+                startActivity(intent);
                 return true;
             }
         });

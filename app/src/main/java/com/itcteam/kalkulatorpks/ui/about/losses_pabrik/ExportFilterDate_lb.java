@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 
 import java.util.Calendar;
@@ -32,7 +32,7 @@ public class ExportFilterDate_lb extends AppCompatActivity {
     TextView title;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
     TextInputLayout firstDate, endDate;
-    static int tipe = 5;
+    static int tipe = 3;
     
 
     @Override

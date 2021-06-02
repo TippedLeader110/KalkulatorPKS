@@ -27,10 +27,13 @@ import com.itcteam.kalkulatorpks.MainMenu;
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_perfomance;
+import com.itcteam.kalkulatorpks.util.ExcelExporter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class BerkasPreferenceFragment extends Fragment {
 
@@ -52,8 +55,18 @@ public class BerkasPreferenceFragment extends Fragment {
         }
         mToolbar.setTitle("Berkas Tersimpan");
 
+//        ExcelExporter.export();
+
         try {
+            Date c = Calendar.getInstance().getTime();
+            System.out.println("Current time => " + c);
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            String formattedDate = df.format(c);
             Log.w("DATE CEK", "DATE CC : " + isWithinRange(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-15")));
+            Date start = new SimpleDateFormat("yyyy-MM-dd").parse(formattedDate);
+            Date end = new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-15");
+            Log.w("DATE CEK", "DATE CC : " + getDaysDifference(start, end));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -82,6 +95,14 @@ public class BerkasPreferenceFragment extends Fragment {
             e.printStackTrace();
         }
         return !(testDate.before(start) || testDate.after(end));
+    }
+
+    public static int getDaysDifference(Date fromDate,Date toDate)
+    {
+        if(fromDate==null||toDate==null)
+            return 0;
+
+        return (int)( (toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24));
     }
 
     @Override

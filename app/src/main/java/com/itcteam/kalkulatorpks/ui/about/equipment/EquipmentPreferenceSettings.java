@@ -12,9 +12,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.PRPrefSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;

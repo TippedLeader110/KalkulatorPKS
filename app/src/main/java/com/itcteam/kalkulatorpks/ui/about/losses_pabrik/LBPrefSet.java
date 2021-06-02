@@ -19,17 +19,17 @@ import com.itcteam.kalkulatorpks.ui.about.equipment.ListBerkas_eq;
 public class LBPrefSet extends PreferenceFragmentCompat {
 
     ProgressDialog dialog;
-    EquipmentPreferenceSettings equipmentPreferenceSettings;
+    LossesPabrikPreferenceSettings equipmentPreferenceSettings;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.equipment, rootKey);
+        setPreferencesFromResource(R.xml.losses_pabrik, rootKey);
         dialog = new ProgressDialog(getContext());
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
-        equipmentPreferenceSettings = (EquipmentPreferenceSettings) context;
+        equipmentPreferenceSettings = (LossesPabrikPreferenceSettings) context;
         super.onAttach(context);
     }
 
@@ -59,7 +59,7 @@ public class LBPrefSet extends PreferenceFragmentCompat {
         berkas_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ListBerkas_eq.class);
+                Intent intent = new Intent(getActivity(), ListBerkas_lb.class);
                 intent.putExtra("export", "true");
                 startActivity(intent);
                 return true;
@@ -70,7 +70,7 @@ public class LBPrefSet extends PreferenceFragmentCompat {
         berkas_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ExportFilterDate_eq.class);
+                Intent intent = new Intent(getActivity(), ExportFilterDate_lb.class);
                 intent.putExtra("export", "true");
                 startActivity(intent);
                 return true;

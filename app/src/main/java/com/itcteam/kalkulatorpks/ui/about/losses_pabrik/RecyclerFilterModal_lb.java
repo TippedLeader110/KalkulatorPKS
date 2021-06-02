@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,20 +22,38 @@ import androidx.annotation.RequiresApi;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.db.DatabaseHandler;
+import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
-import com.itcteam.kalkulatorpks.ui.about.equipment.ListBerkas_eq;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+import jxl.CellView;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 public class RecyclerFilterModal_lb extends BottomSheetDialogFragment {
 
     Button cari;
-    ListBerkas_eq listener;
+    ListBerkas_lb listener;
     String first, end;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
     TextInputLayout firstDate, endDate;
     Boolean export;
+    DatabaseHandler databaseHandler;
 
     public RecyclerFilterModal_lb(boolean export) {
         this.export = export;
@@ -42,7 +61,7 @@ public class RecyclerFilterModal_lb extends BottomSheetDialogFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        listener = (ListBerkas_eq) context;
+        listener = (ListBerkas_lb) context;
         super.onAttach(context);
     }
 
@@ -51,6 +70,7 @@ public class RecyclerFilterModal_lb extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.modal_filter_tanggal_berkas, container, false);
 
+        databaseHandler = new DatabaseHandler(getContext());
         cari = v.findViewById(R.id.modal_filter_cari);
         firstDate = v.findViewById(R.id.modal_filter_berkas_simpantanggal_awal);
         endDate = v.findViewById(R.id.modal_filter_berkas_simpantanggal_akhir);
@@ -66,13 +86,12 @@ public class RecyclerFilterModal_lb extends BottomSheetDialogFragment {
                 public void onClick(View v) {
                     first = firstDate.getEditText().getText().toString();
                     end = endDate.getEditText().getText().toString();
-                    DatabaseHandler databaseHandler = new DatabaseHandler(getContext());
-                    ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, 5), getContext());
 
-                    if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-OEE")){
-                        Toast.makeText(getContext(), "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getContext(), "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
+
+                    try {
+                        exportExcel();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -164,6 +183,81 @@ public class RecyclerFilterModal_lb extends BottomSheetDialogFragment {
         };
 
         return v;
+    }
+
+    private void exportExcel() throws JSONException {
+        List<String> listDataName = new ArrayList();
+        listDataName.add("USF");
+        listDataName.add("USB");
+        listDataName.add("Minyak");
+        listDataName.add("Kernel");
+
+        List USF = new ArrayList<>();
+        List USB = new ArrayList<>();
+        List minyak = new ArrayList<>();
+        List kernel = new ArrayList<>();
+        List nama = new ArrayList<>();
+        List tanggal = new ArrayList<>();
+
+
+        List dataRet = databaseHandler.getAllFilterJSON(first, end, 3);
+
+        for (int i = 0; i < dataRet.size(); i++){
+
+            HashMap<String, String > dataRetHash = (HashMap<String, String>) dataRet.get(i);
+            JSONObject jsonObject = new JSONObject(dataRetHash.get("data").toString());
+
+
+
+            for (String namaKey:listDataName){
+                if (namaKey.equals("USF")){
+                    USF.add(jsonObject.get(namaKey).toString());
+                }else if (namaKey.equals("USB")){
+                    USB.add(jsonObject.get(namaKey).toString());
+                }else if (namaKey.equals("Minyak")){
+                    minyak.add(jsonObject.get(namaKey).toString());
+                }else if (nama.equals("Kernel")){
+                    kernel.add(jsonObject.get(namaKey).toString());
+                }
+            }
+
+        }
+
+
+        try {
+
+
+            File sd = Environment.getExternalStorageDirectory();
+            String csvFile = "LossesPabrikRange-"+ first +"-sd-"+ end +"-"+".xls";
+
+            File directory = new File(sd.getAbsolutePath());
+
+            //create directory if not exist
+            if (!directory.isDirectory()) {
+                directory.mkdirs();
+            }
+            //file path
+            File file = new File(directory, csvFile);
+            WorkbookSettings wbSettings = new WorkbookSettings();
+            wbSettings.setLocale(new Locale(Locale.US.getLanguage(), Locale.US.getCountry()));
+            WritableWorkbook workbook;
+            workbook = Workbook.createWorkbook(file, wbSettings);
+
+
+
+
+            workbook.write();
+            workbook.close();
+            Toast.makeText(getContext(), "File berhasil di buat", Toast.LENGTH_SHORT).show();
+
+        } catch (WriteException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     public Boolean checkValue(){

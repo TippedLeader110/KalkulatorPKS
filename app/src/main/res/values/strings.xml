@@ -8,7 +8,11 @@
     <string name="app_launch_title" translatable="false">Perhitungan Singkat PKS</string>
     <string name="text_home">Simple Text</string>
     <string name="text_about_title">Tentang Kami</string>
-    <string name="text_about_inner">Kami adalah Mahasiswa Sekolah Tinggi Ilmu Pertanian Agrobisnis Perkebunan ( STIPAP )</string>
+    <string name="text_about_inner">
+            Aplikasi ini di rancang oleh mahasiswa sekolah tinggi ilmu pertanian agrobisnis perkebunan () dan di bimbing oleh :\n
+            Zulham Effendi. ST., M.Sc.Eng\n
+            Zakwan. STP.,MP.,M.Si\n
+    </string>
     <string name="text_about_member">
             Disusun oleh :\n
             Mhd Dwi Indrawan - 1702017 \n

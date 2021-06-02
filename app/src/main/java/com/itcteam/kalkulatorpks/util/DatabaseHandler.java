@@ -1,4 +1,4 @@
-package com.itcteam.kalkulatorpks.db;
+package com.itcteam.kalkulatorpks.util;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -248,6 +246,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else if(tipe==3){
+                cursor.close();
+                db.close();
+                return rec;
             }
 
         }
@@ -377,6 +379,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+        return dataLines;
+    }
+
+    public List getAllFilterJSON(String first, String end, int i) {
+
+        List<HashMap<String, String>> list = new ArrayList<>(getRecordFilter(i, first, end));
+
+        List dataLines = new ArrayList<HashMap<String,String>>();
+
+        for (HashMap<String,String> hash:list){
+            String fetchData = getRecordValue(hash.get("id_record"), i);
+            String fetchDataItem = getItemValue(hash.get("id_record"));
+
+            try {
+                JSONObject jsonBerkas = new JSONObject(fetchData);
+                JSONObject value = new JSONObject(fetchDataItem);
+
+                HashMap<String,String> hashMap = new HashMap<String, String>();
+                hashMap.put("date", hash.get("date"));
+                hashMap.put("nama", value.getString("nama"));
+                hashMap.put("data", jsonBerkas.toString());
+
+
+                dataLines.add(hashMap);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
         return dataLines;
