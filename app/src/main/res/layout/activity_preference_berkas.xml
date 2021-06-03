@@ -25,6 +25,7 @@
         <FrameLayout
             android:id="@+id/frame_berkas"
             android:layout_width="match_parent"
+            android:paddingBottom="150dp"
             android:layout_height="wrap_content"/>
 
     </androidx.core.widget.NestedScrollView>
