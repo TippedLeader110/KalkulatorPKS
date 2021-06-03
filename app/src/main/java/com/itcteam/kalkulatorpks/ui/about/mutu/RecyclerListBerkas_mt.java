@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung02_cpo_simpan;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung02_inti_simpan;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
 import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.util.DateTools;
@@ -147,11 +149,22 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
-                        String lines = value.get("date")+ "," +
-                                value.get("nama")+ "," +
-                                jsonBerkas.getString("cpo")+ "," +
-                                jsonBerkas.getString("inti")+ "," +
-                                jsonBerkas.getString("storage");
+
+                        String lines;
+
+                        if (tipe==2){
+                            lines = value.get("date")+ "," +
+                                    value.get("nama")+ "," +
+                                    jsonBerkas.getString("cpo_alb")+ "," +
+                                    jsonBerkas.getString("cpo_air")+ "," +
+                                    jsonBerkas.getString("cpo_kotoran")+ "," +
+                                    jsonBerkas.getString("dobi");
+                        }else{
+                            lines = value.get("date")+ "," +
+                                    value.get("nama")+ "," +
+                                    jsonBerkas.getString("inti_air")+ "," +
+                                    jsonBerkas.getString("inti_kotoran");
+                        }
 
                         Log.w("Lines", lines);
                         Log.w("LinesC", linesC);
@@ -159,7 +172,7 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                         dataLines.add(lines);
 
                         ExportCSV exportCSV = new ExportCSV(dataLines, context);
-                        exportCSV.DoExportCSV("PerhitunganRendemenSingle");
+                        exportCSV.DoExportCSV("MutuSingle");
                         Toast.makeText(context, "Berhasil di export", Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
@@ -170,10 +183,14 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
-                        Intent intent = new Intent(context, Hitung04_simpan.class);
-                        intent.putExtra("cpo", jsonBerkas.getString("cpo"));
-                        intent.putExtra("inti", jsonBerkas.getString("inti"));
-                        intent.putExtra("storage", jsonBerkas.getString("storage"));
+                        Intent intent;
+                        if (tipe==2){
+                            intent = new Intent(context, Hitung02_cpo_simpan.class);
+                        }else{
+                            intent = new Intent(context, Hitung02_inti_simpan.class);
+                        }
+                        Log.w("Fetch data MT", fetchData);
+                        intent.putExtra("json", fetchData);
                         intent.putExtra("hide", "yes");
                         v.getContext().startActivity(intent);
                     } catch (JSONException e) {

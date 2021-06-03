@@ -129,6 +129,7 @@ public class Hitung03_kernel extends AppCompatActivity {
 
         hasilL.setText("Hasil sampel dari "+ dropdownSample.get(pos) +" = ");
         hasilLTBS.setText("Hasil On TBS dari "+ dropdownSample.get(pos) +" = ");
+        hasilRTBS.setText(".....%");
         hasilR.setText("....%");
 
         autoCompleteTextView = findViewById(R.id.hitung03_autocomplete);

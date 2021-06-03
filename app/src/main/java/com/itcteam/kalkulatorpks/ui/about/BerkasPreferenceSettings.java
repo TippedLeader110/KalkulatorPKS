@@ -19,6 +19,7 @@ import com.itcteam.kalkulatorpks.ui.about.losses_pabrik.LossesPabrikPreferenceSe
 import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.about.mutu.ListBerkas_mt;
+import com.itcteam.kalkulatorpks.ui.about.mutu.PerhitunganMutuSettings;
 import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.ListBerkas_pr;
 import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RendemenPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
@@ -136,7 +137,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
                 intent.putExtra("export", "false");
-                intent.putExtra("tipe", "1");
+                intent.putExtra("tipe", "2");
                 startActivity(intent);
                 return true;
             }
@@ -158,7 +159,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
         berkas_mutu_export_cpo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                Intent intent = new Intent(getActivity(), PerhitunganMutuSettings.class);
                 intent.putExtra("export", "true");
                 intent.putExtra("tipe", "2");
                 startActivity(intent);
@@ -170,7 +171,7 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
         berkas_mutu_export_inti.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                Intent intent = new Intent(getActivity(), PerhitunganMutuSettings.class);
                 intent.putExtra("export", "true");
                 intent.putExtra("tipe", "25");
                 startActivity(intent);

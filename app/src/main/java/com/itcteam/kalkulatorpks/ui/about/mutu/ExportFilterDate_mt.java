@@ -32,7 +32,7 @@ public class ExportFilterDate_mt extends AppCompatActivity {
     TextView title;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
     TextInputLayout firstDate, endDate;
-    static int tipe = 4;
+    int tipe = 2;
     
 
     @Override
@@ -51,6 +51,10 @@ public class ExportFilterDate_mt extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modal_filter_tanggal_berkas);
+
+        Bundle ex = getIntent().getExtras();
+
+        tipe = Integer.valueOf(ex.getString("tipe"));
 
         title = this.findViewById(R.id.filter_title);
         title.setText("Export CSV dengan rentang waktu berikut");
@@ -74,7 +78,7 @@ public class ExportFilterDate_mt extends AppCompatActivity {
                 DatabaseHandler databaseHandler = new DatabaseHandler(ExportFilterDate_mt.this);
                 ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, tipe), ExportFilterDate_mt.this);
 
-                if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-PerhitunganRendemen")){
+                if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-Mutu")){
                     Toast.makeText(ExportFilterDate_mt.this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(ExportFilterDate_mt.this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();

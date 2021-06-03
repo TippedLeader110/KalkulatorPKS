@@ -19,6 +19,11 @@ public class MTPrefSet extends PreferenceFragmentCompat {
 
     ProgressDialog dialog;
     PerhitunganMutuSettings mutuPreferenceSettings;
+    int tipe;
+
+    public MTPrefSet(int tipe) {
+        this.tipe = tipe;
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -58,8 +63,9 @@ public class MTPrefSet extends PreferenceFragmentCompat {
         berkas_2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ListBerkas_pr.class);
+                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
                 intent.putExtra("export", "true");
+                intent.putExtra("tipe", tipe);
                 startActivity(intent);
                 return true;
             }
@@ -69,8 +75,9 @@ public class MTPrefSet extends PreferenceFragmentCompat {
         berkas_3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), ExportFilterDate_pr.class);
+                Intent intent = new Intent(getActivity(), ExportFilterDate_mt.class);
                 intent.putExtra("export", "true");
+                intent.putExtra("tipe", tipe);
                 startActivity(intent);
                 return true;
             }

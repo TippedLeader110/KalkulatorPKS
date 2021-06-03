@@ -29,19 +29,21 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
     ProgressDialog dialog;
     private Context myContext;
     MTPrefSet settingsFragment;
-    static int tipe = 2;
+    int tipe = 2;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-        settingsFragment = new MTPrefSet();
+        settingsFragment = new MTPrefSet(tipe);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.pref_menu, settingsFragment, null)
                 .commit();
         ActionBar actionBar = getSupportActionBar();
+        Bundle extras = getIntent().getExtras();
+        tipe = Integer.valueOf(extras.getString("tipe"));
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Export Rendemen");
@@ -60,8 +62,12 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
 
         databaseHandler = new DatabaseHandler(this);
         List<HashMap<String, String >> dataRecord = new ArrayList(databaseHandler.getRecord(tipe));
-
-        String lineCSV =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
+        String lineCSV;
+        if (tipe==2){
+            lineCSV =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+        }else{
+            lineCSV =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
+        }
         List<String > arrayCSV = new ArrayList<>();
         arrayCSV.add(lineCSV);
 
@@ -70,11 +76,21 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
                 JSONObject jsonRecord = new JSONObject(databaseHandler.getRecordValue(hash.get("id_record"), tipe));
                 JSONObject jsonItem = new JSONObject(databaseHandler.getItemValue(hash.get("id_record")));
 
-                String lines = hash.get("date")+ "," +
-                        jsonItem.get("nama")+ "," +
-                        jsonRecord.getString("cpo")+ "," +
-                        jsonRecord.getString("inti")+ "," +
-                        jsonRecord.getString("storage");
+                String lines;
+
+                if (tipe==2){
+                    lines = hash.get("date")+ "," +
+                            jsonItem.get("nama")+ "," +
+                            jsonRecord.getString("cpo_alb")+ "," +
+                            jsonRecord.getString("cpo_air")+ "," +
+                            jsonRecord.getString("cpo_kotoran")+ "," +
+                            jsonRecord.getString("dobi");
+                }else{
+                    lines = hash.get("date")+ "," +
+                            jsonItem.get("nama")+ "," +
+                            jsonRecord.getString("inti_air")+ "," +
+                            jsonRecord.getString("inti_kotoran");
+                }
 
                 arrayCSV.add(lines+"\n");
 
@@ -88,7 +104,7 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
         if (dialog.isShowing())
             dialog.dismiss();
 
-        if (exportCSV.DoExportCSV("RendemenALL")){
+        if (exportCSV.DoExportCSV("MutuALl")){
             Toast.makeText(this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();

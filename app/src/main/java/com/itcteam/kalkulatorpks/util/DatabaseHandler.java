@@ -250,6 +250,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.close();
                 db.close();
                 return rec;
+            }else if(tipe==2){
+                cursor.close();
+                db.close();
+                return rec;
+            }else if(tipe==25){
+                cursor.close();
+                db.close();
+                return rec;
             }
 
         }
@@ -312,6 +320,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         else if(i==5){
             linesC =  "Tanggal,Nama Kebun,Perfomance,Availability,Quality,OEE\n";
+        }else if (i==2){
+            linesC =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+        }else if(i==25){
+            linesC =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
         }
 
         List dataLines = new ArrayList<String>();
@@ -374,6 +386,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             jsonBerkas.getString("availability")+ "," +
                             jsonBerkas.getString("quality")+ "," +
                             jsonBerkas.getString("hasil");
+
+                    Log.w("Lines", lines);
+                    Log.w("LinesC", linesC);
+                    dataLines.add(lines);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(i==2){
+                try {
+                    JSONObject jsonBerkas = new JSONObject(fetchData);
+                    JSONObject value = new JSONObject(fetchDataItem);
+                    String lines = hash.get("date")+ "," +
+                            value.get("nama")+ "," +
+                            jsonBerkas.getString("cpo_alb")+ "," +
+                            jsonBerkas.getString("cpo_air")+ "," +
+                            jsonBerkas.getString("cpo_kotoran")+ "," +
+                            jsonBerkas.getString("dobi");
+
+                    Log.w("Lines", lines);
+                    Log.w("LinesC", linesC);
+                    dataLines.add(lines);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else if(i==25){
+                try {
+                    JSONObject jsonBerkas = new JSONObject(fetchData);
+                    JSONObject value = new JSONObject(fetchDataItem);
+                    String lines = hash.get("date")+ "," +
+                            value.get("nama")+ "," +
+                            jsonBerkas.getString("inti_air")+ "," +
+                            jsonBerkas.getString("inti_kotoran");
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);
