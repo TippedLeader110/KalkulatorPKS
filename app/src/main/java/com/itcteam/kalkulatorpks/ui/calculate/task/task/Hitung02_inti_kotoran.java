@@ -19,6 +19,8 @@ public class Hitung02_inti_kotoran extends Hitung02_alb {
         String title = "Kadar kotoran pada inti";
         String ket = "";
         super.setAll(title, ket, "Berat Kotoran (gr)", "Berat Contoh (gr)", "C (gr)", false);
+        super.tipe = 6;
+        super.backtipe = "inti_kotoran";
     }
 
     @Override
@@ -33,6 +35,7 @@ public class Hitung02_inti_kotoran extends Hitung02_alb {
 
         fhasil = finput01 / finput02;
         fhasil *= 100;
+        fhasil_total = fhasil;
 
         super.hasil.setText(Float.toString(fhasil) + "%");
     }

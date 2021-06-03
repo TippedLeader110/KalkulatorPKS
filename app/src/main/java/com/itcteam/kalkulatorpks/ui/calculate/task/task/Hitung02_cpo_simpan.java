@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +34,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-public class Hitung03_simpan extends AppCompatActivity {
+public class Hitung02_cpo_simpan extends AppCompatActivity {
 
     FloatingActionButton simpan;
     LinearLayout linearLayout;
@@ -40,7 +42,8 @@ public class Hitung03_simpan extends AppCompatActivity {
     DatabaseHandler databaseHandler;
     JSONObject retJson;
     DatePickerDialog.OnDateSetListener dateListener;
-    Integer tipe = 3;
+    TimePickerDialog.OnTimeSetListener timeSetListener;
+    Integer tipe = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class Hitung03_simpan extends AppCompatActivity {
 
         simpan = findViewById(R.id.hitung03_saverecord);
         nama = findViewById(R.id.hitung03_namakebun);
+        nama.setHint("Nama PKS");
         datesimpan = findViewById(R.id.hitung03_simpantanggal);
 
         datesimpan.getEditText().setOnClickListener(new View.OnClickListener() {
@@ -72,7 +76,7 @@ public class Hitung03_simpan extends AppCompatActivity {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog =  new DatePickerDialog(
-                        Hitung03_simpan.this,
+                        Hitung02_cpo_simpan.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateListener,
                         year,month,day
@@ -97,6 +101,26 @@ public class Hitung03_simpan extends AppCompatActivity {
                 Log.d( "onDateSet" , month + "/" + day + "/" + year );
                 datesimpan.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
+
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        Hitung02_cpo_simpan.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListener,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
+            }
+        };
+
+        timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = datesimpan.getEditText().getText().toString();
+                datesimpan.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
             }
         };
 
@@ -112,7 +136,7 @@ public class Hitung03_simpan extends AppCompatActivity {
             simpan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Hitung03_simpan.this, "Hapus ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Hitung02_cpo_simpan.this, "Hapus ", Toast.LENGTH_SHORT).show();
                 }
             });
         }else{
@@ -128,121 +152,81 @@ public class Hitung03_simpan extends AppCompatActivity {
     }
 
     private void creatTable() {
-        List listDataName = new ArrayList();
-        listDataName.add("USF");
-        listDataName.add("USB");
-        listDataName.add("Minyak");
-        listDataName.add("Kernel");
+
+        try {
+            //Generated
+            TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.MATCH_PARENT
+            );
+            rowLayout.setMargins(30, 20, 30, 0);
+
+            TableRow firstRow = new TableRow(Hitung02_cpo_simpan.this);
+            TextView alb = new TextView(Hitung02_cpo_simpan.this);
+            alb.setTextColor(this.getResources().getColor(R.color.white));
+            alb.setText("CPO ALB");
+            alb.setPadding(5,5,40,5);
+            TextView cpo_air = new TextView(Hitung02_cpo_simpan.this);
+            cpo_air.setText("CPO Air");
+            cpo_air.setTextColor(this.getResources().getColor(R.color.white));
+            cpo_air.setPadding(5,5,40,5);
+            TextView cpo_kotoran = new TextView(Hitung02_cpo_simpan.this);
+            cpo_kotoran.setText("CPO Kotoran");
+            cpo_kotoran.setTextColor(this.getResources().getColor(R.color.white));
+            cpo_kotoran.setPadding(5,5,40,5);
+            TextView dobi = new TextView(Hitung02_cpo_simpan.this);
+            dobi.setText("CPO DOBI");
+            dobi.setTextColor(this.getResources().getColor(R.color.white));
+            dobi.setPadding(5,5,40,5);
+            firstRow.addView(alb);
+            firstRow.addView(cpo_air);
+            firstRow.addView(cpo_kotoran);
+            firstRow.addView(dobi);
+            firstRow.setBackgroundResource(R.color.colorPrimary);
+            firstRow.setLayoutParams(rowLayout);
+
+            TableLayout GeneratedTable = new TableLayout(this);
+            LinearLayout.LayoutParams tableLayoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            GeneratedTable.setLayoutParams(tableLayoutParams);
+
+            GeneratedTable.addView(firstRow);
+
+            TableRow row = new TableRow(Hitung02_cpo_simpan.this);
+
+            TextView val_cpo = new TextView(Hitung02_cpo_simpan.this);
+            val_cpo.setText(new DecimalFormat("##.##").format(Float.valueOf(retJson.get("cpo_alb").toString())));
+            val_cpo.setPadding(5,5,20,5);
+            row.addView(val_cpo);
+
+            TextView val_air = new TextView(Hitung02_cpo_simpan.this);
+            val_air.setText(new DecimalFormat("##.##").format(Float.valueOf(retJson.get("cpo_air").toString())));
+            val_air.setPadding(5,5,20,5);
+            row.addView(val_air);
 
 
-        for (int id = 0; id < listDataName.size(); id++){
-            Iterator nameKey;
-            List listKey = new ArrayList<>();
+            TextView val_kotoran = new TextView(Hitung02_cpo_simpan.this);
+            val_kotoran.setText(new DecimalFormat("##.##").format(Float.valueOf(retJson.get("cpo_kotoran").toString())));
+            val_kotoran.setPadding(5,5,20,5);
+            row.addView(val_kotoran);
 
-            try {
-                //Generated
-                JSONObject GeneratedJSON = (JSONObject) retJson.get(listDataName.get(id).toString());
-                nameKey = GeneratedJSON.keys();
-                while (nameKey.hasNext()){
-                    listKey.add(nameKey.next().toString());
-                    Log.w("Key Name", nameKey.toString());
-                }
-                TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.MATCH_PARENT
-                );
-                rowLayout.setMargins(30, 20, 30, 0);
+            TextView val_dobi = new TextView(Hitung02_cpo_simpan.this);
+            val_dobi.setText(new DecimalFormat("##.##").format(Float.valueOf(retJson.get("cpo_dobi").toString())));
+            val_dobi.setPadding(5,5,20,5);
+            row.addView(val_dobi);
 
-                TableRow firstRow = new TableRow(Hitung03_simpan.this);
-                TextView sampel = new TextView(Hitung03_simpan.this);
-                sampel.setTextColor(this.getResources().getColor(R.color.white));
-                sampel.setText("Sampel " + listDataName.get(id).toString());
-                sampel.setPadding(5,5,40,5);
-                TextView hsl_sampel = new TextView(Hitung03_simpan.this);
-                hsl_sampel.setText("Hasil Sampel");
-                hsl_sampel.setTextColor(this.getResources().getColor(R.color.white));
-                hsl_sampel.setPadding(5,5,40,5);
-                TextView ontbs = new TextView(Hitung03_simpan.this);
-                ontbs.setText("ON TBS");
-                ontbs.setTextColor(this.getResources().getColor(R.color.white));
-                ontbs.setPadding(5,5,40,5);
-                firstRow.addView(sampel);
-                firstRow.addView(hsl_sampel);
-                firstRow.addView(ontbs);
-                firstRow.setBackgroundResource(R.color.colorPrimary);
-                firstRow.setLayoutParams(rowLayout);
+            row.setLayoutParams(rowLayout);
 
-                TableLayout GeneratedTable = new TableLayout(this);
-                LinearLayout.LayoutParams tableLayoutParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                GeneratedTable.setLayoutParams(tableLayoutParams);
+            GeneratedTable.addView(row);
 
-                Float onsampel = Float.valueOf(0);
-                Float ontbs_t = Float.valueOf(0);
+            linearLayout.addView(GeneratedTable);
+            //Generated
+            //USB
 
-                GeneratedTable.addView(firstRow);
-                for (int i=0; i < listKey.size(); i++) {
-                    Log.w("Selected Key", String.valueOf(listKey.get(i)));
-                    JSONObject valueJSON = (JSONObject) GeneratedJSON.get(String.valueOf(listKey.get(i)));
-                    TableRow row = new TableRow(Hitung03_simpan.this);
-
-                    TextView sampel_name = new TextView(Hitung03_simpan.this);
-                    sampel_name.setText(String.valueOf(listKey.get(i)));
-                    sampel_name.setPadding(5,5,20,5);
-                    row.addView(sampel_name);
-
-                    TextView s_val = new TextView(Hitung03_simpan.this);
-                    s_val.setText(new DecimalFormat("##.##").format(Float.valueOf(valueJSON.get("Hasil Sampel").toString())));
-                    s_val.setPadding(5,5,20,5);
-                    row.addView(s_val);
-
-                    onsampel += Float.valueOf(valueJSON.get("Hasil Sampel").toString());
-
-                    TextView tbs_val = new TextView(Hitung03_simpan.this);
-                    tbs_val.setText(new DecimalFormat("##.##").format(Float.valueOf(valueJSON.get("Hasil ON TBS").toString())));
-                    tbs_val.setPadding(5,5,20,5);
-                    row.addView(tbs_val);
-
-                    ontbs_t += Float.valueOf(valueJSON.get("Hasil ON TBS").toString());
-
-                    row.setLayoutParams(rowLayout);
-
-                    GeneratedTable.addView(row);
-                }
-                TableRow row = new TableRow(Hitung03_simpan.this);
-                TextView total = new TextView(Hitung03_simpan.this);
-                total.setText("Total");
-//                total.setTextColor(this.getResources().getColor(R.color.white));
-                total.setPadding(5,5,20,5);
-                row.addView(total);
-
-                TextView total_sampel = new TextView(Hitung03_simpan.this);
-                total_sampel.setText(new DecimalFormat("##.##").format(Float.valueOf(String.valueOf(onsampel))));
-                total_sampel.setPadding(5,5,20,5);
-//                total_sampel.setTextColor(this.getResources().getColor(R.color.white));
-                row.addView(total_sampel);
-
-                TextView total_tbs = new TextView(Hitung03_simpan.this);
-                total_tbs.setText(new DecimalFormat("##.##").format(Float.valueOf(String.valueOf(ontbs_t))));
-                total_tbs.setPadding(5,5,20,5);
-//                total_tbs.setTextColor(this.getResources().getColor(R.color.white));
-                row.addView(total_tbs);
-
-//                row.setBackgroundResource(R.color.colorAccent);
-                rowLayout.setMargins(0,0,0,15);
-                row.setLayoutParams(rowLayout);
-
-                GeneratedTable.addView(row);
-
-                linearLayout.addView(GeneratedTable);
-                //Generated
-                //USB
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
     }

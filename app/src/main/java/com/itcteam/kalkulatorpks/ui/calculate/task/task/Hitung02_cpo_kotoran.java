@@ -21,6 +21,8 @@ public class Hitung02_cpo_kotoran extends Hitung02_alb {
                 "A: Berat contoh (gr)\n" +
                 "B: Berat kertas saring sesudah pengeringan\n" +
                 "C: Berat kertas saring + kotoran";
+        super.tipe = 3;
+        super.backtipe = "kotoran";
         super.setAll(title, ket, "A (gr)", "B (gr)", "C (gr)", true);
     }
 
@@ -37,6 +39,7 @@ public class Hitung02_cpo_kotoran extends Hitung02_alb {
         fhasil = finput03 - finput02;
         fhasil = fhasil / Float.valueOf(finput01);
         fhasil *= 100;
+        fhasil_total = fhasil;
 
         super.hasil.setText(Float.toString(fhasil) + "%");
     }

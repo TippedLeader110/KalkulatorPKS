@@ -18,6 +18,7 @@ import com.itcteam.kalkulatorpks.ui.about.losses_pabrik.ListBerkas_lb;
 import com.itcteam.kalkulatorpks.ui.about.losses_pabrik.LossesPabrikPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.ListBerkas_mb;
 import com.itcteam.kalkulatorpks.ui.about.material_balance.MaterialBalancePreferenceSettings;
+import com.itcteam.kalkulatorpks.ui.about.mutu.ListBerkas_mt;
 import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.ListBerkas_pr;
 import com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen.RendemenPreferenceSettings;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_cpo;
@@ -124,6 +125,54 @@ public class BerkasPreferenceSettings extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), ListBerkas_lb.class);
                 intent.putExtra("export", "true");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_mutu_cpo = this.findPreference("berkas_mt_01");
+        berkas_mutu_cpo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                intent.putExtra("export", "false");
+                intent.putExtra("tipe", "1");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_mutu_inti = this.findPreference("berkas_mt_02");
+        berkas_mutu_inti.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                intent.putExtra("export", "false");
+                intent.putExtra("tipe", "25");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_mutu_export_cpo = this.findPreference("berkas_mt_03");
+        berkas_mutu_export_cpo.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                intent.putExtra("export", "true");
+                intent.putExtra("tipe", "2");
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference berkas_mutu_export_inti = this.findPreference("berkas_mt_04");
+        berkas_mutu_export_inti.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
+                intent.putExtra("export", "true");
+                intent.putExtra("tipe", "25");
                 startActivity(intent);
                 return true;
             }

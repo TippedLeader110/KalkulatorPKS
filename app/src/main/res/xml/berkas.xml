@@ -17,6 +17,35 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="Perhitungan Mutu">
+
+        <Preference
+            app:title="Daftar Perhitungan Mutu CPO tersimpan"
+            app:summary="Menampilkan berkas-berkas mutu CPO yang tersimpan"
+            app:key="berkas_mt_01"
+            />
+
+        <Preference
+            app:title="Daftar Perhitungan Mutu Inti tersimpan"
+            app:summary="Menampilkan berkas-berkas mutu inti yang tersimpan"
+            app:key="berkas_mt_02"
+            />
+
+        <Preference
+            app:title="Export berkas Mutu CPO"
+            app:summary="Mengexport berkas menjadi file csv"
+            app:key="berkas_mt_03"
+            />
+
+        <Preference
+            app:title="Export berkas Mutu Inti"
+            app:summary="Mengexport berkas menjadi file csv"
+            app:key="berkas_mt_04"
+            />
+
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Perhitungan Rendemen">
 
         <Preference

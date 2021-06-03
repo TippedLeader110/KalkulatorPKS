@@ -22,6 +22,8 @@ public class Hitung02_inti_air extends Hitung02_alb {
                 "B: Berat contoh sesudah dikeringkan\n" +
                 "C: Berat contoh";
         super.setAll(title, ket, "A (gr)", "B (gr)", "C (gr)", true);
+        super.tipe = 5;
+        super.backtipe = "inti_air";
     }
 
     @Override
@@ -37,6 +39,7 @@ public class Hitung02_inti_air extends Hitung02_alb {
         fhasil = finput01 - finput02;
         fhasil = fhasil / Float.valueOf(finput03);
         fhasil *= 100;
+        fhasil_total = fhasil;
 
         super.hasil.setText(Float.toString(fhasil) + "%");
     }

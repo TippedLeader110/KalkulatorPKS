@@ -23,6 +23,8 @@ public class Hitung02_cpo_air extends Hitung02_alb {
                 "A: Berat cawan + sampel sebelum dikeringkan\n" +
                 "B: Berat cawan + sampel sesudah dikeringkan\n" +
                 "C: Berat sampel";
+        super.tipe = 2;
+        super.backtipe = "air";
         super.setAll(title, ket, "A (gr)", "B (gr)", "C (gr)", true);
     }
 
@@ -39,6 +41,7 @@ public class Hitung02_cpo_air extends Hitung02_alb {
         fhasil = finput01 - finput02;
         fhasil = fhasil / Float.valueOf(finput03);
         fhasil *= 100;
+        fhasil_total = fhasil;
 
         super.hasil.setText(Float.toString(fhasil) + "%");
     }

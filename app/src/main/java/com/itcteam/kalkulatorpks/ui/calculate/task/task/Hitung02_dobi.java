@@ -23,6 +23,8 @@ public class Hitung02_dobi extends Hitung02_alb {
                 "As: Absorbens contoh pada\n" +
                 "       gelombang 269nm";
         super.setAll(title, ket, "Ab (nm)", "As(nm)", "", false);
+        super.tipe = 4;
+        super.backtipe = "dobi";
     }
 
     @Override
@@ -36,6 +38,7 @@ public class Hitung02_dobi extends Hitung02_alb {
         float fhasil;
 
         fhasil = finput01 / finput02;
+        fhasil_total = fhasil;
 
         super.hasil.setText(Float.toString(fhasil));
     }

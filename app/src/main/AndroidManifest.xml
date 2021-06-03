@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.about.mutu.ListBerkas_mt" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.mutu.PerhitunganMutuSettings" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.about.mutu.ExportFilterDate_mt" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.calculate.task.task.Hitung02_cpo_simpan" android:theme="@style/AppThemeWActBar"></activity>
+        <activity android:name=".ui.calculate.task.task.Hitung02_inti_simpan" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.losses_pabrik.ListBerkas_lb" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.losses_pabrik.LossesPabrikPreferenceSettings" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.losses_pabrik.ExportFilterDate_lb" android:theme="@style/AppThemeWActBar"></activity>

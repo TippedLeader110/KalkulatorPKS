@@ -5,21 +5,24 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
 
 public class Hitung02_alb extends AppCompatActivity {
 
-    Button hitung;
+    Button hitung, simpan;
     InputMethodManager inputManager;
     TextInputLayout input03, input01, input02;
     TextView hasil, keteranganTV;
@@ -27,7 +30,9 @@ public class Hitung02_alb extends AppCompatActivity {
     Context context;
     ImageView formula;
     Boolean thirdInput = true;
-    float finput01, finput02, finput03;
+    int tipe;
+    String backtipe;
+    float finput01, finput02, finput03, fhasil_total;
 
     public Hitung02_alb(){
         acttitle = "ALB pada CPO";
@@ -35,6 +40,8 @@ public class Hitung02_alb extends AppCompatActivity {
         input01s = "Berat Contoh (gr)";
         input02s = "N KOH";
         input03s = "ml KOH (ml)";
+        backtipe = "alb";
+        tipe = 1;
         setAll(acttitle, keterangan, input01s, input02s, input03s, true);
     }
 
@@ -61,6 +68,18 @@ public class Hitung02_alb extends AppCompatActivity {
         actbar.setTitle(acttitle);
         actbar.setDisplayHomeAsUpEnabled(true);
 
+        simpan = findViewById(R.id.hitung02_btn_simpan);
+
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("BACKTIPE", String.valueOf(fhasil_total));
+                Intent intent = new Intent();
+                intent.putExtra(backtipe, String.valueOf(fhasil_total));
+                setResult(tipe, intent);
+                finish();
+            }
+        });
 
         formula = findViewById(R.id.hitung02_rumus);
 
@@ -90,6 +109,8 @@ public class Hitung02_alb extends AppCompatActivity {
                 kalkulasi();
             }
         });
+
+
     }
 
     public void setRumusDrawable() {
@@ -129,6 +150,8 @@ public class Hitung02_alb extends AppCompatActivity {
         fhasil = finput03 * finput02;
         fhasil = fhasil * Float.valueOf("25.6");
         fhasil = fhasil/finput01;
+
+        fhasil_total = fhasil;
 
         hasil.setText(Float.toString(fhasil));
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
