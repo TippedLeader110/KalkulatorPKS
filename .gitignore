@@ -81,4 +81,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
-app/release/app-release - KalkulatorPKS-1.0.5.rar
+app/release/app-release -*
