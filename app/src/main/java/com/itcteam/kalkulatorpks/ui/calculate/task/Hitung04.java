@@ -111,20 +111,14 @@ public class Hitung04 extends AppCompatActivity implements Hitung04_cpo.Interfac
             Log.w("ResultCode", String.valueOf(resultCode));
 
             if(resultCode == 1) {
-                if (data.hasExtra("cpo")){
-                    cpo = data.getStringExtra("cpo");
-                    Toast.makeText(this, "CPO : " + cpo, Toast.LENGTH_SHORT).show();
-                }
+                cpo = data.getStringExtra("cpo");
+                Toast.makeText(this, "CPO : " + cpo, Toast.LENGTH_SHORT).show();
             }else if (resultCode == 2){
-                if (data.hasExtra("inti")){
-                    inti = data.getStringExtra("inti");
-                    Toast.makeText(this, "Inti : " + inti, Toast.LENGTH_SHORT).show();
-                }
-            }else{
-                if (data.hasExtra("storage")){
-                    storage = data.getStringExtra("storage");
-                    Toast.makeText(this, "Storage : "+storage, Toast.LENGTH_SHORT).show();
-                }
+                inti = data.getStringExtra("inti");
+                Toast.makeText(this, "Inti : " + inti, Toast.LENGTH_SHORT).show();
+            }else if (resultCode == 3){
+                storage = data.getStringExtra("storage");
+                Toast.makeText(this, "Storage : "+storage, Toast.LENGTH_SHORT).show();
             }
         }
         checkValid();

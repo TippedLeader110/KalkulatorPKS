@@ -87,6 +87,7 @@ public class Hitung04_storage extends AppCompatActivity {
         inp2.setHint("Tebal CPO (m)");
 
         save = this.findViewById(R.id.hitung04_btn_save);
+        save.setText("Simpan");
 
         save.setEnabled(false);
 

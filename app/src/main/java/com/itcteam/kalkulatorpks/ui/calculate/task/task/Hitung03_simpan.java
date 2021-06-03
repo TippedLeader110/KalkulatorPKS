@@ -128,7 +128,7 @@ public class Hitung03_simpan extends AppCompatActivity {
 
     private void creatTable() {
         List listDataName = new ArrayList();
-        listDataName.add("Generated");
+        listDataName.add("USF");
         listDataName.add("USB");
         listDataName.add("Minyak");
         listDataName.add("Kernel");
@@ -168,7 +168,7 @@ public class Hitung03_simpan extends AppCompatActivity {
                 firstRow.addView(sampel);
                 firstRow.addView(hsl_sampel);
                 firstRow.addView(ontbs);
-                firstRow.setBackgroundResource(R.color.colorAccent);
+                firstRow.setBackgroundResource(R.color.colorPrimary);
                 firstRow.setLayoutParams(rowLayout);
 
                 TableLayout GeneratedTable = new TableLayout(this);
@@ -177,6 +177,9 @@ public class Hitung03_simpan extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
                 GeneratedTable.setLayoutParams(tableLayoutParams);
+
+                Float onsampel = Float.valueOf(0);
+                Float ontbs_t = Float.valueOf(0);
 
                 GeneratedTable.addView(firstRow);
                 for (int i=0; i < listKey.size(); i++) {
@@ -194,15 +197,43 @@ public class Hitung03_simpan extends AppCompatActivity {
                     s_val.setPadding(5,5,20,5);
                     row.addView(s_val);
 
+                    onsampel += Float.valueOf(valueJSON.get("Hasil Sampel").toString());
+
                     TextView tbs_val = new TextView(Hitung03_simpan.this);
                     tbs_val.setText(String.valueOf(valueJSON.get("Hasil ON TBS").toString()));
                     tbs_val.setPadding(5,5,20,5);
                     row.addView(tbs_val);
 
+                    ontbs_t += Float.valueOf(valueJSON.get("Hasil ON TBS").toString());
+
                     row.setLayoutParams(rowLayout);
 
                     GeneratedTable.addView(row);
                 }
+                TableRow row = new TableRow(Hitung03_simpan.this);
+                TextView total = new TextView(Hitung03_simpan.this);
+                total.setText("Total");
+//                total.setTextColor(this.getResources().getColor(R.color.white));
+                total.setPadding(5,5,20,5);
+                row.addView(total);
+
+                TextView total_sampel = new TextView(Hitung03_simpan.this);
+                total_sampel.setText(String.valueOf(onsampel));
+                total_sampel.setPadding(5,5,20,5);
+//                total_sampel.setTextColor(this.getResources().getColor(R.color.white));
+                row.addView(total_sampel);
+
+                TextView total_tbs = new TextView(Hitung03_simpan.this);
+                total_tbs.setText(String.valueOf(ontbs_t));
+                total_tbs.setPadding(5,5,20,5);
+//                total_tbs.setTextColor(this.getResources().getColor(R.color.white));
+                row.addView(total_tbs);
+
+//                row.setBackgroundResource(R.color.colorAccent);
+                rowLayout.setMargins(0,0,0,15);
+                row.setLayoutParams(rowLayout);
+
+                GeneratedTable.addView(row);
 
                 linearLayout.addView(GeneratedTable);
                 //Generated

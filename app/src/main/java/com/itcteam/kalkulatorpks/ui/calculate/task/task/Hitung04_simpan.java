@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ public class Hitung04_simpan extends AppCompatActivity {
     JSONObject jsonVal;
     TextView cpo, inti, storage;
     DatePickerDialog.OnDateSetListener dateListener;
+    TimePickerDialog.OnTimeSetListener timeSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,26 @@ public class Hitung04_simpan extends AppCompatActivity {
                 Log.d( "onDateSet" , month + "/" + day + "/" + year );
                 date.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
+
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                Hitung04_simpan.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListener,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
+            }
+        };
+
+        timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = date.getEditText().getText().toString();
+                date.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
             }
         };
 
@@ -124,6 +147,8 @@ public class Hitung04_simpan extends AppCompatActivity {
 
         actbar.setDisplayHomeAsUpEnabled(true);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

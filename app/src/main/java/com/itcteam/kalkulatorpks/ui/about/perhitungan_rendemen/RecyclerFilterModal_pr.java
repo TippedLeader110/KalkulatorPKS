@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.about.perhitungan_rendemen;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
 import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 
@@ -32,6 +35,7 @@ public class RecyclerFilterModal_pr extends BottomSheetDialogFragment {
     ListBerkas_pr listener;
     String first, end;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
+    TimePickerDialog.OnTimeSetListener timeSetListenerFirst, timeSetListenerEnd;
     TextInputLayout firstDate, endDate;
     Boolean export;
 
@@ -140,6 +144,17 @@ public class RecyclerFilterModal_pr extends BottomSheetDialogFragment {
                 firstDate.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
                 cari.setEnabled(checkValue());
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        listener,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListenerFirst,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
             }
         };
 
@@ -159,6 +174,33 @@ public class RecyclerFilterModal_pr extends BottomSheetDialogFragment {
                 endDate.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
                 cari.setEnabled(checkValue());
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        listener,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListenerEnd,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
+            }
+        };
+
+        timeSetListenerFirst = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = firstDate.getEditText().getText().toString();
+                firstDate.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
+            }
+        };
+
+        timeSetListenerEnd = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = endDate.getEditText().getText().toString();
+                endDate.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
             }
         };
 

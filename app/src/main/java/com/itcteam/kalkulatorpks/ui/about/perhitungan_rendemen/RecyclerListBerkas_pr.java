@@ -21,14 +21,20 @@ import com.itcteam.kalkulatorpks.R;
 import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 import com.itcteam.kalkulatorpks.ui.about.ExportCSV;
 import com.itcteam.kalkulatorpks.ui.calculate.task.task.Hitung04_simpan;
+import com.itcteam.kalkulatorpks.util.DateTools;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class RecyclerListBerkas_pr extends RecyclerView.Adapter<RecyclerListBerkas_pr.BerkasViewHolder> implements Filterable {
 
@@ -95,9 +101,34 @@ public class RecyclerListBerkas_pr extends RecyclerView.Adapter<RecyclerListBerk
         Log.w("tipe", Integer.toString(tipe));
         Log.w("Date", value.get("date"));
         Log.w("id_record", value.get("id_record"));
+        String msgDate = "";
+
+        try {
+            Date c = Calendar.getInstance().getTime();
+            System.out.println("Current time => " + c);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            String startString = df.format(c);
+            String[] spltDate = value.get("date").split("\\s+");
+
+            Date end = new SimpleDateFormat("yyyy-MM-dd").parse(spltDate[0]);
+            Date start = new SimpleDateFormat("yyyy-MM-dd").parse(startString);
+            DateTools dateTools = new DateTools(start, end);
+            int dateCount = dateTools.getDaysDifference();
+
+            if (dateCount<0){
+                dateCount *=-1;
+                msgDate = dateCount + " hari yang lalu";
+            }else if(dateCount==0){
+                msgDate = "Hari ini";
+            }else{
+                msgDate = dateCount + " hari yang lalu";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         holder.text1.setText(value.get("nama"));
-        holder.text3.setText("Perhitungan Rendemen");
+        holder.text3.setText(msgDate);
 //        holder.text3.setVisibility(View.GONE);
         holder.text2.setText(value.get("date"));
 

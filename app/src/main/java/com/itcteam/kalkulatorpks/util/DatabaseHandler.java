@@ -282,6 +282,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //                "AND date BETWEEN " + firstDate + " AND " + endDate, null );
         Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
                 "AND date BETWEEN '"+ firstDate +"' AND '"+ endDate + "'", null );
+//        Cursor cursor = db.rawQuery( "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
+//                "AND date strftime('%s','"+ firstDate +"') > strftime('%s','"+ endDate + "')", null );
         Log.w("DB QUERY FILTER", "select * from "+TABLE_RECORD+ " where record_type = " + i + " " +
                 "AND date BETWEEN '" + firstDate + "' AND '" + endDate + "'");
 
