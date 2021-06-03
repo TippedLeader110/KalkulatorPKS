@@ -19,13 +19,13 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:layout_marginTop="?attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <FrameLayout
             android:id="@+id/frame_berkas"
             android:layout_width="match_parent"
-            android:paddingBottom="150dp"
             android:layout_height="wrap_content"/>
 
     </androidx.core.widget.NestedScrollView>
