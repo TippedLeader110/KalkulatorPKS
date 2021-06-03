@@ -402,7 +402,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             jsonBerkas.getString("cpo_alb")+ "," +
                             jsonBerkas.getString("cpo_air")+ "," +
                             jsonBerkas.getString("cpo_kotoran")+ "," +
-                            jsonBerkas.getString("dobi");
+                            jsonBerkas.getString("cpo_dobi");
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);

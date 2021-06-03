@@ -144,10 +144,16 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                 if(export){
                     Log.w("Ma", "export");
                     List dataLines = new ArrayList<String>();
+                    String linesC;
 
-                    String linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
+                    if (tipe==2){
+                        linesC =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+                    }else{
+                        linesC =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
+                    }
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
+                        Log.w("FD", fetchData);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
 
                         String lines;
@@ -158,7 +164,7 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                                     jsonBerkas.getString("cpo_alb")+ "," +
                                     jsonBerkas.getString("cpo_air")+ "," +
                                     jsonBerkas.getString("cpo_kotoran")+ "," +
-                                    jsonBerkas.getString("dobi");
+                                    jsonBerkas.getString("cpo_dobi");
                         }else{
                             lines = value.get("date")+ "," +
                                     value.get("nama")+ "," +
@@ -172,7 +178,12 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                         dataLines.add(lines);
 
                         ExportCSV exportCSV = new ExportCSV(dataLines, context);
-                        exportCSV.DoExportCSV("MutuSingle");
+                        if (tipe==2){
+                            exportCSV.DoExportCSV("MutuSingleCPO");
+                        }else{
+                            exportCSV.DoExportCSV("MutuSingleInti");
+                        }
+
                         Toast.makeText(context, "Berhasil di export", Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {

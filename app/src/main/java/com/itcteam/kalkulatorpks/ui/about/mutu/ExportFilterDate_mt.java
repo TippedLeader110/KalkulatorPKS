@@ -1,6 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.about.mutu;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,9 +33,10 @@ public class ExportFilterDate_mt extends AppCompatActivity {
     String first, end;
     TextView title;
     DatePickerDialog.OnDateSetListener dateListenerFirst, dateListenerEnd;
+    TimePickerDialog.OnTimeSetListener timeSetListenerFirst, timeSetListenerEnd;
     TextInputLayout firstDate, endDate;
     int tipe = 2;
-    
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -77,8 +80,14 @@ public class ExportFilterDate_mt extends AppCompatActivity {
                 end = endDate.getEditText().getText().toString();
                 DatabaseHandler databaseHandler = new DatabaseHandler(ExportFilterDate_mt.this);
                 ExportCSV exportCSV = new ExportCSV(databaseHandler.getAllFilter(first, end, tipe), ExportFilterDate_mt.this);
+                String tt;
+                if (tipe==2){
+                    tt = "CPO";
+                }else{
+                    tt = "Inti";
+                }
 
-                if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-Mutu")){
+                if (exportCSV.DoExportCSV("Filter"+ first +"-sd-"+end+"-Mutu-" + tt)){
                     Toast.makeText(ExportFilterDate_mt.this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(ExportFilterDate_mt.this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
@@ -140,6 +149,17 @@ public class ExportFilterDate_mt extends AppCompatActivity {
                 firstDate.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
                 cari.setEnabled(checkValue());
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        ExportFilterDate_mt.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListenerFirst,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
             }
         };
 
@@ -159,6 +179,33 @@ public class ExportFilterDate_mt extends AppCompatActivity {
                 endDate.getEditText().setText( new StringBuilder().append( year ).append( "-" )
                         .append( monthD ).append( "-" ).append( dayD ) );
                 cari.setEnabled(checkValue());
+                Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        ExportFilterDate_mt.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        timeSetListenerEnd,
+                        mHour,mMinute,false
+                );
+                timePickerDialog.show();
+            }
+        };
+
+        timeSetListenerFirst = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = firstDate.getEditText().getText().toString();
+                firstDate.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
+            }
+        };
+
+        timeSetListenerEnd = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String dateTime = endDate.getEditText().getText().toString();
+                endDate.getEditText().setText(dateTime+" "+hourOfDay + ":" + minute + ":00");
             }
         };
     }

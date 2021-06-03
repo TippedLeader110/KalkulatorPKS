@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -23,6 +24,7 @@ public class MTPrefSet extends PreferenceFragmentCompat {
 
     public MTPrefSet(int tipe) {
         this.tipe = tipe;
+        Log.w("Tipe MTP", String.valueOf(tipe));
     }
 
     @Override
@@ -65,7 +67,7 @@ public class MTPrefSet extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), ListBerkas_mt.class);
                 intent.putExtra("export", "true");
-                intent.putExtra("tipe", tipe);
+                intent.putExtra("tipe", String.valueOf(tipe));
                 startActivity(intent);
                 return true;
             }
@@ -77,7 +79,7 @@ public class MTPrefSet extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), ExportFilterDate_mt.class);
                 intent.putExtra("export", "true");
-                intent.putExtra("tipe", tipe);
+                intent.putExtra("tipe", String.valueOf(tipe));
                 startActivity(intent);
                 return true;
             }

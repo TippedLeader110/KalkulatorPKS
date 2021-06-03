@@ -48,6 +48,7 @@ public class ListBerkas_mt extends AppCompatActivity implements RecyclerFilterMo
         Bundle extras = getIntent().getExtras();
 
         tipe = Integer.valueOf(extras.getString("tipe"));
+        Log.w("Tipe List", String.valueOf(tipe));
 
         if (extras.getString("export").equals("true")){
             export = true;

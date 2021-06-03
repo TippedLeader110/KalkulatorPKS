@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -36,17 +37,20 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
+        Bundle extras = getIntent().getExtras();
+        this.tipe = Integer.valueOf(extras.getString("tipe"));
+        Log.w("Tipe Settings", String.valueOf(tipe));
+
         settingsFragment = new MTPrefSet(tipe);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.pref_menu, settingsFragment, null)
                 .commit();
         ActionBar actionBar = getSupportActionBar();
-        Bundle extras = getIntent().getExtras();
-        tipe = Integer.valueOf(extras.getString("tipe"));
+
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Export Rendemen");
+            actionBar.setTitle("Export Perhitungan Mutu");
         }
         dialog = new ProgressDialog(this);
     }
@@ -84,7 +88,7 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
                             jsonRecord.getString("cpo_alb")+ "," +
                             jsonRecord.getString("cpo_air")+ "," +
                             jsonRecord.getString("cpo_kotoran")+ "," +
-                            jsonRecord.getString("dobi");
+                            jsonRecord.getString("cpo_dobi");
                 }else{
                     lines = hash.get("date")+ "," +
                             jsonItem.get("nama")+ "," +
@@ -103,8 +107,14 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
 
         if (dialog.isShowing())
             dialog.dismiss();
+        String tt;
+        if (tipe==2){
+            tt = "MutuCPOALL";
+        }else{
+            tt = "MutuIntiALl";
+        }
 
-        if (exportCSV.DoExportCSV("MutuALl")){
+        if (exportCSV.DoExportCSV(tt)){
             Toast.makeText(this, "CSV Berhasil disimpan !!!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Terjadi kesalahan !!!", Toast.LENGTH_SHORT).show();
