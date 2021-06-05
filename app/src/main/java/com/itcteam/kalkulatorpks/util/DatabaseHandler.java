@@ -319,7 +319,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
         }
         else if(i==5){
-            linesC =  "Tanggal,Nama Kebun,Perfomance,Availability,Quality,OEE\n";
+            linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
         }else if (i==2){
             linesC =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
         }else if(i==25){

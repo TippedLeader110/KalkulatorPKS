@@ -32,4 +32,9 @@ public class Hitung05_perfomance extends Hitung05_availability {
 
         super.kirimBalik.dataKirimBalik(value, 2);
     }
+
+    @Override
+    public void setRumus() {
+        super.formula.setBackgroundResource(R.drawable.oee_perf);
+    }
 }

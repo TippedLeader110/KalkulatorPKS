@@ -2,6 +2,8 @@ package com.itcteam.kalkulatorpks.ui.calculate.task.fragment;
 
 import android.util.Log;
 
+import com.itcteam.kalkulatorpks.R;
+
 public class Hitung05_quality extends Hitung05_availability {
 
     @Override
@@ -21,5 +23,10 @@ public class Hitung05_quality extends Hitung05_availability {
         value = value/k3;
 
         super.kirimBalik.dataKirimBalik(value, 3);
+    }
+
+    @Override
+    public void setRumus() {
+        super.formula.setBackgroundResource(R.drawable.oee__qu);
     }
 }

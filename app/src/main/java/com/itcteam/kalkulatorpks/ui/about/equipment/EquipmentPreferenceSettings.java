@@ -60,7 +60,7 @@ public class EquipmentPreferenceSettings extends AppCompatActivity implements EQ
         databaseHandler = new DatabaseHandler(this);
         List<HashMap<String, String >> dataRecord = new ArrayList(databaseHandler.getRecord(tipe));
 
-        String lineCSV =  "Tanggal,Nama Kebun,Perfomance,Availability,Quality,OEE\n";
+        String lineCSV =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
         List<String > arrayCSV = new ArrayList<>();
         arrayCSV.add(lineCSV);
 

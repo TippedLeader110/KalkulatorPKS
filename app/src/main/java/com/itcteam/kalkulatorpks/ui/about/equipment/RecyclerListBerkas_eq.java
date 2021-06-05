@@ -112,7 +112,7 @@ public class RecyclerListBerkas_eq extends RecyclerView.Adapter<RecyclerListBerk
                     Log.w("Ma", "export");
                     List dataLines = new ArrayList<String>();
 
-                    String linesC =  "Tanggal,Nama Kebun,Perfomance,Availability,Quality,OEE\n";
+                    String linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
                         JSONObject jsonBerkas = new JSONObject(fetchData);

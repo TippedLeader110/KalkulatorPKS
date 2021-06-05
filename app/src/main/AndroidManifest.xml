@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.calculate.task.fragment.Hitung05_simpan_first" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.mutu.ListBerkas_mt" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.mutu.PerhitunganMutuSettings" android:theme="@style/AppThemeWActBar"></activity>
         <activity android:name=".ui.about.mutu.ExportFilterDate_mt" android:theme="@style/AppThemeWActBar"></activity>

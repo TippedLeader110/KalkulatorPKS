@@ -20,6 +20,8 @@ import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung02;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung03;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung04;
 import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung05;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_simpan;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_simpan_first;
 
 public class DashboardFragment extends Fragment {
 
@@ -87,7 +89,7 @@ public class DashboardFragment extends Fragment {
         cal05.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Hitung05.class));
+                startActivity(new Intent(getActivity(), Hitung05_simpan_first.class));
             }
         });
 

@@ -19,12 +19,18 @@ import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_quality;
 public class Hitung05 extends AppCompatActivity implements  Hitung05_availability.passingData, Hitung05_final.KirimBalik{
 
     Float availability, perfomance, quality;
+    String nama, date;
     ActionBar actbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hitung05);
+
+        Bundle ex = getIntent().getExtras();
+
+        nama = ex.getString("nama");
+        date = ex.getString("date");
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().
@@ -94,6 +100,8 @@ public class Hitung05 extends AppCompatActivity implements  Hitung05_availabilit
             bundle.putString("AV", Float.toString(availability*100));
             bundle.putString("PR", Float.toString(perfomance*100));
             bundle.putString("QU", Float.toString(quality*100));
+            bundle.putString("nama", nama);
+            bundle.putString("date", date);
 
             Log.w("Bundder PRE", bundle.get("HASIL").toString());
 
