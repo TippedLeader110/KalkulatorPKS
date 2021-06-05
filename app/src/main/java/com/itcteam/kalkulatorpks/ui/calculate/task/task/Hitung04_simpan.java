@@ -52,6 +52,8 @@ public class Hitung04_simpan extends AppCompatActivity {
 
         simpan = findViewById(R.id.hitung04_saverecord);
         nama = findViewById(R.id.hitung04_namakebun);
+        nama.setHint("Nama PKS");
+
         date = findViewById(R.id.hitung04_simpantanggal);
         cpo = findViewById(R.id.tv4_cpo_v);
         cpo.setText(extras.getString("cpo"));
