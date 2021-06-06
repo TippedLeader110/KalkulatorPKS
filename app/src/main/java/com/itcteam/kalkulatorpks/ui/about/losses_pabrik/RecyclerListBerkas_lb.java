@@ -197,6 +197,7 @@ public class RecyclerListBerkas_lb extends RecyclerView.Adapter<RecyclerListBerk
                     Log.w("HolderREC","false");
                     Intent intent = new Intent(context, Hitung03_simpan.class);
                     intent.putExtra("json", databaseHandler.getRecordValue(value.get("id_record"), tipe));
+                    intent.putExtra("id", value.get("id_record").toString());
                     intent.putExtra("hide", "yes");
                     context.startActivity(intent);
                 }

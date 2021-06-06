@@ -1,5 +1,6 @@
 package com.itcteam.kalkulatorpks.ui.about.equipment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -144,7 +145,10 @@ public class RecyclerListBerkas_eq extends RecyclerView.Adapter<RecyclerListBerk
                         intent.putExtra("AV", jsonBerkas.getString("availability"));
                         intent.putExtra("PR", jsonBerkas.getString("perfomance"));
                         intent.putExtra("QU", jsonBerkas.getString("quality"));
+                        intent.putExtra("id", value.get("id_record").toString());
                         intent.putExtra("hide", "yes");
+//                        ((Activity) context).startActivityForResult(intent,1);
+
                         v.getContext().startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();

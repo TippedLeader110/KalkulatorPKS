@@ -174,6 +174,7 @@ public class RecyclerListBerkas_pr extends RecyclerView.Adapter<RecyclerListBerk
                         intent.putExtra("cpo", jsonBerkas.getString("cpo"));
                         intent.putExtra("inti", jsonBerkas.getString("inti"));
                         intent.putExtra("storage", jsonBerkas.getString("storage"));
+                        intent.putExtra("id", value.get("id_record").toString());
                         intent.putExtra("hide", "yes");
                         v.getContext().startActivity(intent);
                     } catch (JSONException e) {

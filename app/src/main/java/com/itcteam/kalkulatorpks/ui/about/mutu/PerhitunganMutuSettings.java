@@ -68,9 +68,9 @@ public class PerhitunganMutuSettings extends AppCompatActivity implements MTPref
         List<HashMap<String, String >> dataRecord = new ArrayList(databaseHandler.getRecord(tipe));
         String lineCSV;
         if (tipe==2){
-            lineCSV =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+            lineCSV =  "Tanggal,Nama Mesin/Alat,ALB,CPO Air,CPO Kotoran,DOBI\n";
         }else{
-            lineCSV =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
+            lineCSV =  "Tanggal,Nama Mesin/Alat,Inti Air,Inti Kotoran\n";
         }
         List<String > arrayCSV = new ArrayList<>();
         arrayCSV.add(lineCSV);

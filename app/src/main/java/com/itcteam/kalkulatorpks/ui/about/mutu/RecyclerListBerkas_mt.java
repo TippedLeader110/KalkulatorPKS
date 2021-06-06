@@ -147,9 +147,9 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                     String linesC;
 
                     if (tipe==2){
-                        linesC =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+                        linesC =  "Tanggal,Nama Mesin/Alat,ALB,CPO Air,CPO Kotoran,DOBI\n";
                     }else{
-                        linesC =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
+                        linesC =  "Tanggal,Nama Mesin/Alat,Inti Air,Inti Kotoran\n";
                     }
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
@@ -202,6 +202,7 @@ public class RecyclerListBerkas_mt extends RecyclerView.Adapter<RecyclerListBerk
                         }
                         Log.w("Fetch data MT", fetchData);
                         intent.putExtra("json", fetchData);
+                        intent.putExtra("id", value.get("id_record").toString());
                         intent.putExtra("hide", "yes");
                         v.getContext().startActivity(intent);
                     } catch (JSONException e) {

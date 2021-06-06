@@ -2,6 +2,7 @@ package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,10 +47,12 @@ public class Hitung02_inti_simpan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hitung03_simpan);
-
-        databaseHandler = new DatabaseHandler(this);
         Bundle extras = getIntent().getExtras();
+        if (getIntent().hasExtra("hide")){
+            setContentView(R.layout.activity_hitung03_prev);
+        }else{
+            setContentView(R.layout.activity_hitung03_simpan);
+        }
 
         try {
             retJson = new JSONObject(extras.getString("json"));
@@ -61,7 +65,7 @@ public class Hitung02_inti_simpan extends AppCompatActivity {
 
         simpan = findViewById(R.id.hitung03_saverecord);
         nama = findViewById(R.id.hitung03_namakebun);
-        nama.setHint("Nama PKS");
+        nama.setHint("Mesin/Alat");
         datesimpan = findViewById(R.id.hitung03_simpantanggal);
 
         datesimpan.getEditText().setOnClickListener(new View.OnClickListener() {
@@ -126,14 +130,33 @@ public class Hitung02_inti_simpan extends AppCompatActivity {
         actbar.setHomeButtonEnabled(true);
 
         if (getIntent().hasExtra("hide")){
-            simpan.setVisibility(View.GONE);
             actbar.setTitle("Informasi Berkas");
             datesimpan.setVisibility(View.GONE);
             nama.setVisibility(View.GONE);
+            simpan.setBackgroundResource(R.drawable.ic_baseline_delete_24);
+
+            DialogInterface.OnClickListener dialogInt = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            String id = extras.getString("id");
+                            databaseHandler.DeleteRecordData(id);
+                            Toast.makeText(Hitung02_inti_simpan.this, "Data berhasil di hapus", Toast.LENGTH_SHORT).show();
+                            finish();
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
+                }
+            };
+
             simpan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Hitung02_inti_simpan.this, "Hapus ", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Hitung02_inti_simpan.this);
+                    builder.setMessage("Hapus berkas ini ?").setPositiveButton("Ya", dialogInt).
+                            setNegativeButton("Tidak", dialogInt).show();
                 }
             });
         }else{

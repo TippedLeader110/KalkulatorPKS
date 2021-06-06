@@ -1,12 +1,14 @@
 package com.itcteam.kalkulatorpks.ui.about.material_balance;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,13 +28,14 @@ public class ListBerkas_mb extends AppCompatActivity implements  RecyclerFilterM
     String firstDate, endDate;
     List daftarBerkas;
     FloatingActionButton fab;
-    Boolean export;
+    Boolean export, filterDate;
     DatabaseHandler databaseHandler;
     RecyclerListBerkas_mb recyclerListBerkas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        filterDate = false;
         setContentView(R.layout.activity_list_berkas);
         daftarBerkas = new ArrayList();
         databaseHandler = new DatabaseHandler(this);
@@ -126,7 +129,13 @@ public class ListBerkas_mb extends AppCompatActivity implements  RecyclerFilterM
     public void TanggalFilter(String first, String end) {
         this.firstDate = first;
         this.endDate = end;
-        prosesData(true);
+        filterDate = true;
+        prosesData(filterDate);
     }
 
+    @Override
+    protected void onResume() {
+        prosesData(filterDate);
+        super.onResume();
+    }
 }

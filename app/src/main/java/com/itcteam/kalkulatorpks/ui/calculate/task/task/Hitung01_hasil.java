@@ -2,8 +2,10 @@ package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itcteam.kalkulatorpks.R;
+import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung01;
+import com.itcteam.kalkulatorpks.ui.calculate.task.fragment.Hitung05_final_nonFrag;
 import com.itcteam.kalkulatorpks.util.DatabaseHandler;
 
 import org.json.JSONException;
@@ -40,7 +45,7 @@ public class Hitung01_hasil extends AppCompatActivity {
         jsonVal = new JSONObject();
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
-        actbar.setTitle(R.string.cal_02);
+        actbar.setTitle(R.string.cal_01);
         actbar.setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -50,9 +55,7 @@ public class Hitung01_hasil extends AppCompatActivity {
         tbs = findViewById(R.id.beratTBS_manual);
         tbs.setText(extras.getString("tbs")+" KG");
 
-        if (extras.getString("hide").equals("yes")){
-            simpan.setVisibility(View.GONE);
-        }
+
 
         tangkos = findViewById(R.id.tangkos_hsl_manual);
         ptangkos = findViewById(R.id.tangkos_p_manual);
@@ -115,6 +118,39 @@ public class Hitung01_hasil extends AppCompatActivity {
 
             }
         });
+
+        if (extras.getString("hide").equals("yes")){
+//            simpan.setVisibility(View.GONE);
+            simpan.setText("Hapus");
+            simpan.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_delete_24, 0);
+
+            DialogInterface.OnClickListener dialogInt = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            String id = extras.getString("id");
+                            databaseHandler.DeleteRecordData(id);
+                            Toast.makeText(Hitung01_hasil.this, "Data berhasil di hapus", Toast.LENGTH_SHORT).show();
+                            finish();
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
+                }
+            };
+
+            simpan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Hitung01_hasil.this);
+                    builder.setMessage("Hapus berkas ini ?").setPositiveButton("Ya", dialogInt).
+                            setNegativeButton("Tidak", dialogInt).show();
+                }
+            });
+
+
+        }
 
     }
 

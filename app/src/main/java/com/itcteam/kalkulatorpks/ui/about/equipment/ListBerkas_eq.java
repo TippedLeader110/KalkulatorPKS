@@ -1,5 +1,6 @@
 package com.itcteam.kalkulatorpks.ui.about.equipment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +28,7 @@ public class ListBerkas_eq extends AppCompatActivity implements RecyclerFilterMo
     List daftarBerkas;
     FloatingActionButton fab;
     Boolean export;
+    Boolean filterDate = false;
     DatabaseHandler databaseHandler;
     RecyclerListBerkas_eq recyclerListBerkas;
     static int tipe = 5;
@@ -128,7 +130,13 @@ public class ListBerkas_eq extends AppCompatActivity implements RecyclerFilterMo
     public void TanggalFilter(String first, String end) {
         this.firstDate = first;
         this.endDate = end;
-        prosesData(true);
+        filterDate = true;
+        prosesData(filterDate);
     }
 
+    @Override
+    protected void onResume() {
+        prosesData(filterDate);
+        super.onResume();
+    }
 }

@@ -1,5 +1,6 @@
 package com.itcteam.kalkulatorpks.ui.about.material_balance;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -169,9 +170,11 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
                         intent.putExtra("cpoHasilp", jsonBerkas.getString("cpoHasilp"));
                         intent.putExtra("dirtHasil", jsonBerkas.getString("dirtHasil"));
                         intent.putExtra("dirtHasilp", jsonBerkas.getString("dirtHasilp"));
+                        intent.putExtra("id", value.get("id_record").toString());
                         intent.putExtra("hide", "yes");
 
-                        v.getContext().startActivity(intent);
+                        ((Activity) context).startActivityForResult(intent,1);
+//                        v.getContext().startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -181,6 +184,8 @@ public class RecyclerListBerkas_mb extends RecyclerView.Adapter<RecyclerListBerk
 
 
     }
+
+
 
     @Override
     public int getItemCount() {

@@ -28,6 +28,7 @@ public class ListBerkas_lb extends AppCompatActivity implements RecyclerFilterMo
     List daftarBerkas;
     FloatingActionButton fab;
     Boolean export;
+    Boolean filterDate = false;
     DatabaseHandler databaseHandler;
     RecyclerListBerkas_lb recyclerListBerkas;
     static int tipe = 3;
@@ -129,7 +130,14 @@ public class ListBerkas_lb extends AppCompatActivity implements RecyclerFilterMo
     public void TanggalFilter(String first, String end) {
         this.firstDate = first;
         this.endDate = end;
-        prosesData(true);
+        filterDate = true;
+        prosesData(filterDate);
+    }
+
+    @Override
+    protected void onResume() {
+        prosesData(filterDate);
+        super.onResume();
     }
 
 }

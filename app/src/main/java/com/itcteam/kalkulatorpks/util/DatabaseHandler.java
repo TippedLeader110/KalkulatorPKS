@@ -135,6 +135,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
+    public boolean DeleteRecordData(String record){
+        Boolean done;
+        String KEY_NAME = "id_record";
+        if (db.delete(TABLE_RECORD_VALUE, KEY_NAME + "=" + record, null) > 0){
+            if (db.delete(TABLE_RECORD, KEY_NAME + "=" + record, null) > 0){
+                if (db.delete(TABLE_ITEM_VALUE, KEY_NAME + "=" + record, null) > 0){
+                    done = true;
+                }else{
+                    done = false;
+                }
+            }else{
+                done = false;
+            }
+        }else{
+            done = false;
+        }
+        return done;
+    }
+
     public boolean SaveItem(String data, int IDRecord){
 
         ContentValues contentValues= new ContentValues();
@@ -321,9 +340,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         else if(i==5){
             linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
         }else if (i==2){
-            linesC =  "Tanggal,Nama PKS,ALB,CPO Air,CPO Kotoran,DOBI\n";
+            linesC =  "Tanggal,Nama Mesin/Alat,ALB,CPO Air,CPO Kotoran,DOBI\n";
         }else if(i==25){
-            linesC =  "Tanggal,Nama PKS,Inti Air,Inti Kotoran\n";
+            linesC =  "Tanggal,Nama Mesin/Alat,Inti Air,Inti Kotoran\n";
         }
 
         List dataLines = new ArrayList<String>();
