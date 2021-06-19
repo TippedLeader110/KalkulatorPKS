@@ -21,7 +21,7 @@ public class Hitung03_usf extends Hitung03_kernel {
 
         super.dropdownSample = new ArrayList<String>();
 
-        super.dropdownSample.add("Norma Max");
+        super.dropdownSample.add("USF");
 
         super.tooltip_title = "Norma Max 0.70%";
         super.tooltip_text = tooltip_title;

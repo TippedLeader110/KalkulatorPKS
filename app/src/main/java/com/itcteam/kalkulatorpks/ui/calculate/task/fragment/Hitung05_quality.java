@@ -12,7 +12,7 @@ public class Hitung05_quality extends Hitung05_availability {
         inp1 = "Proccess amount";
         inp2 = "Defect amount";
         inp3 = "Processes amount";
-        titles = "Quality time";
+        titles = "Quality";
         btn = "Next";
     }
 

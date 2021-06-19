@@ -41,11 +41,11 @@ public class HomeFragment extends Fragment {
 
         ArrayList<SlideModel> imageList = new ArrayList<>(); // Create image list
 
-        imageList.add(new SlideModel(R.drawable.sawit01, "", ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.sawit02, "", ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.sawit03, "", ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.sawit04, "", ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.sawit05, "", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.swt01, "", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.swt02, "", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.swt03, "", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.swt08, "", ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.swt05, "", ScaleTypes.CENTER_CROP));
 
         ImageSlider imageSlider = root.findViewById(R.id.img_sawit);
         imageSlider.setImageList(imageList);
