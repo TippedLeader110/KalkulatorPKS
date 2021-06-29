@@ -32,4 +32,8 @@ public class Hitung03_usf extends Hitung03_kernel {
         super.tipe = 2;
     }
 
+    public void setRumus() {
+        super.rumus.setBackgroundResource(R.drawable.l_usf);
+    }
+
 }

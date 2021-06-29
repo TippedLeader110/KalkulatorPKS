@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class Hitung03_kernel extends AppCompatActivity {
     FloatingActionButton save;
     String tooltip_text, title, inp1, inp2, tooltip_title, jsonVal;
     Context contex;
+    ImageView rumus, rumus2;
     List dropdownSample, dropdownSampleVal, sVal01, sVal02, tVal01, tVal02;
     TextInputLayout input01, input02, input03, input04;
     float  a, b, c, d;
@@ -112,6 +114,9 @@ public class Hitung03_kernel extends AppCompatActivity {
         hitungSampel = findViewById(R.id.hitung03_sampel);
         hitungTBS = findViewById(R.id.hitung03_sampel_tbs);
 
+        rumus = findViewById(R.id.hitung03_rumus);
+        rumus2 = findViewById(R.id.hitung03_rumus_2);
+
         save = this.findViewById(R.id.hitung03_save_fab);
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -169,11 +174,18 @@ public class Hitung03_kernel extends AppCompatActivity {
             }
         });
 
+        setRumus();
+        rumus2.setBackgroundResource(R.drawable.l_tbs_m);
+
         ActionBar actbar;
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
         actbar.setTitle(title);
         actbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void setRumus() {
+        rumus.setBackgroundResource(R.drawable.l_kernel);
     }
 
     private void buatJson() {
@@ -220,6 +232,7 @@ public class Hitung03_kernel extends AppCompatActivity {
         tVal02.set(pos, d);
 
         hasil_tbs = (Float)tVal01.get(pos) * (Float)tVal02.get(pos);
+        hasil_tbs *= 100;
         hasilRTBS.setText(Float.toString(hasil_tbs) + "%");
         hasilLTBS.setText("Hasil On TBS dari "+ dropdownSample.get(pos) +" = ");
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),

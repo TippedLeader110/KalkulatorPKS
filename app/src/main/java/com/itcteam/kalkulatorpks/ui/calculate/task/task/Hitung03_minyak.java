@@ -45,4 +45,8 @@ public class Hitung03_minyak extends Hitung03_kernel {
         super.tipe = 3;
     }
 
+    @Override
+    public void setRumus() {
+        super.rumus.setBackgroundResource(R.drawable.l_minyak);
+    }
 }

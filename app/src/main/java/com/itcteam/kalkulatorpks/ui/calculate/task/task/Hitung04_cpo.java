@@ -1,6 +1,5 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.itcteam.kalkulatorpks.R;
-import com.itcteam.kalkulatorpks.ui.calculate.task.Hitung04;
 
 public class Hitung04_cpo extends AppCompatActivity {
 
@@ -26,6 +25,7 @@ public class Hitung04_cpo extends AppCompatActivity {
     float a, b;
     String title, inp1, inp2, tipe;
     Context contex;
+    ImageView rumus;
     TextInputLayout input01, input02;
     InputMethodManager inputManager;
     Integer resultCode;
@@ -39,7 +39,6 @@ public class Hitung04_cpo extends AppCompatActivity {
         this.tipe = "cpo";
         resultCode = 1;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,8 @@ public class Hitung04_cpo extends AppCompatActivity {
         input02 = findViewById(R.id.hitung04_input02);
         input02.setHint(inp2);
         save.setEnabled(false);
+
+        rumus = findViewById(R.id.hitung03_rumus);
 
         hasil = findViewById(R.id.hitung04_hasil_r);
 
@@ -81,11 +82,17 @@ public class Hitung04_cpo extends AppCompatActivity {
             }
         });
 
+        setRumus();
+
         ActionBar actbar;
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
         actbar.setTitle(title);
         actbar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void setRumus() {
+        rumus.setBackgroundResource(R.drawable.r_cpo);
     }
 
     public void ambilnilai(){

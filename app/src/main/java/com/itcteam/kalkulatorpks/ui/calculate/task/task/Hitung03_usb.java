@@ -32,4 +32,8 @@ public class Hitung03_usb extends Hitung03_kernel {
         super.tipe = 1;
     }
 
+    @Override
+    public void setRumus() {
+        super.rumus.setBackgroundResource(R.drawable.l_usb);
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class Hitung04_storage extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     TextInputLayout inp1, inp2;
     Integer pos ;
+    ImageView rumus;
     InputMethodManager inputManager;
     TextView hasil;
     float hasil_p;
@@ -88,6 +90,10 @@ public class Hitung04_storage extends AppCompatActivity {
 
         save = this.findViewById(R.id.hitung04_btn_save);
         save.setText("Simpan");
+
+        rumus = findViewById(R.id.hitung03_rumus);
+
+        rumus.setBackgroundResource(R.drawable.r_storage);
 
         save.setEnabled(false);
 

@@ -95,7 +95,7 @@ public class Hitung03 extends AppCompatActivity {
 
         actbar = getSupportActionBar();
         actbar.setHomeButtonEnabled(true);
-        actbar.setTitle(R.string.cal_02);
+        actbar.setTitle(R.string.cal_03);
         actbar.setDisplayHomeAsUpEnabled(true);
 
         usbS = "{}";
