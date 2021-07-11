@@ -119,7 +119,7 @@ public class Hitung03 extends AppCompatActivity {
         }else if (resultCode==3){
             minyakS = data.getStringExtra("minyak");
             Log.w("Trigger", String.valueOf(resultCode));
-        }else{
+        }else if(resultCode==4){
             kernelS = data.getStringExtra("kernel");
             Log.w("Trigger", String.valueOf(resultCode));
         }

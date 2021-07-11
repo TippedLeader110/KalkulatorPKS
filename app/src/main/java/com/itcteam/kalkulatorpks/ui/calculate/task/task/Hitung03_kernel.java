@@ -232,7 +232,7 @@ public class Hitung03_kernel extends AppCompatActivity {
         tVal02.set(pos, d);
 
         hasil_tbs = (Float)tVal01.get(pos) * (Float)tVal02.get(pos);
-        hasil_tbs *= 100;
+        hasil_tbs /= 100;
         hasilRTBS.setText(Float.toString(hasil_tbs) + "%");
         hasilLTBS.setText("Hasil On TBS dari "+ dropdownSample.get(pos) +" = ");
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),

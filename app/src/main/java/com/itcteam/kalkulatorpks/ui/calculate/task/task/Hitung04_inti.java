@@ -1,5 +1,7 @@
 package com.itcteam.kalkulatorpks.ui.calculate.task.task;
 
+import com.itcteam.kalkulatorpks.R;
+
 public class Hitung04_inti extends Hitung04_cpo {
 
     public Hitung04_inti() {
@@ -8,6 +10,10 @@ public class Hitung04_inti extends Hitung04_cpo {
         super.inp2 = "Berat inti yang dihasilkan (kg)";
         super.tipe = "inti";
         super.resultCode = 2;
+    }
+
+    public void setRumus() {
+        rumus.setBackgroundResource(R.drawable.r_inti);
     }
 
 }
