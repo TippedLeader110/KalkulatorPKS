@@ -262,6 +262,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     list.put("availability", js.getString("availability"));
                     list.put("perfomance", js.getString("perfomance"));
                     list.put("quality", js.getString("quality"));
+                    list.put("oee", js.getString("oee"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -338,7 +339,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             linesC =  "Tanggal,Nama Kebun,CPO,Inti,Storage\n";
         }
         else if(i==5){
-            linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
+            linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE(%)\n";
         }else if (i==2){
             linesC =  "Tanggal,Nama Mesin/Alat,ALB,CPO Air,CPO Kotoran,DOBI\n";
         }else if(i==25){
@@ -404,7 +405,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             jsonBerkas.getString("perfomance")+ "," +
                             jsonBerkas.getString("availability")+ "," +
                             jsonBerkas.getString("quality")+ "," +
-                            jsonBerkas.getString("hasil");
+                            jsonBerkas.getString("oee");
 
                     Log.w("Lines", lines);
                     Log.w("LinesC", linesC);

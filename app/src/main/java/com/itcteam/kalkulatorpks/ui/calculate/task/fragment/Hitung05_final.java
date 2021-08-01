@@ -47,7 +47,7 @@ public class Hitung05_final extends Fragment {
             Log.w("Bundle", "Empty");
         }else{
             fhasil = Float.valueOf(bundle.getString("HASIL"));
-//            fhasil *= 100;
+            fhasil *= 100;
             hasils = fhasil + "%";
             rumus.setText("OEE = "+ bundle.getString("AV").toString() + "% x " + bundle.getString("PR").toString()+ "%" +
                     " x " + bundle.getString("QU").toString() + "%");
@@ -91,7 +91,7 @@ public class Hitung05_final extends Fragment {
             jsonObjectval.put("perfomance", bundle.getString("PR"));
             jsonObjectval.put("quality", bundle.getString("QU"));
             jsonObjectval.put("availability", bundle.getString("AV"));
-            jsonObjectval.put("OEE", hasil.getText());
+            jsonObjectval.put("oee", fhasil);
         } catch (JSONException e) {
             e.printStackTrace();
         }

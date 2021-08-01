@@ -49,7 +49,7 @@ public class Hitung05_final_nonFrag extends AppCompatActivity {
             hasils = fhasil + "%";
             rumus.setText("OEE = " + bundle.getString("AV").toString() + "% x " + bundle.getString("PR").toString() + "%" +
                     " x " + bundle.getString("QU").toString() + "%");
-            hasil.setText("OEE = " + hasils);
+            hasil.setText("OEE = " + bundle.getString("oee") + "%");
         }
 
         DialogInterface.OnClickListener dialogInt = new DialogInterface.OnClickListener() {

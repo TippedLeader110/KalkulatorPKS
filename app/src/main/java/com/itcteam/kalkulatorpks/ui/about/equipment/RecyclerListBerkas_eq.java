@@ -113,7 +113,7 @@ public class RecyclerListBerkas_eq extends RecyclerView.Adapter<RecyclerListBerk
                     Log.w("Ma", "export");
                     List dataLines = new ArrayList<String>();
 
-                    String linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE\n";
+                    String linesC =  "Tanggal,Nama Mesin/Alat,Perfomance,Availability,Quality,OEE(%)\n";
                     try {
                         String fetchData = databaseHandler.getRecordValue(value.get("id_record"), tipe);
                         JSONObject jsonBerkas = new JSONObject(fetchData);
@@ -122,7 +122,7 @@ public class RecyclerListBerkas_eq extends RecyclerView.Adapter<RecyclerListBerk
                                 jsonBerkas.getString("perfomance")+ "," +
                                 jsonBerkas.getString("availability")+ "," +
                                 jsonBerkas.getString("quality")+ "," +
-                                jsonBerkas.getString("hasil");
+                                jsonBerkas.getString("oee");
 
                         Log.w("Lines", lines);
                         Log.w("LinesC", linesC);
@@ -145,6 +145,7 @@ public class RecyclerListBerkas_eq extends RecyclerView.Adapter<RecyclerListBerk
                         intent.putExtra("AV", jsonBerkas.getString("availability"));
                         intent.putExtra("PR", jsonBerkas.getString("perfomance"));
                         intent.putExtra("QU", jsonBerkas.getString("quality"));
+                        intent.putExtra("oee", jsonBerkas.getString("oee"));
                         intent.putExtra("id", value.get("id_record").toString());
                         intent.putExtra("hide", "yes");
 //                        ((Activity) context).startActivityForResult(intent,1);
