@@ -123,7 +123,7 @@ public class Hitung03_kernel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buatJson();
-                Toast.makeText(contex, backtipe + " : " + jsonVal, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(contex, backtipe + " : " + jsonVal, Toast.LENGTH_SHORT).show(); // Debug data
                 Log.w("BACKTIPE", jsonVal);
                 Intent intent = new Intent();
                 intent.putExtra(backtipe, jsonVal);
@@ -203,7 +203,7 @@ public class Hitung03_kernel extends AppCompatActivity {
                                 .put("Hasil Sampel", hasil)
                                 .put("On Sample", tVal01.get(i))
                                 .put("Material Balance", tVal02.get(i))
-                                .put("Hasil ON TBS", Float.valueOf(tVal01.get(i).toString())*Float.valueOf(tVal02.get(i).toString()))
+                                .put("Hasil ON TBS", (Float.valueOf(tVal01.get(i).toString())*Float.valueOf(tVal02.get(i).toString()))/100)
                 );
             }
 
